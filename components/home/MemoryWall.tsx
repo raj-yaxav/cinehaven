@@ -185,7 +185,7 @@ export function MemoryWall() {
               
               <button
                 onClick={() => setSelectedMemory(null)}
-                className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-black/15 text-ink backdrop-blur-md transition hover:bg-black/8"
+                className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-black/15 text-ink backdrop-blur-md transition hover:bg-black/20"
               >
                 <X className="h-5 w-5" />
               </button>

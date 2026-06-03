@@ -5,4 +5,4 @@ export { FeaturedRooms } from './FeaturedRooms';
 export { MemoryWall } from './MemoryWall';
 export { Testimonials } from './Testimonials';
 export { PressLogos } from './PressLogos';
-export { CTASection } from './CTASection';
+export { CTASection } from './CTASection'
