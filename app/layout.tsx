@@ -4,6 +4,7 @@ import './globals.css';
 import Providers from './providers';
 import { ScrollProgress } from '../components/ScrollProgress';
 import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
 
 export const metadata: Metadata = {
   title: 'CineHaven — Private Theatre Celebrations | Birthdays, Proposals & More',
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Providers>
           <Navbar />
           <main>{children}</main>
+          <Footer />
         </Providers>
       </body>
     </html>

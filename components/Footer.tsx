@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 
-export default function Footer() {
+export function Footer() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
