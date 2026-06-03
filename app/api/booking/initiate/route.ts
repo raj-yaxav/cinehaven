@@ -1,24 +1,38 @@
 import { NextResponse } from 'next/server';
 import { connectToDatabase } from '../../../../lib/mongodb';
 import AvailabilitySlot from '../../../../models/AvailabilitySlot';
-import OTP from '../../../../models/OTP';
-import { sendOTPEmail } from '../../../../lib/email';
+import Booking from '../../../../models/Booking';
+import Lead from '../../../../models/Lead';
+import Notification from '../../../../models/Notification';
+import Package from '../../../../models/Package';
+import Room from '../../../../models/Room';
+import {
+  sendAdminNotificationEmail,
+  sendBookingConfirmationEmail,
+} from '../../../../lib/email';
 import crypto from 'crypto';
-
-function generateOTP(): string {
-  return Math.floor(100000 + Math.random() * 900000).toString();
-}
 
 function generateBookingId(): string {
   return `CH-${Date.now().toString(36).toUpperCase()}-${crypto.randomBytes(2).toString('hex').toUpperCase()}`;
 }
+
+type BookingRoomFallback = {
+  _id: unknown;
+  location?: unknown;
+  name?: string;
+};
+
+type BookingPackageFallback = {
+  _id: unknown;
+  name?: string;
+};
 
 export async function POST(request: Request) {
   try {
     await connectToDatabase();
     const payload = await request.json();
 
-    const {
+    let {
       name,
       email,
       phone,
@@ -36,10 +50,44 @@ export async function POST(request: Request) {
       occasion,
     } = payload;
 
-    // Validation
-    if (!name || !email || !phone || !location || !room || !packageId || !date || !timeSlot?.start || !timeSlot?.end) {
+    const selectedRoom = (room
+      ? await Room.findById(room).select('location name').lean()
+      : null) as BookingRoomFallback | null;
+    const defaultPackage = (!packageId
+      ? await Package.findOne().sort({ isPopular: -1, tier: 1 }).select('_id name').lean()
+      : null
+    ) as BookingPackageFallback | null;
+    const fallbackPackage = (!packageId && !defaultPackage
+      ? await Package.findOneAndUpdate(
+          { slug: 'standard-theatre-booking' },
+          {
+            $setOnInsert: {
+              name: 'Standard Theatre Booking',
+              slug: 'standard-theatre-booking',
+              tier: 'silver',
+              description: 'Default package for theatre-only bookings',
+              priceModifier: 0,
+              isPopular: false,
+            },
+          },
+          { new: true, upsert: true }
+        ).select('_id name').lean()
+      : null
+    ) as BookingPackageFallback | null;
+
+    location = location || selectedRoom?.location;
+    packageId = packageId || defaultPackage?._id || fallbackPackage?._id;
+
+    if (!name || !email || !phone || !room || !date || !timeSlot?.start || !timeSlot?.end) {
       return NextResponse.json(
-        { status: 'error', message: 'Missing required fields' },
+        { status: 'error', message: 'Please fill in your contact details and select a theatre slot' },
+        { status: 400 }
+      );
+    }
+
+    if (!selectedRoom || !location || !packageId) {
+      return NextResponse.json(
+        { status: 'error', message: 'Booking setup is incomplete. Please refresh and try again.' },
         { status: 400 }
       );
     }
@@ -60,60 +108,112 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check for existing unverified OTP for this email
-    const existingOTP = await OTP.findOne({
-      email,
-      verified: false,
-      expiresAt: { $gt: new Date() },
-    });
-
-    if (existingOTP) {
-      // Update existing OTP with new booking data
-      const newOTP = generateOTP();
-      existingOTP.otp = newOTP;
-      existingOTP.bookingData = {
-        ...payload,
-        bookingId: generateBookingId(),
-        availabilitySlot: slot._id,
-      };
-      existingOTP.expiresAt = new Date(Date.now() + 10 * 60 * 1000);
-      existingOTP.attempts = 0;
-      existingOTP.resendCount = 0;
-      await existingOTP.save();
-
-      await sendOTPEmail(email, newOTP, name);
-
-      return NextResponse.json({
-        status: 'success',
-        message: 'OTP resent successfully',
-        data: { email, expiresIn: 600 },
-      });
-    }
-
-    // Create new OTP
-    const otp = generateOTP();
+    const normalizedSpecialRequests = specialRequests?.trim() || undefined;
     const bookingId = generateBookingId();
+    const packageName = payload.packageName || defaultPackage?.name || fallbackPackage?.name || 'Standard Theatre Booking';
 
-    const otpRecord = await OTP.create({
+    const lead = await Lead.create({
+      name,
       email,
-      otp,
-      bookingData: {
-        ...payload,
-        bookingId,
-        availabilitySlot: slot._id,
-      },
-      expiresAt: new Date(Date.now() + 10 * 60 * 1000),
-      verified: false,
-      attempts: 0,
-      resendCount: 0,
+      phone,
+      occasion,
+      location,
+      room,
+      package: packageId,
+      date: new Date(date),
+      guests,
+      specialRequests: normalizedSpecialRequests,
+      status: 'new',
+      source: 'booking_wizard',
     });
 
-    await sendOTPEmail(email, otp, name);
+    const booking = await Booking.create({
+      bookingId,
+      lead: lead._id,
+      location,
+      room,
+      package: packageId,
+      date: new Date(date),
+      timeSlot,
+      availabilitySlot: slot._id,
+      guests,
+      addOns: addOns || [],
+      totalAmount,
+      discountAmount: discountAmount || 0,
+      finalAmount,
+      paymentStatus: 'pending',
+      bookingStatus: 'confirmed',
+      customerDetails: {
+        name,
+        email,
+        phone,
+      },
+      specialRequests: normalizedSpecialRequests,
+      emailSent: false,
+    });
+
+    await Notification.create({
+      type: 'booking',
+      title: 'New booking confirmed',
+      message: `${name} confirmed booking ${bookingId}`,
+      href: '/admin/bookings',
+      metadata: {
+        bookingId,
+        bookingObjectId: booking._id,
+        leadId: lead._id,
+        amount: finalAmount,
+      },
+    });
+
+    slot.status = 'booked';
+    slot.booking = booking._id;
+    await slot.save();
+
+    try {
+      const formattedDate = new Date(date).toLocaleDateString('en-IN', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+
+      await Promise.all([
+        sendBookingConfirmationEmail(email, {
+          name,
+          bookingId,
+          location: payload.locationName || String(location),
+          room: payload.roomName || selectedRoom.name || String(room),
+          package: packageName,
+          date: formattedDate,
+          timeSlot: `${timeSlot.start} - ${timeSlot.end}`,
+          guests,
+          totalAmount: finalAmount,
+        }),
+        sendAdminNotificationEmail({
+          bookingId,
+          name,
+          email,
+          phone,
+          location: payload.locationName || String(location),
+          room: payload.roomName || selectedRoom.name || String(room),
+          package: packageName,
+          date: formattedDate,
+          guests,
+          totalAmount: finalAmount,
+        }),
+      ]);
+
+      booking.emailSent = true;
+      booking.emailSentAt = new Date();
+      await booking.save();
+    } catch (emailError) {
+      console.error('Booking email sending failed:', emailError);
+    }
 
     return NextResponse.json({
       status: 'success',
-      message: 'OTP sent successfully',
-      data: { email, expiresIn: 600 },
+      message: 'Booking confirmed successfully',
+      data: { bookingId, bookingObjectId: booking._id },
     });
   } catch (error) {
     console.error('Initiate booking error:', error);

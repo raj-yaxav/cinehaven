@@ -254,7 +254,7 @@ export default function BookNowPage() {
         addOns: selectedAddOns.map((id) => ({ addon: id, quantity: 1 })),
         totalAmount: pricing.subtotal,
         finalAmount: pricing.total,
-        specialRequests,
+        specialRequests: specialRequests.trim() || undefined,
         locationName,
         roomName: selectedRoom?.name,
       };
@@ -698,7 +698,7 @@ export default function BookNowPage() {
               <div className="pt-3 border-t border-black/4 space-y-2">
                 <div className="flex items-center gap-2 text-xs text-mist">
                   <Shield className="h-3.5 w-3.5 text-sage" />
-                  <span>Secure OTP verification</span>
+                  <span>Confirmation email sent instantly</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-mist">
                   <CheckCircle2 className="h-3.5 w-3.5 text-sage" />
@@ -706,7 +706,7 @@ export default function BookNowPage() {
                 </div>
                 <div className="flex items-center gap-2 text-xs text-mist">
                   <Lock className="h-3.5 w-3.5 text-sage" />
-                  <span>Pay 20% to confirm slot</span>
+                  <span>Slot blocks automatically after booking</span>
                 </div>
               </div>
             </div>
@@ -842,7 +842,7 @@ export default function BookNowPage() {
                   <div className="space-y-2">
                     <label className="flex items-center gap-2 text-sm font-accent uppercase tracking-widest text-mist">
                       <MessageSquare className="h-4 w-4 text-amber" />
-                      Special Requests
+                      Special Requests (Optional)
                     </label>
                     <input
                       value={specialRequests}
@@ -919,12 +919,12 @@ export default function BookNowPage() {
                   {isSubmitting ? (
                     <>
                       <Loader2 className="h-4 w-4 animate-spin" />
-                      Sending OTP...
+                      Confirming booking...
                     </>
                   ) : (
                     <>
                       <Lock className="h-4 w-4" />
-                      Pay 20% (₹{Math.round(pricing.total * 0.2).toLocaleString()}) to confirm
+                      Confirm Booking (₹{pricing.total.toLocaleString()})
                     </>
                   )}
                 </button>
@@ -956,8 +956,7 @@ export default function BookNowPage() {
                 Booking Confirmed!
               </h3>
               <p className="text-mist mb-6">
-                We've sent a verification code to <span className="text-amber">{email}</span>.
-                Complete the OTP to lock your slot.
+                We've sent booking ID and complete details to <span className="text-amber">{email}</span>.
               </p>
               <a href="/" className="btn-primary w-full">
                 Back to Home

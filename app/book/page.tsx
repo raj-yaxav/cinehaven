@@ -1036,7 +1036,7 @@ function CheckoutDrawer({
                   </div>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-ink mb-2 block">Special Requests</label>
+                  <label className="text-sm font-medium text-ink mb-2 block">Special Requests (Optional)</label>
                   <input
                     type="text"
                     value={specialRequests}
@@ -1125,7 +1125,7 @@ function CheckoutDrawer({
                 ) : (
                   <>
                     <Lock className="h-4 w-4" />
-                    Pay 20% (₹{Math.round(pricing.total * 0.2).toLocaleString()}) to Confirm
+                    Confirm Booking (₹{pricing.total.toLocaleString()})
                   </>
                 )}
               </motion.button>
@@ -1167,7 +1167,7 @@ function CheckoutDrawer({
             </motion.div>
             <h3 className="text-2xl font-bold text-ink mb-2">Booking Confirmed!</h3>
             <p className="text-ink-muted mb-6">
-              Verification sent to <span className="text-burgundy font-medium">{email}</span>
+              Booking ID and complete details sent to <span className="text-burgundy font-medium">{email}</span>
             </p>
             <motion.button
               whileHover={{ scale: 1.02 }}
@@ -1378,7 +1378,7 @@ export default function BookPage() {
         addOns: selectedAddOns.map((id) => ({ addon: id, quantity: 1 })),
         totalAmount: pricing.subtotal,
         finalAmount: pricing.total,
-        specialRequests,
+        specialRequests: specialRequests.trim() || undefined,
         locationName,
         roomName: selectedRoom?.name,
       };
