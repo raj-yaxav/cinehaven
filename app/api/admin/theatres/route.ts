@@ -8,12 +8,12 @@ function requireAdmin() {
   return Boolean(getAdminFromToken());
 }
 
-function slugify(value) {
+function slugify(value: string) {
   return value.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
 // Coerce input into a clean string array
-function normalizeCategories(input) {
+function normalizeCategories(input: unknown): string[] {
   if (!input) return ['birthday'];
   if (Array.isArray(input)) {
     return input
@@ -30,7 +30,7 @@ function normalizeCategories(input) {
   return ['birthday'];
 }
 
-function normalizeStringArray(input) {
+function normalizeStringArray(input: unknown): string[] {
   if (!input) return [];
   if (Array.isArray(input)) return input.map(String).filter(Boolean);
   if (typeof input === 'string') {
@@ -46,8 +46,10 @@ export async function GET() {
     }
 
     await connectToDatabase();
-    const location = await Location.findOne({ city: 'Delhi' }).lean();
-    const query = { isActive: true };
+    const location = (await Location.findOne({ city: 'Delhi' }).lean()) as
+      | { _id?: unknown }
+      | null;
+    const query: Record<string, unknown> = { isActive: true };
     if (location?._id) query.location = location._id;
 
     const rooms = await Room.find(query)
@@ -62,7 +64,7 @@ export async function GET() {
   }
 }
 
-export async function POST(request) {
+export async function POST(request: Request) {
   try {
     if (!requireAdmin()) {
       return NextResponse.json({ status: 'error', message: 'Unauthorized' }, { status: 401 });
@@ -133,19 +135,20 @@ console.log('📥 API received payload:', JSON.stringify(payload, null, 2));
     await Location.findByIdAndUpdate(location._id, { $addToSet: { rooms: room._id } });
 
     return NextResponse.json({ status: 'success', data: room }, { status: 201 });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('POST /api/admin/theatres error:', error);
 
-    if (error?.code === 11000) {
+    const err = error as { code?: number; name?: string; message?: string };
+    if (err.code === 11000) {
       return NextResponse.json(
         { status: 'error', message: 'A theatre with this slug already exists' },
         { status: 409 }
       );
     }
 
-    if (error?.name === 'ValidationError') {
+    if (err.name === 'ValidationError') {
       return NextResponse.json(
-        { status: 'error', message: error.message },
+        { status: 'error', message: err.message ?? 'Validation error' },
         { status: 400 }
       );
     }

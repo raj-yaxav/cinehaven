@@ -7,7 +7,7 @@ function requireAdmin() {
   return Boolean(getAdminFromToken());
 }
 
-function normalizeCategories(input) {
+function normalizeCategories(input: unknown): string[] | undefined {
   if (!input) return undefined;
   if (Array.isArray(input)) {
     return input.map((c) => String(c).toLowerCase().trim()).filter(Boolean);
@@ -18,7 +18,7 @@ function normalizeCategories(input) {
   return undefined;
 }
 
-function normalizeStringArray(input) {
+function normalizeStringArray(input: unknown): string[] | undefined {
   if (!input) return undefined;
   if (Array.isArray(input)) return input.map(String).filter(Boolean);
   if (typeof input === 'string') {
@@ -27,16 +27,19 @@ function normalizeStringArray(input) {
   return undefined;
 }
 
-export async function PATCH(request, { params }) {
+export async function PATCH(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
   try {
     if (!requireAdmin()) {
       return NextResponse.json({ status: 'error', message: 'Unauthorized' }, { status: 401 });
     }
 
     await connectToDatabase();
-    const payload = await request.json();
+    const payload = (await request.json()) as any;
 
-    const update = {};
+    const update: Record<string, any> = {};
 
     if (payload.name !== undefined) update.name = payload.name;
     if (payload.description !== undefined) update.description = payload.description;
@@ -55,7 +58,9 @@ export async function PATCH(request, { params }) {
       };
     } else {
       if (payload.capacityMin !== undefined || payload.capacityMax !== undefined) {
-        const existing = await Room.findById(params.id).select('capacity').lean();
+        const existing = (await Room.findById(params.id).select('capacity').lean()) as
+          | { capacity?: { min?: number | string; max?: number | string } }
+          | null;
         update.capacity = {
           min: Number(payload.capacityMin ?? existing?.capacity?.min ?? 2),
           max: Number(payload.capacityMax ?? existing?.capacity?.max ?? 8),
@@ -93,10 +98,10 @@ export async function PATCH(request, { params }) {
     }
 
     return NextResponse.json({ status: 'success', data: room });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('PATCH /api/admin/theatres/[id] error:', error);
 
-    if (error?.name === 'ValidationError') {
+    if (error instanceof Error && error.name === 'ValidationError') {
       return NextResponse.json(
         { status: 'error', message: error.message },
         { status: 400 }
@@ -110,7 +115,10 @@ export async function PATCH(request, { params }) {
   }
 }
 
-export async function DELETE(request, { params }) {
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
   try {
     if (!requireAdmin()) {
       return NextResponse.json({ status: 'error', message: 'Unauthorized' }, { status: 401 });
@@ -130,7 +138,7 @@ export async function DELETE(request, { params }) {
     }
 
     return NextResponse.json({ status: 'success', data: room });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('DELETE /api/admin/theatres/[id] error:', error);
     return NextResponse.json(
       { status: 'error', message: 'Unable to delete theatre' },
