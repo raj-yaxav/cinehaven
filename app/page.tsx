@@ -87,7 +87,7 @@ export default function HomePage() {
         
         {/* AI Celebration Planner */}
         <section className="relative section-padding bg-vibe-romantic">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+          <div className="mx-auto max-w-[1400px] px-1 lg:px-8">
             <div className="mb-16 text-center">
               <span className="mb-4 inline-block font-accent text-sm uppercase tracking-[0.3em] text-amber">
                 Smart Planning

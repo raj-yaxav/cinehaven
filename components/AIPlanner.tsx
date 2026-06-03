@@ -263,7 +263,7 @@ export default function AIPlanner() {
   };
 
   return (
-    <div className="relative mx-auto max-w-5xl px-4 sm:px-6">
+    <div className="relative mx-auto max-w-5xl px-4 sm:px-2">
       {/* Background Decorations */}
       <div className="absolute -top-10 sm:-top-20 -right-10 sm:-right-20 w-64 h-64 sm:w-96 sm:h-96 bg-[#6b0f2a]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-10 sm:-bottom-20 -left-10 sm:-left-20 w-56 h-56 sm:w-80 sm:h-80 bg-[#c9a87c]/5 rounded-full blur-3xl pointer-events-none" />
@@ -277,7 +277,7 @@ export default function AIPlanner() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#fdf5f7] border border-[#6b0f2a]/15">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 px-3 sm:px-2 py-1.5 sm:py-2 rounded-full bg-[#fdf5f7] border border-[#6b0f2a]/15">
             <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#6b0f2a]" />
             <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-[#6b0f2a]">
               AI Celebration Planner

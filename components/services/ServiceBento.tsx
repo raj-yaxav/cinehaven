@@ -175,7 +175,7 @@ export function ServiceBento() {
                         {service.title}
                       </h3>
                       
-                      <p className="mt-2 text-sm text-mist line-clamp-2">
+                      <p className="mt-2 text-sm text-mist line-clamp-4">
                         {service.description}
                       </p>
 
