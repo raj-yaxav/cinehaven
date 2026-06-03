@@ -208,7 +208,7 @@ async function handleSubmit(event: FormEvent) {
   return (
     <div className="space-y-8">
       {/* Page Header */}
-      <div className="flex items-start justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h1 className="text-3xl font-display font-bold text-ivory">Delhi Theatres</h1>
           <p className="text-mist mt-1">Manage private theatres shown under the single Delhi location.</p>
@@ -222,7 +222,7 @@ async function handleSubmit(event: FormEvent) {
       {/* Form Card */}
       <form onSubmit={handleSubmit} className="rounded-card border border-white/10 bg-white/[0.03] overflow-hidden">
         {/* Form Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-white/[0.02] border-b border-white/10">
+        <div className="flex flex-col gap-4 border-b border-white/10 bg-white/[0.02] px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-amber/10 flex items-center justify-center">
               {editingId ? <Edit3 className="h-5 w-5 text-amber" /> : <Plus className="h-5 w-5 text-amber" />}
@@ -301,7 +301,7 @@ async function handleSubmit(event: FormEvent) {
 
               {/* Add new category */}
               <FieldGroup label="Add New Category" hint="Or add custom category">
-                <div className="flex gap-2">
+                <div className="flex flex-col gap-2 sm:flex-row">
                   <input
                     type="text"
                     value={form.newCategory}
@@ -441,7 +441,7 @@ async function handleSubmit(event: FormEvent) {
                   </div>
                 )}
 
-                <div className="flex gap-2">
+                <div className="flex flex-col gap-2 sm:flex-row">
                   <input
                     type="text"
                     value={form.newFeature}
@@ -581,7 +581,7 @@ async function handleSubmit(event: FormEvent) {
           </div>
 
           {/* Status Toggle */}
-          <div className="flex items-center justify-between pt-4 border-t border-white/10">
+          <div className="flex flex-col gap-4 border-t border-white/10 pt-4 lg:flex-row lg:items-center lg:justify-between">
             <label className="flex items-center gap-3 cursor-pointer group">
               <div className={`relative h-6 w-11 rounded-full transition-colors ${form.isActive ? 'bg-amber' : 'bg-white/10'}`}>
                 <input
@@ -598,7 +598,7 @@ async function handleSubmit(event: FormEvent) {
               </div>
             </label>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               {message && (
                 <span className="text-sm text-mist">{message}</span>
               )}
@@ -635,7 +635,7 @@ async function handleSubmit(event: FormEvent) {
           <div className="grid gap-4 lg:grid-cols-2">
             {theatres.map((theatre) => (
               <div key={theatre._id} className="rounded-card border border-white/10 bg-white/[0.03] p-5 hover:bg-white/[0.05] transition-colors">
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <Building2 className="h-5 w-5 text-amber shrink-0" />
@@ -660,7 +660,7 @@ async function handleSubmit(event: FormEvent) {
                       </span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 shrink-0">
+                  <div className="flex shrink-0 items-center gap-2">
                     <button onClick={() => startEdit(theatre)} className="p-2 rounded-lg bg-white/5 text-mist hover:text-amber hover:bg-amber/10 transition-colors">
                       <Edit3 className="h-4 w-4" />
                     </button>

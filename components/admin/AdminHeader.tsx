@@ -84,9 +84,9 @@ export default function AdminHeader() {
   };
 
   return (
-    <header className="h-16 border-b border-white/10 bg-midnight/50 backdrop-blur-xl flex items-center justify-between px-8 sticky top-0 z-30">
+    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-white/10 bg-midnight/70 px-4 backdrop-blur-xl sm:px-6 md:px-8">
       {/* Search */}
-      <div className="relative w-96 hidden md:block">
+      <div className="relative hidden w-80 lg:block">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-dusty" />
         <input
           type="text"
@@ -96,7 +96,7 @@ export default function AdminHeader() {
       </div>
 
       {/* Right Side */}
-      <div className="flex items-center gap-4">
+      <div className="ml-auto flex items-center gap-3 sm:gap-4">
         {/* Notifications */}
         <div className="relative">
           <button
@@ -112,7 +112,7 @@ export default function AdminHeader() {
           </button>
 
           {isNotificationsOpen && (
-            <div className="absolute right-0 mt-3 w-96 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl border border-white/10 bg-midnight shadow-2xl shadow-black/40">
+            <div className="absolute right-0 mt-3 w-[calc(100vw-2rem)] max-w-96 overflow-hidden rounded-xl border border-white/10 bg-midnight shadow-2xl shadow-black/40">
               <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
                 <div>
                   <p className="text-sm font-semibold text-ivory">Notifications</p>

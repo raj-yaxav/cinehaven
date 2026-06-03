@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     const adminData = {
       name: 'Super Admin',
       email: 'admin@cinehaven.com',
-      password: 'CineHaven@2024',
+      password: '12345678',
       role: 'super_admin',
       isActive: true,
       loginAttempts: 0,
@@ -48,7 +48,7 @@ export async function POST(request: Request) {
       message,
       data: {
         email: admin.email,
-        password: 'CineHaven@2024', // Only shown once
+        password: '12345678', // Only shown once
       },
     });
   } catch (error) {

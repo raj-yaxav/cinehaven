@@ -3,8 +3,7 @@ import type { ReactNode } from 'react';
 import './globals.css';
 import Providers from './providers';
 import { ScrollProgress } from '../components/ScrollProgress';
-import { Navbar } from '../components/Navbar';
-import { Footer } from '../components/Footer';
+import { SiteChrome } from '../components/SiteChrome';
 
 export const metadata: Metadata = {
   title: 'CineHaven — Private Theatre Celebrations | Birthdays, Proposals & More',
@@ -53,9 +52,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="min-h-screen bg-midnight text-ivory font-body antialiased selection:bg-amber/30 selection:text-white">
         <ScrollProgress />
         <Providers>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <SiteChrome>{children}</SiteChrome>
         </Providers>
       </body>
     </html>

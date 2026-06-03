@@ -3,6 +3,7 @@ import { connectToDatabase } from '../../../../../../lib/mongodb';
 import { getAdminFromToken } from '../../../../../../lib/auth';
 import AvailabilitySlot from '../../../../../../models/AvailabilitySlot';
 import Booking from '../../../../../../models/Booking';
+import { ensureDefaultSlotsForRoom } from '../../../../../../lib/availability';
 
 interface Params {
   params: { id: string };
@@ -21,6 +22,8 @@ export async function POST(_request: Request, { params }: Params) {
     }
 
     const dateString = new Date(booking.date).toISOString().split('T')[0];
+    await ensureDefaultSlotsForRoom(booking.room.toString(), dateString);
+
     const slot = await AvailabilitySlot.findOne({
       room: booking.room,
       dateString,

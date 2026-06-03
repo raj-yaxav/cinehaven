@@ -641,6 +641,42 @@ body {
   }
 }
 
+/* === ADMIN SURFACES === */
+.admin-shell {
+  background:
+    linear-gradient(135deg, rgba(107, 15, 42, 0.045), transparent 34%),
+    linear-gradient(180deg, var(--cream) 0%, var(--cream-warm) 100%);
+}
+
+.admin-shell .border-white\/10,
+.admin-shell .border-white\/5 {
+  border-color: rgba(107, 15, 42, 0.14) !important;
+}
+
+.admin-shell .bg-white\/\[0\.03\],
+.admin-shell .bg-white\/\[0\.02\],
+.admin-shell .bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.admin-shell .rounded-card,
+.admin-shell .rounded-2xl,
+.admin-shell form.rounded-card {
+  box-shadow: 0 12px 34px rgba(74, 10, 30, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.admin-shell table thead {
+  background: rgba(107, 15, 42, 0.045);
+}
+
+.admin-shell table tbody tr:hover {
+  background: rgba(107, 15, 42, 0.035) !important;
+}
+
+.admin-shell header {
+  box-shadow: 0 8px 24px rgba(74, 10, 30, 0.05);
+}
+
 /* === KEYFRAMES === */
 @keyframes fadeInUp {
   0% { opacity: 0; transform: translateY(40px); }

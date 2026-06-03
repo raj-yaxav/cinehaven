@@ -175,7 +175,7 @@ export default function LeadsPage() {
             className="w-full pl-11 pr-4 py-3 rounded-xl border border-white/10 bg-white/5 text-ivory placeholder-dusty focus:border-amber focus:ring-1 focus:ring-amber/30 outline-none transition-all"
           />
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {['all', 'new', 'contacted', 'converted', 'lost'].map((status) => (
             <button
               key={status}
@@ -341,7 +341,7 @@ export default function LeadsPage() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="w-full max-w-lg rounded-2xl border border-white/10 bg-midnight p-8"
+              className="max-h-[90vh] w-full max-w-lg overflow-auto rounded-2xl border border-white/10 bg-midnight p-4 sm:p-8"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-6">
@@ -371,7 +371,7 @@ export default function LeadsPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-4 sm:grid-cols-2">
                   <div className="p-4 rounded-xl bg-white/5">
                     <p className="text-xs text-dusty mb-1">Email</p>
                     <p className="text-sm text-ivory flex items-center gap-2">
@@ -388,7 +388,7 @@ export default function LeadsPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-4 sm:grid-cols-2">
                   <div className="p-4 rounded-xl bg-white/5">
                     <p className="text-xs text-dusty mb-1">Occasion</p>
                     <p className="text-sm text-ivory capitalize">{selectedLead.occasion || '-'}</p>
@@ -415,7 +415,7 @@ export default function LeadsPage() {
                 )}
               </div>
 
-              <div className="flex gap-3 mt-6">
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={`mailto:${selectedLead.email}`}
                   className="flex-1 btn-primary justify-center text-sm"

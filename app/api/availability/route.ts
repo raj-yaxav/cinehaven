@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { connectToDatabase } from '../../../lib/mongodb';
 import AvailabilitySlot from '../../../models/AvailabilitySlot';
+import { ensureDefaultSlotsForRoom } from '../../../lib/availability';
 
 export async function GET(request: Request) {
   try {
@@ -15,6 +16,8 @@ export async function GET(request: Request) {
         { status: 400 }
       );
     }
+
+    await ensureDefaultSlotsForRoom(room, date);
 
     const slots = await AvailabilitySlot.find({
       room,

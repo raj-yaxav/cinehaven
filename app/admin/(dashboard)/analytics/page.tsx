@@ -20,8 +20,8 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Revenue Chart */}
-      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8">
-        <div className="flex items-center justify-between mb-8">
+      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-8">
+        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-amber/10 flex items-center justify-center">
               <DollarSign className="h-5 w-5 text-amber" />
@@ -34,9 +34,10 @@ export default function AnalyticsPage() {
           <span className="text-2xl font-bold text-amber">₹10.4L</span>
         </div>
 
-        <div className="flex items-end gap-2 h-64">
-          {stats.monthlyRevenue.map((value, index) => (
-            <div key={index} className="flex-1 flex flex-col items-center gap-2 group">
+        <div className="overflow-x-auto">
+          <div className="flex h-64 min-w-[520px] items-end gap-2">
+            {stats.monthlyRevenue.map((value, index) => (
+              <div key={index} className="flex-1 flex flex-col items-center gap-2 group">
               <div className="w-full relative">
                 <motion.div
                   initial={{ height: 0 }}
@@ -49,14 +50,15 @@ export default function AnalyticsPage() {
                 </div>
               </div>
               <span className="text-xs text-dusty">{months[index]}</span>
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Bookings Chart */}
-      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8">
-        <div className="flex items-center justify-between mb-8">
+      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-8">
+        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-coral/10 flex items-center justify-center">
               <Calendar className="h-5 w-5 text-coral" />
@@ -69,9 +71,10 @@ export default function AnalyticsPage() {
           <span className="text-2xl font-bold text-coral">48</span>
         </div>
 
-        <div className="flex items-end gap-2 h-64">
-          {stats.monthlyBookings.map((value, index) => (
-            <div key={index} className="flex-1 flex flex-col items-center gap-2 group">
+        <div className="overflow-x-auto">
+          <div className="flex h-64 min-w-[520px] items-end gap-2">
+            {stats.monthlyBookings.map((value, index) => (
+              <div key={index} className="flex-1 flex flex-col items-center gap-2 group">
               <div className="w-full relative">
                 <motion.div
                   initial={{ height: 0 }}
@@ -84,8 +87,9 @@ export default function AnalyticsPage() {
                 </div>
               </div>
               <span className="text-xs text-dusty">{months[index]}</span>
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
