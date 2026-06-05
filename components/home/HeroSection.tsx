@@ -57,19 +57,16 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen bg-cream overflow-hidden">
       
-      {/* Soft Background Blobs */}
-      <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-burgundy/[0.04] blur-[120px]" />
-      <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-rosegold/[0.04] blur-[100px]" />
-      
-      {/* Very Subtle Grid */}
-      <div 
-        className="absolute inset-0 opacity-[0.015]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(107, 15, 42, 0.5) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(107, 15, 42, 0.5) 1px, transparent 1px)`,
-          backgroundSize: '100px 100px',
-        }}
-      />
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-40 sm:opacity-55"
+          style={{ backgroundImage: 'url(/images/hero-birthday.png)' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-cream/60 via-midnight/80 to-midnight" />
+        <div className="absolute top-0 left-1/4 h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-coral/8 blur-[100px] sm:blur-[150px]" />
+        <div className="absolute bottom-0 right-1/4 h-[150px] w-[150px] sm:h-[300px] sm:w-[300px] rounded-full bg-amber/8 blur-[80px] sm:blur-[120px]" />
+      </div>
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-16">
         

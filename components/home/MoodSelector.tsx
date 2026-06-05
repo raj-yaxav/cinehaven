@@ -187,13 +187,13 @@ export function MoodSelector() {
                   {/* Background Image with Parallax */}
                   <div className="absolute inset-0 overflow-hidden">
                     <div 
-                      className="absolute inset-[-20%] bg-cover bg-center opacity-65 transition-all duration-700 ease-velvet group-hover:scale-110 group-hover:opacity-80"
+                      className="absolute inset-[-20%] bg-cover bg-center transition-all duration-700 ease-velvet group-hover:scale-110"
                       style={{ backgroundImage: `url(${mood.image})` }}
                     />
                   </div>
                   
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/50 to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/30 to-transparent" />
                   
                   {/* Top Accent Line */}
                   <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${mood.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
@@ -218,7 +218,7 @@ export function MoodSelector() {
                     <h3 className="font-display text-2xl font-bold text-ink group-hover:text-burgundy transition-colors duration-300">
                       {mood.name}
                     </h3>
-                    <p className="mt-1.5 text-sm text-ink-secondary leading-relaxed">
+                    <p className="mt-1.5 text-sm text-ink/80 leading-relaxed">
                       {mood.description}
                     </p>
                     
@@ -230,7 +230,7 @@ export function MoodSelector() {
                     </div>
                     
                     {/* CTA */}
-                    <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-ink-muted transition-all duration-300 group-hover:text-burgundy group-hover:gap-3">
+                    <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-ink/70 transition-all duration-300 group-hover:text-burgundy group-hover:gap-3">
                       <span>Explore</span>
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </div>

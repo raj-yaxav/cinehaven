@@ -104,7 +104,7 @@ export function MemoryWall() {
                   className="aspect-[4/5] bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                   style={{ backgroundImage: `url(${memory.image})` }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-cream via-transparent to-transparent opacity-30 transition-opacity group-hover:opacity-50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-cream/30 via-transparent to-transparent transition-opacity group-hover:opacity-50" />
                 
                 {/* Hover Content */}
                 <div className="absolute inset-0 flex flex-col justify-end p-5 opacity-0 transition-all duration-300 group-hover:opacity-100">
