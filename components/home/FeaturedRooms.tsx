@@ -14,7 +14,7 @@ const rooms = [
     price: '₹4,999',
     rating: 4.9,
     reviews: 234,
-    image: '/images/room-grand.jpg',
+    image: '/images/hero-corporate.png',
     tags: ['Couples Favorite', 'Premium Sound'],
   },
   {
@@ -25,7 +25,7 @@ const rooms = [
     price: '₹3,499',
     rating: 4.8,
     reviews: 189,
-    image: '/images/room-intimate.jpg',
+    image: '/images/hero-proposal.png',
     tags: ['Best for Couples', 'Private'],
   },
   {
@@ -36,7 +36,7 @@ const rooms = [
     price: '₹7,999',
     rating: 4.7,
     reviews: 156,
-    image: '/images/room-party.jpg',
+    image: '/images/hero-friends.png',
     tags: ['Friends Favorite', 'Karaoke'],
   },
   {
@@ -47,7 +47,7 @@ const rooms = [
     price: '₹5,999',
     rating: 4.8,
     reviews: 98,
-    image: '/images/room-family.jpg',
+    image: '/images/hero-anniversary.png',
     tags: ['Family Friendly', 'Spacious'],
   },
 ];

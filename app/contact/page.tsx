@@ -70,21 +70,21 @@ const locations = [
     address: 'Bandra West, Near Pali Hill',
     phone: '+91 22 1234 5678',
     timing: '10:00 AM - 11:00 PM',
-    image: '/images/locations/mumbai.jpg',
+    image: '/images/hero-birthday.png',
   },
   {
     city: 'Bangalore',
     address: 'Koramangala, 5th Block',
     phone: '+91 80 1234 5678',
     timing: '10:00 AM - 11:00 PM',
-    image: '/images/locations/bangalore.jpg',
+    image: '/images/hero-date.png',
   },
   {
     city: 'Delhi',
     address: 'Hauz Khas Village',
     phone: '+91 11 1234 5678',
     timing: '10:00 AM - 11:00 PM',
-    image: '/images/locations/delhi.jpg',
+    image: '/images/hero-corporate.png',
   },
 ];
 

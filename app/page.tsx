@@ -7,6 +7,7 @@ import {
   LiveSocialProof, 
   MoodSelector, 
   FeaturedRooms, 
+  WhyChooseUs, 
   MemoryWall, 
   Testimonials, 
   PressLogos,
@@ -112,6 +113,9 @@ export default function HomePage() {
 
         {/* Featured Rooms Carousel */}
         <FeaturedRooms />
+
+        {/* Why Choose Us */}
+        <WhyChooseUs />
 
         {/* Memory Wall */}
         <MemoryWall />

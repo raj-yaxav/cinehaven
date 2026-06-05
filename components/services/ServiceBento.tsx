@@ -20,7 +20,7 @@ const services = [
     icon: Cake,
     accent: 'amber',
     size: 'large', // spans 2 columns
-    image: '/images/service-birthday.jpg',
+    image: '/images/hero-birthday.png',
     price: 'From ₹3,999',
     rating: 4.9,
     features: ['Custom Cake', 'Balloon Decor', 'Birthday Video'],
@@ -32,7 +32,7 @@ const services = [
     icon: Heart,
     accent: 'coral',
     size: 'tall', // spans 2 rows
-    image: '/images/service-proposal.jpg',
+    image: '/images/hero-proposal.png',
     price: 'From ₹5,999',
     rating: 5.0,
     features: ['Rose Petal Path', 'Private Butler', 'Photography'],
@@ -44,7 +44,7 @@ const services = [
     icon: Sparkles,
     accent: 'coral',
     size: 'normal',
-    image: '/images/service-anniversary.jpg',
+    image: '/images/hero-anniversary.png',
     price: 'From ₹4,499',
     rating: 4.8,
     features: ['Champagne Toast', 'Photo Montage'],
@@ -56,7 +56,7 @@ const services = [
     icon: Sparkles,
     accent: 'amber',
     size: 'normal',
-    image: '/images/service-date.jpg',
+    image: '/images/hero-date.png',
     price: 'From ₹2,999',
     rating: 4.7,
     features: ['Candlelight Dinner', 'Movie Choice'],
@@ -68,7 +68,7 @@ const services = [
     icon: PartyPopper,
     accent: 'sage',
     size: 'large',
-    image: '/images/service-friends.jpg',
+    image: '/images/hero-friends.png',
     price: 'From ₹6,999',
     rating: 4.8,
     features: ['Karaoke Setup', 'Gaming Console', 'Pizza Party'],
@@ -80,7 +80,7 @@ const services = [
     icon: Briefcase,
     accent: 'sage',
     size: 'normal',
-    image: '/images/service-corporate.jpg',
+    image: '/images/hero-corporate.png',
     price: 'From ₹8,999',
     rating: 4.6,
     features: ['Projector Setup', 'Catering', 'Branding'],
@@ -153,7 +153,7 @@ export function ServiceBento() {
                   >
                     {/* Background Image */}
                     <div 
-                      className="absolute inset-0 bg-cover bg-center opacity-40 transition-transform duration-700 group-hover:scale-110"
+                      className="absolute inset-0 bg-cover bg-center opacity-65 transition-transform duration-700 group-hover:scale-110"
                       style={{ backgroundImage: `url(${service.image})` }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-cream via-midnight/70 to-transparent" />

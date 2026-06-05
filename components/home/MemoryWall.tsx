@@ -7,7 +7,7 @@ import { X, Heart, Quote, Calendar } from 'lucide-react';
 const memories = [
   {
     id: 1,
-    image: '/images/memory-1.jpg',
+    image: '/images/hero-proposal.png',
     occasion: 'Proposal',
     date: 'Feb 14, 2026',
     quote: 'She said yes! The setup was absolutely magical.',
@@ -17,7 +17,7 @@ const memories = [
   },
   {
     id: 2,
-    image: '/images/memory-2.jpg',
+    image: '/images/hero-birthday.png',
     occasion: 'Birthday',
     date: 'Jan 20, 2026',
     quote: 'Best birthday ever! My friends were blown away.',
@@ -27,7 +27,7 @@ const memories = [
   },
   {
     id: 3,
-    image: '/images/memory-3.jpg',
+    image: '/images/hero-anniversary.png',
     occasion: 'Anniversary',
     date: 'Dec 25, 2025',
     quote: '10 years together, celebrated in the most perfect way.',
@@ -37,7 +37,7 @@ const memories = [
   },
   {
     id: 4,
-    image: '/images/memory-4.jpg',
+    image: '/images/hero-date.png',
     occasion: 'Date Night',
     date: 'Mar 5, 2026',
     quote: 'Our monthly date night tradition just got upgraded.',
@@ -47,7 +47,7 @@ const memories = [
   },
   {
     id: 5,
-    image: '/images/memory-5.jpg',
+    image: '/images/hero-friends.png',
     occasion: 'Friends Party',
     date: 'Feb 28, 2026',
     quote: 'Karaoke + movie + pizza = unforgettable night!',
@@ -57,7 +57,7 @@ const memories = [
   },
   {
     id: 6,
-    image: '/images/memory-6.jpg',
+    image: '/images/hero-proposal.png',
     occasion: 'Proposal',
     date: 'Jan 1, 2026',
     quote: 'Started the year by asking her to be mine forever.',
@@ -104,7 +104,7 @@ export function MemoryWall() {
                   className="aspect-[4/5] bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                   style={{ backgroundImage: `url(${memory.image})` }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-cream via-transparent to-transparent opacity-60 transition-opacity group-hover:opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-cream via-transparent to-transparent opacity-30 transition-opacity group-hover:opacity-50" />
                 
                 {/* Hover Content */}
                 <div className="absolute inset-0 flex flex-col justify-end p-5 opacity-0 transition-all duration-300 group-hover:opacity-100">

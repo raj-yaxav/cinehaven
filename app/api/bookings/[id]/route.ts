@@ -8,13 +8,23 @@ interface Params {
 
 export async function GET(_request: Request, { params }: Params) {
   try {
-    await connectToDatabase();
-    const booking = await Booking.findOne({ bookingId: params.id }).lean();
-    if (!booking) {
-      return NextResponse.json({ status: 'error', message: 'Booking not found' }, { status: 404 });
+    const bookingId = params?.id;
+    if (!bookingId) {
+      return NextResponse.json({ status: 'error', message: 'Booking ID is required' }, { status: 400 });
     }
+
+    await connectToDatabase();
+
+    const booking = await Booking.findOne({ bookingId }).lean().exec();
+
+    if (!booking) {
+      return NextResponse.json({ status: 'error', message: `No booking found with ID: ${bookingId}` }, { status: 404 });
+    }
+
     return NextResponse.json({ status: 'success', data: booking });
   } catch (error) {
-    return NextResponse.json({ status: 'error', message: 'Unable to fetch booking' }, { status: 500 });
+    console.error('Booking lookup error:', error);
+    const message = error instanceof Error ? error.message : 'Unable to fetch booking';
+    return NextResponse.json({ status: 'error', message }, { status: 500 });
   }
 }

@@ -240,7 +240,7 @@ export function HeroSection() {
             
             {/* Optional: Uncomment if you want ONE hero image */}
             {/* <Image
-              src="/images/hero-main.png"
+              src="/images/hero-birthday.png"
               alt="Private Theatre Experience"
               width={1200}
               height={500}

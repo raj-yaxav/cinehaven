@@ -45,6 +45,7 @@ import {
   ArrowRight,
   Check,
   Briefcase,
+  CalendarDays,
 } from 'lucide-react';
 
 // ============ TYPES ============
@@ -348,10 +349,12 @@ function DateScroller({
   selectedDate,
   onSelectDate,
   maxDaysAhead = 90,
+  onOpenCalendar,
 }: {
   selectedDate: string;
   onSelectDate: (date: string) => void;
   maxDaysAhead?: number;
+  onOpenCalendar: () => void;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const today = useMemo(() => startOfDay(new Date()), []);
@@ -382,44 +385,58 @@ function DateScroller({
       <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-cream to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-cream to-transparent z-10 pointer-events-none" />
       
-      <div
-        ref={scrollRef}
-        className="flex gap-2 overflow-x-auto scrollbar-hide px-4 py-2"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-      >
-        {days.map((date) => {
-          const iso = toISODate(date);
-          const isSelected = selectedDate === iso;
-          const isToday = isSameDay(date, today);
-          const dayName = date.toLocaleDateString('en-IN', { weekday: 'short' });
-          const dayNum = date.getDate();
-          
-          return (
-            <motion.button
-              key={iso}
-              onClick={() => onSelectDate(iso)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`flex flex-col items-center justify-center min-w-[64px] h-20 rounded-2xl border transition-all duration-300 ${
-                isSelected
-                  ? 'bg-burgundy border-burgundy text-white shadow-burgundy-glow scale-105'
-                  : isToday
-                  ? 'bg-burgundy-bg border-burgundy/30 text-burgundy'
-                  : 'bg-white border-surface-border text-ink-secondary hover:bg-cream-warm hover:border-burgundy/20'
-              }`}
-            >
-              <span className={`text-[10px] uppercase tracking-wider font-medium ${isSelected ? 'text-white/70' : ''}`}>
-                {dayName}
-              </span>
-              <span className={`text-xl font-bold ${isSelected ? 'text-white' : 'text-ink'}`}>
-                {dayNum}
-              </span>
-              {isToday && !isSelected && (
-                <span className="h-1 w-1 rounded-full bg-burgundy mt-1" />
-              )}
-            </motion.button>
-          );
-        })}
+      <div className="flex items-center gap-3">
+        <div
+          ref={scrollRef}
+          className="flex gap-2 overflow-x-auto scrollbar-hide px-4 py-2 flex-1"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {days.map((date) => {
+            const iso = toISODate(date);
+            const isSelected = selectedDate === iso;
+            const isToday = isSameDay(date, today);
+            const dayName = date.toLocaleDateString('en-IN', { weekday: 'short' });
+            const dayNum = date.getDate();
+            
+            return (
+              <motion.button
+                key={iso}
+                onClick={() => onSelectDate(iso)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`flex flex-col items-center justify-center min-w-[64px] h-20 rounded-2xl border transition-all duration-300 ${
+                  isSelected
+                    ? 'bg-burgundy border-burgundy text-white shadow-burgundy-glow scale-105'
+                    : isToday
+                    ? 'bg-burgundy-bg border-burgundy/30 text-burgundy'
+                    : 'bg-white border-surface-border text-ink-secondary hover:bg-cream-warm hover:border-burgundy/20'
+                }`}
+              >
+                <span className={`text-[10px] uppercase tracking-wider font-medium ${isSelected ? 'text-white/70' : ''}`}>
+                  {dayName}
+                </span>
+                <span className={`text-xl font-bold ${isSelected ? 'text-white' : 'text-ink'}`}>
+                  {dayNum}
+                </span>
+                {isToday && !isSelected && (
+                  <span className="h-1 w-1 rounded-full bg-burgundy mt-1" />
+                )}
+              </motion.button>
+            );
+          })}
+        </div>
+
+        {/* Calendar Icon Button */}
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={onOpenCalendar}
+          className="shrink-0 flex flex-col items-center justify-center w-16 h-20 rounded-2xl bg-white border border-surface-border text-ink-secondary hover:bg-cream-warm hover:border-burgundy/30 transition-all duration-300 shadow-soft"
+          title="Open calendar"
+        >
+          <CalendarDays className="h-5 w-5 text-burgundy mb-1" />
+          <span className="text-[9px] uppercase tracking-wider font-medium text-ink-muted">Pick</span>
+        </motion.button>
       </div>
     </div>
   );
@@ -489,7 +506,10 @@ function CalendarModal({
         className="w-full max-w-md bg-white border border-surface-border rounded-3xl p-6 shadow-card-lift"
       >
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-bold text-ink">Select Date</h3>
+          <div className="flex items-center gap-2">
+            <CalendarDays className="h-5 w-5 text-burgundy" />
+            <h3 className="text-lg font-bold text-ink">Select Date</h3>
+          </div>
           <button onClick={onClose} className="p-2 rounded-full hover:bg-cream-warm text-ink-muted transition-colors">
             <X className="h-5 w-5" />
           </button>
@@ -561,6 +581,15 @@ function CalendarModal({
             );
           })}
         </div>
+
+        {/* Selected date display */}
+        {selectedDate && (
+          <div className="mt-4 pt-4 border-t border-surface-border">
+            <p className="text-sm text-ink-muted text-center">
+              Selected: <span className="font-semibold text-burgundy">{formatDateParts(selectedDate)?.full}</span>
+            </p>
+          </div>
+        )}
       </motion.div>
     </motion.div>
   );
@@ -1405,41 +1434,12 @@ export default function BookPage() {
         <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-rosegold/5 rounded-full blur-3xl" />
       </div>
 
-      {/* Header */}
-      {/* <motion.header
-        style={{ opacity: headerOpacity }}
-        className="sticky top-0 z-30 bg-cream/80 backdrop-blur-2xl border-b border-surface-border"
-      >
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-burgundy-bg flex items-center justify-center">
-              <Sparkles className="h-5 w-5 text-burgundy" />
-            </div>
-            <div>
-              <h1 className="text-lg font-bold text-ink">Book Your Experience</h1>
-              <p className="text-xs text-ink-muted flex items-center gap-1">
-                <MapPin className="h-3 w-3" /> {locationName}
-              </p>
-            </div>
-          </div>
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => setShowCalendar(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-surface-border text-sm hover:bg-cream-warm transition-all shadow-soft"
-          >
-            <Calendar className="h-4 w-4 text-burgundy" />
-            <span className="hidden sm:inline">{formatDateParts(selectedDate)?.full}</span>
-            <ChevronDown className="h-3 w-3 text-ink-muted" />
-          </motion.button>
-        </div>
-      </motion.header> */}
-
-      {/* Date Scroller */}
+      {/* Date Scroller with Calendar Icon */}
       <section className="max-w-7xl mx-auto px-4 pt-6">
         <DateScroller
           selectedDate={selectedDate}
           onSelectDate={selectDate}
+          onOpenCalendar={() => setShowCalendar(true)}
         />
       </section>
 

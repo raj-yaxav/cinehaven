@@ -15,7 +15,7 @@ const moods = [
     borderAccent: 'border-burgundy/20',
     bgAccent: 'bg-burgundy/8',
     iconBg: 'bg-burgundy-bg',
-    image: '/images/mood-romantic.jpg',
+    image: '/images/hero-proposal.png',
     tagline: 'Perfect for proposals & anniversaries',
     glow: 'group-hover:shadow-burgundy-glow',
   },
@@ -29,7 +29,7 @@ const moods = [
     borderAccent: 'border-crimson/20',
     bgAccent: 'bg-crimson/8',
     iconBg: 'bg-crimson-muted',
-    image: '/images/mood-party.jpg',
+    image: '/images/hero-friends.png',
     tagline: 'Birthdays & friends night out',
     glow: 'group-hover:shadow-crimson-glow',
   },
@@ -43,7 +43,7 @@ const moods = [
     borderAccent: 'border-rosegold/20',
     bgAccent: 'bg-rosegold/8',
     iconBg: 'bg-rosegold-bg',
-    image: '/images/mood-chill.jpg',
+    image: '/images/hero-date.png',
     tagline: 'Date nights & low-key hangs',
     glow: 'group-hover:shadow-rosegold-glow',
   },
@@ -57,7 +57,7 @@ const moods = [
     borderAccent: 'border-teal/20',
     bgAccent: 'bg-teal/8',
     iconBg: 'bg-teal-bg',
-    image: '/images/mood-family.jpg',
+    image: '/images/hero-anniversary.png',
     tagline: 'Memories for everyone',
     glow: 'group-hover:shadow-teal-glow',
   },
@@ -71,7 +71,7 @@ const moods = [
     borderAccent: 'border-burgundy/25',
     bgAccent: 'bg-burgundy/10',
     iconBg: 'bg-burgundy-bg',
-    image: '/images/mood-epic.jpg',
+    image: '/images/hero-birthday.png',
     tagline: 'Proposals & milestone events',
     glow: 'group-hover:shadow-burgundy-glow',
   },
@@ -187,13 +187,13 @@ export function MoodSelector() {
                   {/* Background Image with Parallax */}
                   <div className="absolute inset-0 overflow-hidden">
                     <div 
-                      className="absolute inset-[-20%] bg-cover bg-center opacity-30 transition-all duration-700 ease-velvet group-hover:scale-110 group-hover:opacity-40"
+                      className="absolute inset-[-20%] bg-cover bg-center opacity-65 transition-all duration-700 ease-velvet group-hover:scale-110 group-hover:opacity-80"
                       style={{ backgroundImage: `url(${mood.image})` }}
                     />
                   </div>
                   
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/70 to-transparent opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/50 to-transparent opacity-60" />
                   
                   {/* Top Accent Line */}
                   <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${mood.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />

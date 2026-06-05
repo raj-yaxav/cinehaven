@@ -6,6 +6,7 @@ import {
   // MoodSelector, 
   PackageComparison, 
   AddOnsSection, 
+  TestimonialsSection, 
   FAQAccordion, 
   // CTASection 
 } from '../../components/services';
@@ -24,6 +25,7 @@ export default function ServicesPage() {
       <MoodSelector />
       <PackageComparison />
       <AddOnsSection />
+      <TestimonialsSection />
       <FAQAccordion />
       {/* <CTASection /> */}
     </main>

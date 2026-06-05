@@ -16,12 +16,14 @@ import {
   Mail, 
   FileText,
   Sparkles,
-  ArrowUpRight
+  ArrowUpRight,
+  TicketCheck
 } from 'lucide-react';
 
 const navLinks = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/services', label: 'Services', icon: Layers },
+  { href: '/my-booking', label: 'My Booking', icon: TicketCheck },
   { href: '/about', label: 'About', icon: Users },
   { href: '/blog', label: 'Blog', icon: FileText },
   { href: '/contact', label: 'Contact', icon: Mail },

@@ -8,7 +8,7 @@ const testimonials = [
   {
     id: 1,
     name: 'Rahul Sharma',
-    avatar: '/images/avatar-1.jpg',
+    avatar: '/images/my-booking.png',
     occasion: 'Proposal Package',
     rating: 5,
     text: 'I proposed to my girlfriend here and it was absolutely perfect. The team helped me plan every detail, from the rose petal entrance to the custom video montage. She cried tears of joy!',
@@ -17,7 +17,7 @@ const testimonials = [
   {
     id: 2,
     name: 'Sarah Johnson',
-    avatar: '/images/avatar-2.jpg',
+    avatar: '/images/hero-birthday.png',
     occasion: 'Birthday Celebration',
     rating: 5,
     text: 'Best birthday ever! Booked the Party Zone for 15 friends. The karaoke setup, gaming console, and custom decor made it a night we still talk about. Worth every rupee!',
@@ -26,7 +26,7 @@ const testimonials = [
   {
     id: 3,
     name: 'Amit & Neha Patel',
-    avatar: '/images/avatar-3.jpg',
+    avatar: '/images/hero-anniversary.png',
     occasion: '10th Anniversary',
     rating: 5,
     text: 'We wanted something special for our 10th anniversary and CineHaven delivered beyond expectations. The Intimate Corner with candlelight dinner setup was so romantic. Felt like our first date all over again.',
@@ -35,7 +35,7 @@ const testimonials = [
   {
     id: 4,
     name: 'The Bangalore Squad',
-    avatar: '/images/avatar-4.jpg',
+    avatar: '/images/hero-date.png',
     occasion: 'Friends Reunion',
     rating: 5,
     text: 'We booked the Party Zone for our college reunion. The fog entry, LED dance floor, and custom playlist had us dancing till midnight. Already planning our next visit!',
