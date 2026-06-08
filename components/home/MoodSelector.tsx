@@ -155,7 +155,7 @@ export function MoodSelector() {
             className="font-display text-4xl font-bold text-ink md:text-5xl lg:text-6xl text-balance leading-tight"
           >
             Find Your{' '}
-            <span className="text-gradient-burgundy">Vibe</span>
+            <span className="text-burgundy">Vibe</span>
           </motion.h2>
           
           <motion.p
@@ -242,14 +242,6 @@ export function MoodSelector() {
                       <ArrowRight className={`h-4 w-4 ${mood.accent}`} />
                     </div>
                   </div>
-                  
-                  {/* Bottom Glow */}
-                  <div className={`
-                    absolute bottom-0 left-0 right-0 h-32 
-                    bg-gradient-to-t ${mood.gradient} 
-                    opacity-0 transition-opacity duration-500 group-hover:opacity-60
-                    pointer-events-none
-                  `} />
                 </div>
               </Link>
             </motion.div>

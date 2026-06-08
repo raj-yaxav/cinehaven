@@ -250,18 +250,18 @@ export function AddOnsSection() {
             <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-ink tracking-tight leading-[1.1]">
               Curate Your{' '}
               <span className="relative inline-block">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber via-amber-dark to-coral">
+                <span className="text-gradient-amber">
                   Perfect Experience
                 </span>
-                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none">
+                {/* <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none">
                   <path d="M2 8C75 2 225 2 298 8" stroke="url(#gradAddon2)" strokeWidth="3" strokeLinecap="round"/>
                   <defs>
                     <linearGradient id="gradAddon2" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#D97706" stopOpacity="0.4"/>
-                      <stop offset="100%" stopColor="#E85D4E" stopOpacity="0.4"/>
+                      <stop offset="0%" stopColor="#7f0505" stopOpacity="0.4"/>
+                      <stop offset="100%" stopColor="#5f0d04" stopOpacity="0.4"/>
                     </linearGradient>
                   </defs>
-                </svg>
+                </svg> */}
               </span>
             </h2>
             

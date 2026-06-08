@@ -87,7 +87,7 @@ export function HeroSection() {
           >
             Your Moment,
             <br />
-            <span className="text-gradient-burgundy">The Big Screen</span>
+            <span className="text-burgundy">The Big Screen</span>
           </motion.h1>
 
           {/* Subtitle */}

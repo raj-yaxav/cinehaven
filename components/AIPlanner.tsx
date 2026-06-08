@@ -287,7 +287,7 @@ export default function AIPlanner() {
             
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-ivory mb-3">
               Plan Your Perfect{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber via-amber-light to-coral">
+              <span className="text-burgundy">
                 Experience
               </span>
             </h2>
@@ -349,7 +349,7 @@ export default function AIPlanner() {
                       transition={{ duration: 1.5, repeat: Infinity }}
                       className={`flex h-10 w-10 items-center justify-center rounded-xl transition-all duration-300 ${
                         isCompleted
-                          ? 'bg-gradient-to-br from-amber to-coral text-midnight shadow-lg'
+                          ? 'text-gradient-amber shadow-lg'
                           : isActive
                           ? 'bg-amber text-midnight ring-4 ring-amber/20 shadow-lg'
                           : 'bg-white/40 border border-amber/10 text-mist/60'
@@ -837,7 +837,7 @@ export default function AIPlanner() {
                   
                   <h3 className="text-2xl font-display font-bold text-ivory mb-2">
                     Your Perfect{' '}
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber to-coral">
+                    <span className="text-burgundy">
                       Celebration
                     </span>
                   </h3>
@@ -875,7 +875,7 @@ export default function AIPlanner() {
                       <Wallet className="h-4 w-4 text-amber" />
                       <span className="text-[10px] font-semibold uppercase tracking-wider text-amber">Estimated</span>
                     </div>
-                    <p className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber to-coral">
+                    <p className="text-xl font-bold text-burgundy">
                       ₹{recommendation.estimatedPrice.toLocaleString()}
                     </p>
                   </div>
@@ -936,7 +936,7 @@ export default function AIPlanner() {
                     
                     <motion.a
                       href="/book"
-                      className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber to-coral text-midnight text-sm font-bold shadow-lg shadow-amber/20 hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-gradient-amber text-sm font-bold shadow-lg shadow-amber/20 hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
                     >
                       <Play className="h-4 w-4 fill-current" />
                       Book This Experience
@@ -975,7 +975,7 @@ export default function AIPlanner() {
               <motion.button
                 onClick={handleNext}
                 disabled={!isStepValid()}
-                className="inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-gradient-to-r from-amber to-coral text-midnight text-sm font-semibold shadow-lg shadow-amber/20 hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed"
+                className="group relative inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-gradient-burgundy text-white font-bold text-sm tracking-wider overflow-hidden shadow-burgundy-glow hover:shadow-burgundy-glow-lg transition-all duration-300 hover:-translate-y-0.5 sm:w-auto justify-center disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Continue
                 <ArrowRight className="h-4 w-4" />
@@ -984,7 +984,7 @@ export default function AIPlanner() {
               <motion.button
                 onClick={handleSubmit}
                 disabled={!isStepValid() || loading}
-                className="inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-gradient-to-r from-amber to-coral text-midnight text-sm font-semibold shadow-lg shadow-amber/20 hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed"
+                className="group relative inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-gradient-burgundy text-white font-bold text-sm uppercase tracking-wider overflow-hidden shadow-burgundy-glow hover:shadow-burgundy-glow-lg transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto justify-center disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <>

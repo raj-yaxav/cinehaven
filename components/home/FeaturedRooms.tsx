@@ -74,7 +74,7 @@ export function FeaturedRooms() {
               Our Spaces
             </span>
             <h2 className="font-display text-4xl font-bold text-ivory md:text-5xl text-balance">
-              Featured <span className="text-gradient-amber">Rooms</span>
+              Featured <span className="text-burgundy">Rooms</span>
             </h2>
           </div>
           

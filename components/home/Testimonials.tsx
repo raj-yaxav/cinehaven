@@ -66,7 +66,7 @@ export function Testimonials() {
             Love Stories
           </span>
           <h2 className="font-display text-4xl font-bold text-ivory md:text-5xl text-balance">
-            What Couples & Friends <span className="text-gradient-amber">Say</span>
+            What Couples & Friends <span className="text-burgundy">Say</span>
           </h2>
         </div>
 

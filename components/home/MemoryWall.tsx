@@ -80,9 +80,9 @@ export function MemoryWall() {
             Real Moments
           </span>
           <h2 className="font-display text-4xl font-bold text-ivory md:text-5xl text-balance">
-            Memory <span className="text-gradient-amber">Wall</span>
+            Memory <span className="text-burgundy">Wall</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-mist text-balance">
+          <p className="mx-auto mt-4 max-w-xl text-ivory/80 text-balance">
             Real celebrations, real emotions, real memories created at CineHaven.
           </p>
         </div>
@@ -108,9 +108,9 @@ export function MemoryWall() {
                 
                 {/* Hover Content */}
                 <div className="absolute inset-0 flex flex-col justify-end p-5 opacity-0 transition-all duration-300 group-hover:opacity-100">
-                  <span className="pill pill-coral mb-2 w-fit text-xs">{memory.occasion}</span>
-                  <p className="font-display text-lg font-bold text-ivory">{memory.couple}</p>
-                  <p className="text-sm text-mist flex items-center gap-1">
+                  <span className="pill bg-white/90 text-burgundy border border-burgundy/20 mb-2 w-fit text-xs">{memory.occasion}</span>
+                  <p className="font-display text-lg font-bold text-white">{memory.couple}</p>
+                  <p className="text-sm text-white/80 flex items-center gap-1">
                     <Calendar className="h-3 w-3" />
                     {memory.location} • {memory.date}
                   </p>
@@ -118,8 +118,8 @@ export function MemoryWall() {
 
                 {/* Always visible badge */}
                 <div className="absolute top-4 right-4 flex items-center gap-1 rounded-full bg-ink/60 backdrop-blur-md px-3 py-1.5">
-                  <Heart className="h-3.5 w-3.5 text-coral fill-coral" />
-                  <span className="text-xs text-ivory font-medium">{memory.likes}</span>
+                  <Heart className="h-3.5 w-3.5 text-white fill-white" />
+                  <span className="text-xs text-white font-medium">{memory.likes}</span>
                 </div>
               </div>
             </motion.div>
@@ -128,7 +128,7 @@ export function MemoryWall() {
 
         {/* CTA */}
         <div className="mt-12 text-center">
-          <p className="text-dusty mb-4">Want to see your memory here?</p>
+          <p className="text-mist mb-4">Want to see your memory here?</p>
           <a 
             href="/book" 
             className="inline-flex items-center gap-2 rounded-full border border-amber/30 px-6 py-3 text-sm font-medium text-amber transition hover:bg-amber/10"
@@ -185,7 +185,7 @@ export function MemoryWall() {
               
               <button
                 onClick={() => setSelectedMemory(null)}
-                className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-black/15 text-ink backdrop-blur-md transition hover:bg-black/20"
+                className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-ink backdrop-blur-md transition hover:bg-white"
               >
                 <X className="h-5 w-5" />
               </button>

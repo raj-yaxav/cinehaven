@@ -105,7 +105,7 @@ export default function HomePage() {
                   Smart Planning
                 </span>
                 <h2 className="font-display text-4xl font-bold text-ivory md:text-5xl lg:text-6xl text-balance">
-                  Let AI Plan Your <span className="text-gradient-amber">Perfect</span> Celebration
+                  Let AI Plan Your <span className="text-burgundy">Perfect</span> Celebration
                 </h2>
                 <p className="mx-auto mt-6 max-w-2xl text-lg text-mist text-balance">
                   Whether it's a romantic surprise or a wild friends' night out, our AI matches you with the ideal room, decor, and vibe.

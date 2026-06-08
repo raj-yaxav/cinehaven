@@ -41,7 +41,7 @@ export function CTASection() {
           
           <h2 className="font-display text-4xl font-bold text-ivory md:text-5xl lg:text-6xl text-balance">
             Ready to Create Your{' '}
-            <span className="text-gradient-amber">Premiere?</span>
+            <span className="text-burgundy">Premiere?</span>
           </h2>
           
           <p className="mx-auto mt-6 max-w-xl text-lg text-mist text-balance">

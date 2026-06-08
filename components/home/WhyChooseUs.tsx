@@ -203,7 +203,7 @@ export function WhyChooseUs() {
           <h2 className="font-display text-3xl sm:text-4xl lg:text-6xl font-bold text-ink tracking-tight leading-[1.1]">
             Designed to Make Your{' '}
             <span className="relative inline-block">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-burgundy via-burgundy to-burgundy-light">
+              <span className="text-burgundy">
                 Moments Unforgettable
               </span>
               <svg className="absolute -bottom-1 sm:-bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none">
