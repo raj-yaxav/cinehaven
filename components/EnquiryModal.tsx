@@ -54,19 +54,19 @@ export function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/60 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/60 backdrop-blur-sm p-0 md:p-4"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.92, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 30 }}
             transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-            className="relative flex w-full max-w-3xl overflow-hidden rounded-3xl bg-white shadow-2xl"
+            className="relative flex w-full max-w-3xl overflow-hidden rounded-none md:rounded-3xl bg-white shadow-2xl min-h-[100dvh] md:min-h-0"
           >
             {/* Close */}
             <button
               onClick={handleClose}
-              className="absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 backdrop-blur text-ink-muted hover:text-ink transition-colors"
+              className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 backdrop-blur text-ink-muted hover:text-ink transition-colors shadow-md"
             >
               <X className="h-4 w-4" />
             </button>
@@ -74,7 +74,7 @@ export function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
             {/* Image Side */}
             <div className="relative hidden w-5/12 shrink-0 md:block">
               <img
-                src="/images/hero-proposal.png"
+                src="https://res.cloudinary.com/dq3typk9u/image/upload/v1780913963/cinehaven/popup-enquiry.png"
                 alt="CineHaven experience"
                 className="absolute inset-0 h-full w-full object-cover"
               />
@@ -92,9 +92,9 @@ export function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
             </div>
 
             {/* Form Side */}
-            <div className="flex-1 px-6 py-10 md:px-10">
+            <div className="flex-1 px-5 py-8 md:px-10 md:py-10">
               {submitted ? (
-                <div className="flex flex-col items-center justify-center py-12 text-center">
+                <div className="flex flex-col items-center justify-center py-8 md:py-12 text-center">
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-sage/10 text-sage-dark mb-4">
                     <CheckCircle2 className="h-8 w-8" />
                   </div>
@@ -103,14 +103,14 @@ export function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                 </div>
               ) : (
                 <>
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-display font-bold text-ink">Let&apos;s Plan Something Magical</h3>
-                    <p className="mt-2 text-sm text-ink-secondary leading-relaxed">
+                  <div className="mb-5 md:mb-6">
+                    <h3 className="text-xl md:text-2xl font-display font-bold text-ink">Let&apos;s Plan Something Magical</h3>
+                    <p className="mt-2 text-sm md:text-base text-ink-secondary leading-relaxed">
                       Tell us a bit about your celebration and we&apos;ll help create the perfect evening.
                     </p>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
                     <div>
                       <label className="block text-xs font-accent uppercase tracking-wider text-ink-muted mb-1.5">Your Name</label>
                       <input
@@ -122,7 +122,7 @@ export function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                         className="input-velvet"
                       />
                     </div>
-                    <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="grid gap-3 md:gap-4 sm:grid-cols-2">
                       <div>
                         <label className="block text-xs font-accent uppercase tracking-wider text-ink-muted mb-1.5">Email</label>
                         <input

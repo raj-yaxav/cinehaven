@@ -215,13 +215,11 @@ export default function MyBookingPage() {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ 
-            backgroundImage: `url('/images/my-booking.png')`,
-            // Fallback gradient if image not loaded
-            background: 'linear-gradient(135deg, #1a0a0f 0%, #2d1418 30%, #1a0a0f 70%, #0d0508 100%)'
+            backgroundImage: `url('https://res.cloudinary.com/dq3typk9u/image/upload/v1780913962/cinehaven/my-booking.png')`,
           }}
         />
         {/* Overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-cream/95 via-cream/90 to-cream/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-cream/80 via-cream/60 to-cream/80" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-burgundy/5 via-transparent to-transparent" />
       </div>
 

@@ -31,7 +31,7 @@ const starterPosts: BlogPost[] = [
     content:
       'A private theatre birthday works best when the celebration has a simple flow: arrival, surprise reveal, cake moment, screening, photos, and a relaxed finish.\n\nStart with the guest list and the mood. A couple celebration can stay soft and romantic, while a friends party can use brighter decor, games, karaoke, and a high-energy playlist.\n\nUse the big screen for the personal part. A short video, photo slideshow, or custom birthday message makes the room feel made for one person, not just decorated for an event.\n\nKeep food and add-ons practical. Cake, snacks, beverages, and photography usually create more value than overloading the setup with too many props.',
     category: 'Featured story',
-    image: '/images/hero-birthday.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913950/cinehaven/hero-birthday.png',
     readTime: '5 min read',
     authorName: 'CineHaven Team',
     publishedAt: new Date().toISOString(),
@@ -44,7 +44,7 @@ const starterPosts: BlogPost[] = [
     content:
       'The best proposal plans feel effortless because the timing is clear before the day starts.\n\nChoose the exact reveal moment first. It could be a custom video, a song cue, a message on the screen, or a walk-in surprise after the lights dim.\n\nKeep the setup personal. Flowers, candles, soft lighting, and a private screening room are enough when the message is specific to your story.\n\nShare the plan with the venue team in advance. The right cue sheet helps everyone know when to play the video, bring the cake, adjust lights, and give you privacy.',
     category: 'CineHaven journal',
-    image: '/images/hero-proposal.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913959/cinehaven/hero-proposal.png',
     readTime: '4 min read',
     authorName: 'CineHaven Team',
     publishedAt: new Date().toISOString(),
@@ -57,7 +57,7 @@ const starterPosts: BlogPost[] = [
     content:
       'A private screening night gives you the comfort of a lounge and the drama of a cinema without the crowd.\n\nFor couples, keep the plan intimate: a favorite film, a memory slideshow, snacks, and a cozy decor theme.\n\nFor friends, make the night interactive. Add karaoke, console gaming, a comedy watch party, or a playlist battle before the movie starts.\n\nThe best part is control. You choose the people, the screen, the soundtrack, and the pace of the celebration.',
     category: 'CineHaven journal',
-    image: '/images/hero-friends.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913957/cinehaven/hero-friends.png',
     readTime: '3 min read',
     authorName: 'CineHaven Team',
     publishedAt: new Date().toISOString(),

@@ -1,7 +1,7 @@
 // components/Navbar.tsx
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
@@ -35,11 +35,7 @@ const menuVariants = {
   closed: {
     opacity: 0,
     x: '100%',
-    transition: {
-      type: 'spring',
-      stiffness: 300,
-      damping: 30,
-    },
+    transition: { type: 'spring', stiffness: 300, damping: 30 },
   },
   open: {
     opacity: 1,
@@ -59,24 +55,26 @@ const itemVariants = {
   open: { 
     opacity: 1, 
     x: 0,
-    transition: {
-      type: 'spring',
-      stiffness: 300,
-      damping: 24,
-    },
+    transition: { type: 'spring', stiffness: 300, damping: 24 },
   },
 };
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const tickingRef = useRef(false);
   const pathname = usePathname();
   const isAdminRoute = pathname?.startsWith('/admin');
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
+      if (!tickingRef.current) {
+        requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 30);
+          tickingRef.current = false;
+        });
+        tickingRef.current = true;
+      }
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -87,17 +85,17 @@ export function Navbar() {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
+    return () => { document.body.style.overflow = ''; };
   }, [isMobileMenuOpen]);
+
+  const toggleMenu = useCallback(() => setIsMobileMenuOpen(v => !v), []);
+  const closeMenu = useCallback(() => setIsMobileMenuOpen(false), []);
 
   if (isAdminRoute) return null;
 
@@ -108,8 +106,8 @@ export function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled 
-            ? 'bg-white/80 backdrop-blur-2xl border-b border-surface-border shadow-soft-lg' 
+          isScrolled
+            ? 'bg-white/80 backdrop-blur-2xl border-b border-surface-border shadow-soft-lg'
             : 'bg-transparent'
         }`}
       >
@@ -142,14 +140,11 @@ export function Navbar() {
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 const Icon = link.icon;
-                const isHovered = hoveredLink === link.href;
                 
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    onMouseEnter={() => setHoveredLink(link.href)}
-                    onMouseLeave={() => setHoveredLink(null)}
                     className={`relative group px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
                       isActive
                         ? 'text-burgundy'
@@ -157,30 +152,20 @@ export function Navbar() {
                     }`}
                   >
                     <span className="flex items-center gap-2 relative z-10">
-                      <Icon className={`h-4 w-4 transition-all duration-300 ${
-                        isHovered ? 'scale-110 text-burgundy' : ''
-                      }`} />
+                      <Icon className="h-4 w-4" />
                       {link.label}
                     </span>
                     
-                    {/* Hover background */}
-                    <motion.div
-                      className="absolute inset-0 rounded-xl bg-burgundy-bg border border-burgundy/10"
-                      initial={false}
-                      animate={{
-                        opacity: isHovered || isActive ? 1 : 0,
-                        scale: isHovered || isActive ? 1 : 0.9,
-                      }}
-                      transition={{ duration: 0.2 }}
+                    <div
+                      className={`absolute inset-0 rounded-xl transition-all duration-200 ${
+                        isActive
+                          ? 'opacity-100 scale-100 bg-burgundy-bg border border-burgundy/10'
+                          : 'opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 bg-burgundy-bg border border-burgundy/10'
+                      }`}
                     />
                     
-                    {/* Active dot */}
                     {isActive && (
-                      <motion.span 
-                        layoutId="activeNav"
-                        className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-burgundy"
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
+                      <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-burgundy" />
                     )}
                   </Link>
                 );
@@ -200,7 +185,7 @@ export function Navbar() {
 
             {/* Mobile Menu Button */}
             <motion.button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={toggleMenu}
               className="lg:hidden relative h-9 w-9 sm:h-10 sm:w-10 rounded-xl bg-burgundy-bg border border-burgundy/10 flex items-center justify-center text-ink hover:bg-burgundy/10 transition-colors"
               whileTap={{ scale: 0.9 }}
             >
@@ -236,17 +221,15 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               className="fixed inset-0 z-40 bg-ink/20 backdrop-blur-sm lg:hidden"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMenu}
             />
             
-            {/* Menu Panel */}
             <motion.div
               variants={menuVariants}
               initial="closed"
@@ -254,13 +237,10 @@ export function Navbar() {
               exit="closed"
               className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-[320px] sm:max-w-sm bg-white shadow-2xl lg:hidden flex flex-col"
             >
-              {/* Header */}
               <div className="flex items-center justify-between px-4 sm:px-6 h-[60px] sm:h-[72px] border-b border-surface-border flex-shrink-0">
-                <span className="font-display font-bold text-base sm:text-lg text-ink">
-                  Menu
-                </span>
+                <span className="font-display font-bold text-base sm:text-lg text-ink">Menu</span>
                 <motion.button
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={closeMenu}
                   className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl bg-burgundy-bg flex items-center justify-center text-burgundy"
                   whileTap={{ scale: 0.9 }}
                 >
@@ -268,7 +248,6 @@ export function Navbar() {
                 </motion.button>
               </div>
 
-              {/* Scrollable Links Area */}
               <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-6 sm:py-8 space-y-1.5 sm:space-y-2">
                 {navLinks.map((link) => {
                   const isActive = pathname === link.href;
@@ -278,6 +257,7 @@ export function Navbar() {
                     <motion.div key={link.href} variants={itemVariants}>
                       <Link
                         href={link.href}
+                        onClick={closeMenu}
                         className={`flex items-center gap-3 sm:gap-4 px-4 sm:px-5 py-3.5 sm:py-4 rounded-2xl text-sm sm:text-base font-medium transition-all duration-300 ${
                           isActive
                             ? 'bg-burgundy-bg text-burgundy border border-burgundy/15'
@@ -299,12 +279,11 @@ export function Navbar() {
                 })}
               </div>
 
-              {/* Bottom Section - CTA + Footer combined */}
               <div className="flex-shrink-0 px-4 sm:px-6 py-4 sm:py-5 border-t border-surface-border space-y-3 sm:space-y-4">
-                {/* CTA Button */}
                 <motion.div variants={itemVariants}>
                   <Link
                     href={ctaLink.href}
+                    onClick={closeMenu}
                     className="flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-6 py-3 sm:py-4 rounded-2xl bg-gradient-burgundy text-white text-sm sm:text-base font-semibold shadow-burgundy-glow-sm"
                   >
                     <Calendar className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -313,7 +292,6 @@ export function Navbar() {
                   </Link>
                 </motion.div>
 
-                {/* Footer Info */}
                 <motion.div variants={itemVariants}>
                   <p className="text-[10px] sm:text-xs text-ink-muted text-center leading-relaxed">
                     India&apos;s Most Immersive Private Theatre Experience

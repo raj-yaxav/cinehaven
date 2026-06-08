@@ -58,7 +58,7 @@ export async function POST(request: Request) {
       excerpt: payload.excerpt,
       content: payload.content,
       category: payload.category || 'CineHaven journal',
-      image: payload.image || '/images/hero-birthday.png',
+      image: payload.image || 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913950/cinehaven/hero-birthday.png',
       readTime: payload.readTime || '4 min read',
       isFeatured: Boolean(payload.isFeatured),
       isPublished: payload.isPublished !== false,

@@ -8,7 +8,7 @@ const testimonials = [
   {
     id: 1,
     name: 'Rahul Sharma',
-    avatar: '/images/my-booking.png',
+    avatar: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913962/cinehaven/my-booking.png',
     occasion: 'Proposal Package',
     rating: 5,
     text: 'I proposed to my girlfriend here and it was absolutely perfect. The team helped me plan every detail, from the rose petal entrance to the custom video montage. She cried tears of joy!',
@@ -17,7 +17,7 @@ const testimonials = [
   {
     id: 2,
     name: 'Sarah Johnson',
-    avatar: '/images/hero-birthday.png',
+    avatar: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913950/cinehaven/hero-birthday.png',
     occasion: 'Birthday Celebration',
     rating: 5,
     text: 'Best birthday ever! Booked the Party Zone for 15 friends. The karaoke setup, gaming console, and custom decor made it a night we still talk about. Worth every rupee!',
@@ -26,7 +26,7 @@ const testimonials = [
   {
     id: 3,
     name: 'Amit & Neha Patel',
-    avatar: '/images/hero-anniversary.png',
+    avatar: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913949/cinehaven/hero-anniversary.png',
     occasion: '10th Anniversary',
     rating: 5,
     text: 'We wanted something special for our 10th anniversary and CineHaven delivered beyond expectations. The Intimate Corner with candlelight dinner setup was so romantic. Felt like our first date all over again.',
@@ -35,7 +35,7 @@ const testimonials = [
   {
     id: 4,
     name: 'The Bangalore Squad',
-    avatar: '/images/hero-date.png',
+    avatar: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913956/cinehaven/hero-date.png',
     occasion: 'Friends Reunion',
     rating: 5,
     text: 'We booked the Party Zone for our college reunion. The fog entry, LED dance floor, and custom playlist had us dancing till midnight. Already planning our next visit!',
@@ -57,7 +57,7 @@ export function Testimonials() {
   const prev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section className="relative section-padding bg-velvet overflow-hidden">
+    <section className="relative section-padding bg-transparent overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-cream via-transparent to-midnight opacity-50" />
       
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8">

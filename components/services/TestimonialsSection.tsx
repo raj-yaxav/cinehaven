@@ -135,7 +135,7 @@ export function TestimonialsSection() {
       next();
     }, 6000);
     return () => clearInterval(timer);
-  }, [currentPage, isAutoPlaying]);
+  }, [currentPage, isAutoPlaying, next]);
 
   const slideVariants = {
     enter: (direction: number) => ({
@@ -226,7 +226,7 @@ export function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 + i * 0.1 }}
-              className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/70 border border-white/80 backdrop-blur-sm"
+              className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/60 border border-amber/10 backdrop-blur-sm"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-burgundy/[0.08] text-burgundy">
                 <stat.icon className="h-4 w-4" />
@@ -260,7 +260,7 @@ export function TestimonialsSection() {
                   transition={{ delay: index * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   className="group relative"
                 >
-                  <div className="relative h-full p-6 sm:p-7 lg:p-8 rounded-3xl bg-white/80 backdrop-blur-sm border border-white/60 hover:border-burgundy/15 transition-all duration-500 hover:shadow-[0_8px_40px_-12px_rgba(139,21,56,0.08)]">
+                  <div className="relative h-full p-6 sm:p-7 lg:p-8 rounded-3xl bg-white/60 backdrop-blur-sm border border-amber/10 hover:border-amber/20 transition-all duration-500 hover:shadow-[0_8px_40px_-12px_rgba(139,21,56,0.08)]">
                     
                     {/* Top accent line */}
                     <div className="absolute top-0 left-6 right-6 h-0.5 bg-gradient-to-r from-transparent via-burgundy/20 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

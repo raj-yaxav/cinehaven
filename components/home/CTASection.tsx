@@ -7,8 +7,6 @@ import { Heart, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
 export function CTASection() {
   return (
     <section className="relative section-padding overflow-hidden">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-mauve via-velvet to-midnight" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-amber/10 blur-[150px]" />
       <div className="absolute bottom-0 right-1/4 h-64 w-64 rounded-full bg-coral/8 blur-[120px]" />
       <div className="absolute top-1/4 left-1/4 h-48 w-48 rounded-full bg-sage/5 blur-[100px]" />

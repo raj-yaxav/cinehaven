@@ -31,7 +31,7 @@ const starterPosts: BlogPost[] = [
     excerpt:
       'Plan a birthday that feels cinematic with decor, cake moments, music, photos, and a private screening made for your group.',
     category: 'Featured story',
-    image: '/images/hero-birthday.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913950/cinehaven/hero-birthday.png',
     readTime: '5 min read',
     isFeatured: true,
     publishedAt: new Date().toISOString(),
@@ -43,7 +43,7 @@ const starterPosts: BlogPost[] = [
     excerpt:
       'A simple sequence for surprise entries, custom videos, lighting, flowers, and the big screen moment.',
     category: 'CineHaven journal',
-    image: '/images/hero-proposal.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913959/cinehaven/hero-proposal.png',
     readTime: '4 min read',
     isFeatured: false,
     publishedAt: new Date().toISOString(),
@@ -55,7 +55,7 @@ const starterPosts: BlogPost[] = [
     excerpt:
       'Trade the usual dinner plan for a private movie room with snacks, games, karaoke, and a playlist everyone remembers.',
     category: 'CineHaven journal',
-    image: '/images/hero-friends.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913957/cinehaven/hero-friends.png',
     readTime: '3 min read',
     isFeatured: false,
     publishedAt: new Date().toISOString(),

@@ -55,18 +55,7 @@ const itemVariants = {
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-cream overflow-hidden">
-      
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-40 sm:opacity-55"
-          style={{ backgroundImage: 'url(/images/hero-birthday.png)' }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-cream/60 via-midnight/80 to-midnight" />
-        <div className="absolute top-0 left-1/4 h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-coral/8 blur-[100px] sm:blur-[150px]" />
-        <div className="absolute bottom-0 right-1/4 h-[150px] w-[150px] sm:h-[300px] sm:w-[300px] rounded-full bg-amber/8 blur-[80px] sm:blur-[120px]" />
-      </div>
+    <section className="relative min-h-screen bg-transparent overflow-hidden">
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-16">
         
@@ -106,7 +95,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mt-6 text-ink-muted text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto"
+            className="mt-6 text-ink-secondary text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto"
           >
             Private cinemas crafted for proposals, birthdays, anniversaries & celebrations 
             that deserve to be remembered forever.
@@ -158,7 +147,7 @@ export function HeroSection() {
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-semibold text-ink truncate">{item.label}</p>
-                  <p className="text-[10px] text-ink-muted uppercase tracking-wider">{item.sub}</p>
+                  <p className="text-[10px] text-ink-secondary uppercase tracking-wider">{item.sub}</p>
                 </div>
               </div>
             ))}
@@ -173,7 +162,7 @@ export function HeroSection() {
           className="mt-12 sm:mt-16"
         >
           <div className="text-center mb-6 sm:mb-8">
-            <p className="text-[11px] uppercase tracking-[0.25em] text-ink-muted font-medium">
+            <p className="text-[11px] uppercase tracking-[0.25em] text-ink-secondary font-medium">
               Perfect For Every Occasion
             </p>
           </div>
@@ -191,7 +180,7 @@ export function HeroSection() {
                     <div className="relative z-10">
                       <span className="text-3xl mb-3 block">{cat.icon}</span>
                       <h3 className="text-sm font-bold text-ink group-hover:text-burgundy transition-colors">{cat.name}</h3>
-                      <p className="text-[10px] text-ink-muted mt-1">{cat.desc}</p>
+                      <p className="text-[10px] text-ink-secondary mt-1">{cat.desc}</p>
                     </div>
                   </div>
                 </Link>
@@ -237,7 +226,7 @@ export function HeroSection() {
             
             {/* Optional: Uncomment if you want ONE hero image */}
             {/* <Image
-              src="/images/hero-birthday.png"
+              src="https://res.cloudinary.com/dq3typk9u/image/upload/v1780913958/cinehaven/hero-home.png"
               alt="Private Theatre Experience"
               width={1200}
               height={500}
@@ -254,7 +243,7 @@ export function HeroSection() {
               <h3 className="text-xl sm:text-2xl font-display font-bold text-ink mb-2">
                 Ready to Create Your Memory?
               </h3>
-              <p className="text-sm text-ink-muted max-w-md mx-auto mb-6">
+              <p className="text-sm text-ink-secondary max-w-md mx-auto mb-6">
                 From intimate proposals to grand celebrations — we handle every detail.
               </p>
               <div className="flex items-center justify-center gap-2 text-xs text-ink-muted">
@@ -268,7 +257,6 @@ export function HeroSection() {
       </div>
 
       {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-cream to-transparent pointer-events-none" />
     </section>
   );
 }

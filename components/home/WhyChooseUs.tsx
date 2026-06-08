@@ -173,7 +173,7 @@ export function WhyChooseUs() {
   const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-cream via-cream-warm/20 to-cream py-20 sm:py-28 lg:py-32">
+    <section className="relative overflow-hidden bg-transparent py-20 sm:py-28 lg:py-32">
       {/* Background decorative elements */}
       <div className="absolute top-0 right-[10%] w-[500px] h-[500px] rounded-full bg-burgundy/[0.02] blur-[150px]" />
       <div className="absolute bottom-0 left-[5%] w-[400px] h-[400px] rounded-full bg-rosegold/[0.02] blur-[120px]" />

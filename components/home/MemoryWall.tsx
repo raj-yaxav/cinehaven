@@ -7,7 +7,7 @@ import { X, Heart, Quote, Calendar } from 'lucide-react';
 const memories = [
   {
     id: 1,
-    image: '/images/hero-proposal.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913959/cinehaven/hero-proposal.png',
     occasion: 'Proposal',
     date: 'Feb 14, 2026',
     quote: 'She said yes! The setup was absolutely magical.',
@@ -17,7 +17,7 @@ const memories = [
   },
   {
     id: 2,
-    image: '/images/hero-birthday.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913950/cinehaven/hero-birthday.png',
     occasion: 'Birthday',
     date: 'Jan 20, 2026',
     quote: 'Best birthday ever! My friends were blown away.',
@@ -27,7 +27,7 @@ const memories = [
   },
   {
     id: 3,
-    image: '/images/hero-anniversary.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913949/cinehaven/hero-anniversary.png',
     occasion: 'Anniversary',
     date: 'Dec 25, 2025',
     quote: '10 years together, celebrated in the most perfect way.',
@@ -37,7 +37,7 @@ const memories = [
   },
   {
     id: 4,
-    image: '/images/hero-date.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913956/cinehaven/hero-date.png',
     occasion: 'Date Night',
     date: 'Mar 5, 2026',
     quote: 'Our monthly date night tradition just got upgraded.',
@@ -47,7 +47,7 @@ const memories = [
   },
   {
     id: 5,
-    image: '/images/hero-friends.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913957/cinehaven/hero-friends.png',
     occasion: 'Friends Party',
     date: 'Feb 28, 2026',
     quote: 'Karaoke + movie + pizza = unforgettable night!',
@@ -57,7 +57,7 @@ const memories = [
   },
   {
     id: 6,
-    image: '/images/hero-proposal.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913959/cinehaven/hero-proposal.png',
     occasion: 'Proposal',
     date: 'Jan 1, 2026',
     quote: 'Started the year by asking her to be mine forever.',
@@ -71,7 +71,7 @@ export function MemoryWall() {
   const [selectedMemory, setSelectedMemory] = useState<typeof memories[0] | null>(null);
 
   return (
-    <section className="relative section-padding bg-vibe-romantic overflow-hidden">
+    <section className="relative section-padding bg-transparent overflow-hidden">
       <div className="absolute top-0 left-1/3 h-96 w-96 rounded-full bg-coral/5 blur-[150px]" />
       
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8">
@@ -117,9 +117,9 @@ export function MemoryWall() {
                 </div>
 
                 {/* Always visible badge */}
-                <div className="absolute top-4 right-4 flex items-center gap-1 rounded-full bg-black/12 backdrop-blur-md px-3 py-1.5">
+                <div className="absolute top-4 right-4 flex items-center gap-1 rounded-full bg-ink/60 backdrop-blur-md px-3 py-1.5">
                   <Heart className="h-3.5 w-3.5 text-coral fill-coral" />
-                  <span className="text-xs text-ink">{memory.likes}</span>
+                  <span className="text-xs text-ivory font-medium">{memory.likes}</span>
                 </div>
               </div>
             </motion.div>

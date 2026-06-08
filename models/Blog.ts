@@ -7,7 +7,7 @@ const BlogSchema = new Schema(
     excerpt: { type: String, required: true, trim: true },
     content: { type: String, required: true },
     category: { type: String, default: 'CineHaven journal', trim: true },
-    image: { type: String, default: '/images/hero-birthday.png' },
+    image: { type: String, default: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913950/cinehaven/hero-birthday.png' },
     readTime: { type: String, default: '4 min read' },
     isFeatured: { type: Boolean, default: false },
     isPublished: { type: Boolean, default: true },

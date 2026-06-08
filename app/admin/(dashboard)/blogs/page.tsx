@@ -48,7 +48,7 @@ const emptyForm: BlogForm = {
   excerpt: '',
   content: '',
   category: 'CineHaven journal',
-  image: '/images/hero-birthday.png',
+  image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913950/cinehaven/hero-birthday.png',
   readTime: '4 min read',
   isFeatured: false,
   isPublished: true,
@@ -277,7 +277,7 @@ export default function AdminBlogsPage() {
                 <button type="button" onClick={() => insertBlock('> ', 'Quote text')} title="Quote" className="p-2 rounded-lg text-mist hover:bg-white/10 hover:text-ivory">
                   <Quote className="h-4 w-4" />
                 </button>
-                <button type="button" onClick={() => insertContent('![', '](/images/hero-birthday.png)', 'Image alt text')} title="Image" className="p-2 rounded-lg text-mist hover:bg-white/10 hover:text-ivory">
+                <button type="button" onClick={() => insertContent('![', '](https://res.cloudinary.com/dq3typk9u/image/upload/v1780913950/cinehaven/hero-birthday.png)', 'Image alt text')} title="Image" className="p-2 rounded-lg text-mist hover:bg-white/10 hover:text-ivory">
                   <ImageIcon className="h-4 w-4" />
                 </button>
               </div>
@@ -334,7 +334,7 @@ export default function AdminBlogsPage() {
               <input
                 value={form.image}
                 onChange={(event) => updateForm('image', event.target.value)}
-                placeholder="/images/hero-birthday.png"
+                placeholder="https://res.cloudinary.com/dq3typk9u/image/upload/v1780913950/cinehaven/hero-birthday.png"
                 className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-ivory outline-none focus:border-amber"
               />
               <input

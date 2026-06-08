@@ -43,7 +43,7 @@ export function FAQAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="relative section-padding bg-midnight">
+    <section className="relative section-padding bg-transparent">
       <div className="mx-auto max-w-[800px] px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -72,8 +72,8 @@ export function FAQAccordion() {
                 <div
                   className={`rounded-card border transition-all duration-300 ${
                     isOpen 
-                      ? 'border-amber/20 bg-mauve/40' 
-                      : 'border-black/4 bg-black/2 hover:border-black/7.5'
+                      ? 'border-amber/20 bg-amber/5' 
+                      : 'border-amber/10 bg-white/60 hover:border-amber/20'
                   }`}
                 >
                   <button
@@ -82,20 +82,18 @@ export function FAQAccordion() {
                   >
                     <div className="flex items-center gap-3">
                       <div className={`h-8 w-8 rounded-lg flex items-center justify-center transition-colors ${
-                        isOpen ? 'bg-amber/15' : 'bg-black/4'
+                        isOpen ? 'bg-amber/20' : 'bg-amber/10'
                       }`}>
                         <HelpCircle className={`h-4 w-4 transition-colors ${
-                          isOpen ? 'text-amber' : 'text-ivory/50'
+                          isOpen ? 'text-amber' : 'text-amber/60'
                         }`} />
                       </div>
-                      <span className={`font-medium transition-colors ${
-                        isOpen ? 'text-ivory' : 'text-ivory/80'
-                      }`}>
-                        {faq.question}
-                      </span>
+<span className="font-medium text-ink">
+                          {faq.question}
+                        </span>
                     </div>
                     <ChevronDown className={`h-5 w-5 shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 text-amber' : 'text-ivory/40'
+                      isOpen ? 'rotate-180 text-amber' : 'text-ink-secondary'
                     }`} />
                   </button>
 
@@ -109,8 +107,8 @@ export function FAQAccordion() {
                         className="overflow-hidden"
                       >
                         <div className="px-5 pb-5 pt-0">
-                          <div className="border-t border-black/4 pt-4">
-                            <p className="text-ivory/70 leading-relaxed">
+                          <div className="border-t border-amber/10 pt-4">
+                            <p className="text-ink leading-relaxed">
                               {faq.answer}
                             </p>
                           </div>

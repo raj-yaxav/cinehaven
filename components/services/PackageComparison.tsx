@@ -98,7 +98,7 @@ const accentStyles: Record<string, { bg: string; border: string; text: string; g
 
 export function PackageComparison() {
   return (
-    <section className="relative section-padding bg-velvet">
+    <section className="relative section-padding bg-transparent">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-amber/5 blur-[100px]" />
       
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8">
@@ -139,7 +139,7 @@ export function PackageComparison() {
                 <motion.div
                   whileHover={{ y: -8 }}
                   transition={{ type: 'spring', stiffness: 300 }}
-                  className={`h-full rounded-card border ${style.border} bg-mauve/40 backdrop-blur-sm p-8 transition-all duration-500 ${style.glow} ${pkg.popular ? 'border-amber/40 shadow-burgundy-glow' : ''}`}
+                  className={`h-full rounded-card border ${style.border} bg-white/60 backdrop-blur-sm p-8 transition-all duration-500 ${style.glow} ${pkg.popular ? 'border-amber/40 shadow-burgundy-glow' : ''}`}
                 >
                   {/* Header */}
                   <div className="text-center mb-8">
@@ -147,7 +147,7 @@ export function PackageComparison() {
                       <pkg.icon className={`h-7 w-7 ${style.text}`} />
                     </div>
                     <h3 className="font-display text-2xl font-bold text-ivory">{pkg.name}</h3>
-                    <p className="mt-1 text-sm text-mist">{pkg.description}</p>
+                    <p className="mt-1 text-sm text-ink-secondary">{pkg.description}</p>
                   </div>
 
                   {/* Price */}
@@ -162,10 +162,10 @@ export function PackageComparison() {
                   <div className="space-y-3 mb-8">
                     {pkg.features.map((feature) => (
                       <div key={feature} className="flex items-start gap-3">
-                        <div className={`mt-0.5 h-5 w-5 rounded-full ${style.bg} flex items-center justify-center shrink-0`}>
-                          <Check className={`h-3 w-3 ${style.text}`} />
+                        <div className="mt-0.5 h-5 w-5 rounded-full bg-amber/20 flex items-center justify-center shrink-0">
+                          <Check className="h-3 w-3 text-amber" />
                         </div>
-                        <span className="text-sm text-mist">{feature}</span>
+                        <span className="text-sm text-ink-secondary">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -173,13 +173,13 @@ export function PackageComparison() {
                   {/* Not included */}
                   {pkg.notIncluded.length > 0 && (
                     <div className="space-y-2 mb-8 pt-4 border-t border-black/4">
-                      <p className="text-xs font-accent uppercase tracking-wider text-dusty mb-2">Not included</p>
+                      <p className="text-xs font-accent uppercase tracking-wider text-ink-muted mb-2">Not included</p>
                       {pkg.notIncluded.map((item) => (
                         <div key={item} className="flex items-start gap-3 opacity-50">
-                          <div className="mt-0.5 h-5 w-5 rounded-full bg-black/3 flex items-center justify-center shrink-0">
-                            <span className="text-dusty text-xs">—</span>
+                          <div className="mt-0.5 h-5 w-5 rounded-full bg-amber/10 flex items-center justify-center shrink-0">
+                            <span className="text-ink-muted text-xs">—</span>
                           </div>
-                          <span className="text-sm text-dusty line-through">{item}</span>
+                          <span className="text-sm text-ink-muted line-through">{item}</span>
                         </div>
                       ))}
                     </div>

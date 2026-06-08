@@ -51,7 +51,7 @@ export default function AdminAvailabilityPage() {
 
   useEffect(() => {
     loadData(filterDate);
-  }, [filterDate]);
+  }, [filterDate, loadData]);
 
   const visibleSlots = useMemo(
     () => slots.slice().sort((a, b) => `${a.room?.name || ''}${a.start}`.localeCompare(`${b.room?.name || ''}${b.start}`)),

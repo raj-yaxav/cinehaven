@@ -12,17 +12,7 @@ const floatingIcons = [
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[50vh] sm:min-h-[60vh] lg:min-h-[70vh] flex items-center justify-center overflow-hidden bg-midnight">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-40 sm:opacity-55"
-          style={{ backgroundImage: 'url(/images/hero-birthday.png)' }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-cream/60 via-midnight/80 to-midnight" />
-        <div className="absolute top-0 left-1/4 h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-coral/8 blur-[100px] sm:blur-[150px]" />
-        <div className="absolute bottom-0 right-1/4 h-[150px] w-[150px] sm:h-[300px] sm:w-[300px] rounded-full bg-amber/8 blur-[80px] sm:blur-[120px]" />
-      </div>
+    <section className="relative min-h-[50vh] sm:min-h-[60vh] lg:min-h-[70vh] flex items-center justify-center bg-transparent">
 
       {/* Floating Icons - Desktop Only */}
       {floatingIcons.map(({ Icon, x, y, color, size, delay }, i) => (
@@ -70,7 +60,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="mx-auto mt-4 sm:mt-6 max-w-xl sm:max-w-2xl text-sm sm:text-lg text-mist text-balance px-2 sm:px-0 leading-relaxed"
+           className="mx-auto mt-4 sm:mt-6 max-w-xl sm:max-w-2xl text-sm sm:text-lg text-dusty text-balance px-2 sm:px-0 leading-relaxed"
         >
           From intimate proposals to wild friends' nights — discover the perfect setting for your celebration.
         </motion.p>
@@ -87,7 +77,7 @@ export function HeroSection() {
               key={cat}
               href={`#${cat.toLowerCase().replace(' ', '-')}`}
               whileTap={{ scale: 0.95 }}
-              className="px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full border border-black/6 bg-black/3 text-xs sm:text-sm text-mist sm:hover:border-amber/30 sm:hover:text-amber sm:hover:bg-amber/5 transition-all"
+              className="px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full border border-amber/10 bg-white/60 text-ink-secondary text-xs sm:text-sm hover:border-amber/30 hover:text-amber hover:bg-amber/5 transition-all"
             >
               {cat}
             </motion.a>

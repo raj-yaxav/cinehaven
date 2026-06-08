@@ -402,9 +402,7 @@ function DateScroller({
               <motion.button
                 key={iso}
                 onClick={() => onSelectDate(iso)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`flex flex-col items-center justify-center min-w-[64px] h-20 rounded-2xl border transition-all duration-300 ${
+                className={`flex flex-col items-center justify-center min-w-[64px] h-20 rounded-2xl border transition-all duration-300 hover:scale-105 active:scale-95 ${
                   isSelected
                     ? 'bg-burgundy border-burgundy text-white shadow-burgundy-glow scale-105'
                     : isToday
@@ -476,7 +474,7 @@ function CalendarModal({
         setViewMonth(monthStart);
       }
     }
-  }, [selectedDate]);
+  }, [selectedDate, viewMonth]);
 
   const grid = useMemo(() => getCalendarGrid(viewMonth), [viewMonth]);
 
@@ -627,10 +625,9 @@ function RoomCard({
 
   return (
     <motion.div
-      layout
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className={`group relative rounded-3xl overflow-hidden border transition-all duration-500 ${
         isSelected
           ? 'border-burgundy/30 shadow-card-hover'
@@ -654,7 +651,7 @@ function RoomCard({
         
         {/* Category Badge */}
         <div className="absolute top-4 left-4">
-          <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/90 backdrop-blur-md border ${catMeta.borderAccent} ${catMeta.accent}`}>
+          <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-ink/70 backdrop-blur-md border border-white/20 text-ivory`}>
             <CategoryIcon className="h-3.5 w-3.5" />
             {catMeta.label}
           </span>
@@ -678,7 +675,7 @@ function RoomCard({
               e.stopPropagation();
               // Handle video modal
             }}
-            className="absolute bottom-4 right-4 h-10 w-10 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-burgundy hover:bg-burgundy hover:text-white transition-all shadow-soft"
+            className="absolute bottom-4 right-4 h-10 w-10 rounded-full bg-ink/60 backdrop-blur-md flex items-center justify-center text-white hover:bg-amber hover:text-midnight transition-all shadow-soft"
           >
             <Play className="h-4 w-4 fill-current" />
           </motion.button>
@@ -790,13 +787,11 @@ function RoomCard({
                       return (
                         <motion.button
                           key={slot._id}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
                           onClick={() => {
                             onSelect();
                             onSelectSlot(slot._id);
                           }}
-                          className={`flex flex-col items-center gap-1 p-3 rounded-xl border text-left transition-all ${
+                          className={`flex flex-col items-center gap-1 p-3 rounded-xl border text-left transition-all hover:scale-[1.02] active:scale-[0.98] ${
                             isSlotSelected
                               ? 'bg-burgundy-bg border-burgundy text-burgundy shadow-soft'
                               : 'bg-cream-warm border-surface-border text-ink hover:bg-cream-dark hover:border-burgundy/20'
@@ -1281,7 +1276,7 @@ export default function BookPage() {
     if (!expandedRoomId || !selectedDate) return;
     if (slotsByRoom[expandedRoomId]) return;
     loadSlots(expandedRoomId);
-  }, [expandedRoomId, selectedDate, slotsByRoom]);
+  }, [expandedRoomId, selectedDate, slotsByRoom, loadSlots]);
 
   async function loadSlots(roomId: string) {
     setLoadingSlots((m) => ({ ...m, [roomId]: true }));
@@ -1430,6 +1425,9 @@ export default function BookPage() {
     <div className="min-h-screen bg-cream text-ink pb-24 mt-20">
       {/* Background Effects */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center opacity-[15%]"
+          style={{ backgroundImage: 'url(https://res.cloudinary.com/dq3typk9u/image/upload/v1780913951/cinehaven/hero-booking.png)' }}
+        />
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-burgundy/5 rounded-full blur-3xl" />
         <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-rosegold/5 rounded-full blur-3xl" />
       </div>
@@ -1447,10 +1445,8 @@ export default function BookPage() {
       <section className="max-w-7xl mx-auto px-4 py-6">
         <div className="flex items-center gap-3 overflow-x-auto pb-2 hide-scrollbar">
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
             onClick={() => setSelectedCategories([])}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all hover:scale-105 active:scale-95 ${
               selectedCategories.length === 0
                 ? 'bg-burgundy text-white shadow-burgundy-glow-sm'
                 : 'bg-white text-ink-secondary hover:bg-cream-warm border border-surface-border'
@@ -1466,10 +1462,8 @@ export default function BookPage() {
             return (
               <motion.button
                 key={cat.id}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
                 onClick={() => toggleCategory(cat.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all border ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all border hover:scale-105 active:scale-95 ${
                   isActive
                     ? `${cat.accent} ${cat.bgAccent} ${cat.borderAccent}`
                     : 'text-ink-secondary bg-white border-surface-border hover:bg-cream-warm'
@@ -1525,7 +1519,8 @@ export default function BookPage() {
                 key={room._id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: i * 0.08, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                style={{ willChange: 'transform, opacity' }}
               >
                 <RoomCard
                   room={room}

@@ -20,7 +20,7 @@ const services = [
     icon: Cake,
     accent: 'amber',
     size: 'large', // spans 2 columns
-    image: '/images/hero-birthday.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913950/cinehaven/hero-birthday.png',
     price: 'From ₹3,999',
     rating: 4.9,
     features: ['Custom Cake', 'Balloon Decor', 'Birthday Video'],
@@ -32,7 +32,7 @@ const services = [
     icon: Heart,
     accent: 'coral',
     size: 'tall', // spans 2 rows
-    image: '/images/hero-proposal.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913959/cinehaven/hero-proposal.png',
     price: 'From ₹5,999',
     rating: 5.0,
     features: ['Rose Petal Path', 'Private Butler', 'Photography'],
@@ -44,7 +44,7 @@ const services = [
     icon: Sparkles,
     accent: 'coral',
     size: 'normal',
-    image: '/images/hero-anniversary.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913949/cinehaven/hero-anniversary.png',
     price: 'From ₹4,499',
     rating: 4.8,
     features: ['Champagne Toast', 'Photo Montage'],
@@ -56,7 +56,7 @@ const services = [
     icon: Sparkles,
     accent: 'amber',
     size: 'normal',
-    image: '/images/hero-date.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913956/cinehaven/hero-date.png',
     price: 'From ₹2,999',
     rating: 4.7,
     features: ['Candlelight Dinner', 'Movie Choice'],
@@ -68,7 +68,7 @@ const services = [
     icon: PartyPopper,
     accent: 'sage',
     size: 'large',
-    image: '/images/hero-friends.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913957/cinehaven/hero-friends.png',
     price: 'From ₹6,999',
     rating: 4.8,
     features: ['Karaoke Setup', 'Gaming Console', 'Pizza Party'],
@@ -80,7 +80,7 @@ const services = [
     icon: Briefcase,
     accent: 'sage',
     size: 'normal',
-    image: '/images/hero-corporate.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913954/cinehaven/hero-corporate.png',
     price: 'From ₹8,999',
     rating: 4.6,
     features: ['Projector Setup', 'Catering', 'Branding'],
@@ -113,7 +113,7 @@ const accentMap: Record<string, { bg: string; border: string; text: string; glow
 
 export function ServiceBento() {
   return (
-    <section className="relative section-padding bg-midnight">
+    <section className="relative section-padding bg-transparent">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -149,40 +149,40 @@ export function ServiceBento() {
                   <motion.div
                     whileHover={{ y: -8, scale: 1.02 }}
                     transition={{ type: 'spring', stiffness: 300 }}
-                    className={`group relative h-full overflow-hidden rounded-card border border-black/4 bg-gradient-to-b ${accent.gradient} to-midnight transition-all duration-500 ${accent.glow}`}
+                    className={`group relative h-full overflow-hidden rounded-card border border-amber/10 bg-white/60 transition-all duration-500 hover:shadow-lg`}
                   >
                     {/* Background Image */}
                     <div 
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                       style={{ backgroundImage: `url(${service.image})` }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-cream via-midnight/70 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
 
                     {/* Content */}
                     <div className="relative h-full flex flex-col justify-end p-6">
                       {/* Top badge */}
-                      <div className="absolute top-4 right-4 flex items-center gap-1 rounded-full bg-black/12 backdrop-blur-md px-3 py-1.5">
-                        <Star className="h-3.5 w-3.5 text-amber fill-amber" />
-                        <span className="text-xs text-ink font-medium">{service.rating}</span>
+                      <div className="absolute top-4 right-4 flex items-center gap-1 rounded-full bg-amber px-3 py-1.5">
+                        <Star className="h-3.5 w-3.5 text-white fill-white" />
+                        <span className="text-xs text-white font-medium">{service.rating}</span>
                       </div>
 
                       {/* Icon */}
-                      <div className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl ${accent.bg} ${accent.border} backdrop-blur-sm`}>
-                        <service.icon className={`h-6 w-6 ${accent.text}`} />
+                      <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-amber/20 border border-amber/30">
+                        <service.icon className="h-6 w-6 text-amber" />
                       </div>
 
-                      <h3 className="font-display text-2xl font-bold text-ivory group-hover:text-gradient-amber transition-all">
+                      <h3 className="font-display text-2xl font-bold text-white">
                         {service.title}
                       </h3>
                       
-                      <p className="mt-2 text-sm text-mist line-clamp-4">
+                      <p className="mt-2 text-sm text-white/80 line-clamp-4">
                         {service.description}
                       </p>
 
                       {/* Features */}
                       <div className="mt-3 flex flex-wrap gap-2 opacity-0 translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
                         {service.features.map((f) => (
-                          <span key={f} className={`text-xs px-2.5 py-1 rounded-full ${accent.bg} ${accent.text} border ${accent.border}`}>
+                          <span key={f} className="text-xs px-2.5 py-1 rounded-full bg-amber text-white">
                             {f}
                           </span>
                         ))}
@@ -190,8 +190,8 @@ export function ServiceBento() {
 
                       {/* Bottom row */}
                       <div className="mt-4 flex items-center justify-between">
-                        <span className={`text-sm font-medium ${accent.text}`}>{service.price}</span>
-                        <div className={`flex items-center gap-1 text-sm ${accent.text} opacity-0 transition-all group-hover:opacity-100`}>
+                        <span className="text-sm font-medium text-white">{service.price}</span>
+                        <div className="flex items-center gap-1 text-sm text-white opacity-0 transition-all group-hover:opacity-100">
                           Explore
                           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                         </div>

@@ -95,7 +95,7 @@ console.log('📥 API received payload:', JSON.stringify(payload, null, 2));
         coordinates: [77.209, 28.6139],
         description: 'CineHaven private theatre experiences in Delhi.',
         amenities: ['Parking', 'WiFi', 'AC', 'Private Lounge'],
-        images: ['/images/hero-birthday.png'],
+        images: ['https://res.cloudinary.com/dq3typk9u/image/upload/v1780913950/cinehaven/hero-birthday.png'],
         isActive: true,
       });
     }
@@ -111,7 +111,7 @@ console.log('📥 API received payload:', JSON.stringify(payload, null, 2));
 
     const features = normalizeStringArray(payload.features);
     const images = normalizeStringArray(payload.images);
-    if (images.length === 0) images.push('/images/hero-birthday.png');
+    if (images.length === 0) images.push('https://res.cloudinary.com/dq3typk9u/image/upload/v1780913950/cinehaven/hero-birthday.png');
 
     const room = await Room.create({
       location: location._id,

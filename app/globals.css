@@ -381,11 +381,26 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
+.pill-ink {
+  background: rgba(26, 15, 20, 0.55);
+  color: white;
+  border: 1px solid rgba(253, 248, 245, 0.2);
+  backdrop-filter: blur(8px);
+}
+
 /* Legacy support */
 .pill-amber {
-  background: rgba(107, 15, 42, 0.08);
-  color: var(--burgundy);
-  border: 1px solid rgba(107, 15, 42, 0.2);
+  background: rgba(107, 15, 42, 0.55);
+  color: white;
+  border: 1px solid rgba(107, 15, 42, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.pill-coral {
+  background: rgba(196, 122, 122, 0.55);
+  color: white;
+  border: 1px solid rgba(196, 122, 122, 0.3);
+  backdrop-filter: blur(8px);
 }
 
 /* === DIVIDERS === */
@@ -420,6 +435,14 @@ body {
   width: 100%;
 }
 
+@media (max-width: 767px) {
+  .input-velvet {
+    padding: 16px 18px;
+    font-size: 1rem;
+    border-radius: 16px;
+  }
+}
+
 .input-velvet:focus {
   outline: none;
   border-color: var(--burgundy);
@@ -445,6 +468,14 @@ body {
   transition: all var(--duration-standard) var(--ease-velvet);
   border: none;
   cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .btn-primary {
+    padding: 16px 28px;
+    font-size: 1rem;
+    border-radius: 14px;
+  }
 }
 
 .btn-primary:hover {

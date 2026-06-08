@@ -70,21 +70,21 @@ const locations = [
     address: 'Bandra West, Near Pali Hill',
     phone: '+91 22 1234 5678',
     timing: '10:00 AM - 11:00 PM',
-    image: '/images/hero-birthday.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913953/cinehaven/hero-contact.png',
   },
   {
     city: 'Bangalore',
     address: 'Koramangala, 5th Block',
     phone: '+91 80 1234 5678',
     timing: '10:00 AM - 11:00 PM',
-    image: '/images/hero-date.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913956/cinehaven/hero-date.png',
   },
   {
     city: 'Delhi',
     address: 'Hauz Khas Village',
     phone: '+91 11 1234 5678',
     timing: '10:00 AM - 11:00 PM',
-    image: '/images/hero-corporate.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780913954/cinehaven/hero-corporate.png',
   },
 ];
 
@@ -130,7 +130,14 @@ export default function ContactPage() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-cover bg-center opacity-30 sm:opacity-40"
+            style={{ backgroundImage: 'url(https://res.cloudinary.com/dq3typk9u/image/upload/v1780913953/cinehaven/hero-contact.png)' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-midnight/60 via-midnight/80 to-midnight/95" />
+        </div>
+        <div className="mx-auto max-w-7xl relative z-10">
           <div className="text-center max-w-3xl mx-auto">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 rounded-full border border-amber/30 bg-amber/10 px-5 py-2.5 mb-8">

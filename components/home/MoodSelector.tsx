@@ -15,7 +15,7 @@ const moods = [
     borderAccent: 'border-burgundy/20',
     bgAccent: 'bg-burgundy/8',
     iconBg: 'bg-burgundy-bg',
-    image: '/images/hero-proposal.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780899424/cinehaven/moods/mood-romantic.png',
     tagline: 'Perfect for proposals & anniversaries',
     glow: 'group-hover:shadow-burgundy-glow',
   },
@@ -29,7 +29,7 @@ const moods = [
     borderAccent: 'border-crimson/20',
     bgAccent: 'bg-crimson/8',
     iconBg: 'bg-crimson-muted',
-    image: '/images/hero-friends.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780899426/cinehaven/moods/mood-party.png',
     tagline: 'Birthdays & friends night out',
     glow: 'group-hover:shadow-crimson-glow',
   },
@@ -43,7 +43,7 @@ const moods = [
     borderAccent: 'border-rosegold/20',
     bgAccent: 'bg-rosegold/8',
     iconBg: 'bg-rosegold-bg',
-    image: '/images/hero-date.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780899427/cinehaven/moods/mood-chill.png',
     tagline: 'Date nights & low-key hangs',
     glow: 'group-hover:shadow-rosegold-glow',
   },
@@ -57,7 +57,7 @@ const moods = [
     borderAccent: 'border-teal/20',
     bgAccent: 'bg-teal/8',
     iconBg: 'bg-teal-bg',
-    image: '/images/hero-anniversary.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780899430/cinehaven/moods/mood-family.png',
     tagline: 'Memories for everyone',
     glow: 'group-hover:shadow-teal-glow',
   },
@@ -71,7 +71,7 @@ const moods = [
     borderAccent: 'border-burgundy/25',
     bgAccent: 'bg-burgundy/10',
     iconBg: 'bg-burgundy-bg',
-    image: '/images/hero-birthday.png',
+    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780899432/cinehaven/moods/mood-epic.png',
     tagline: 'Proposals & milestone events',
     glow: 'group-hover:shadow-burgundy-glow',
   },
@@ -115,7 +115,7 @@ const headerVariants = {
 
 export function MoodSelector() {
   return (
-    <section className="relative section-padding bg-cream overflow-hidden">
+    <section className="relative section-padding bg-transparent overflow-hidden">
       {/* Background Decorations */}
       <div className="absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-burgundy/4 blur-[150px]" />
       <div className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full bg-rosegold/4 blur-[120px]" />

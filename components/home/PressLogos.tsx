@@ -18,7 +18,7 @@ export function PressLogos() {
   const doubledLogos = [...pressLogos, ...pressLogos];
 
   return (
-    <section className="relative py-16 bg-midnight border-y border-black/4 overflow-hidden">
+    <section className="relative py-16 bg-transparent border-y border-black/4 overflow-hidden">
       <div className="mx-auto max-w-[1400px] px-6 mb-8 lg:px-8">
         <p className="text-center text-sm font-accent uppercase tracking-[0.3em] text-dusty">
           As Featured In
