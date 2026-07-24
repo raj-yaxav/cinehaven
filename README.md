@@ -8,10 +8,10 @@ staff can search those leads and move them through `New`, `Contacted`, and
 
 ## Submission links
 
-- Live landing page: `ADD_LIVE_URL_BEFORE_SUBMISSION`
-- Public lead form: `ADD_LIVE_URL_BEFORE_SUBMISSION/contact`
-- Admin login: `ADD_LIVE_URL_BEFORE_SUBMISSION/admin/login`
-- Admin leads: `ADD_LIVE_URL_BEFORE_SUBMISSION/admin/leads`
+- Live landing page: https://cinehaven-nine.vercel.app/
+- Public lead form: https://cinehaven-nine.vercel.app/contact
+- Admin login: https://cinehaven-nine.vercel.app/admin/login
+- Admin leads: https://cinehaven-nine.vercel.app/admin/leads
 - Public repository: https://github.com/raj-yaxav/cinehaven
 - Loom walkthrough: `ADD_LOOM_URL_BEFORE_SUBMISSION`
 
