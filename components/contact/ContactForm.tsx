@@ -14,12 +14,21 @@ const occasions = [
   { value: 'other', label: 'Something Else' },
 ];
 
+const budgetRanges = [
+  { value: '', label: 'Select budget range' },
+  { value: 'under_10000', label: 'Under ₹10,000' },
+  { value: '10000_25000', label: '₹10,000 – ₹25,000' },
+  { value: '25000_50000', label: '₹25,000 – ₹50,000' },
+  { value: '50000_plus', label: '₹50,000+' },
+];
+
 export default function ContactForm() {
   const [form, setForm] = useState({
     name: '',
     email: '',
     phone: '',
     occasion: '',
+    budgetRange: '',
     message: '',
     newsletter: false,
   });
@@ -32,8 +41,17 @@ export default function ContactForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setIsSubmitting(true);
     setStatus(null);
+
+    if (!form.name.trim() || !form.email.trim() || !form.budgetRange || !form.message.trim()) {
+      setStatus({
+        type: 'error',
+        message: 'Please complete your name, email, budget range, and message.',
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
       const res = await fetch('/api/contact', {
@@ -49,7 +67,15 @@ export default function ContactForm() {
       }
 
       setStatus({ type: 'success', message: json.message });
-      setForm({ name: '', email: '', phone: '', occasion: '', message: '', newsletter: false });
+      setForm({
+        name: '',
+        email: '',
+        phone: '',
+        occasion: '',
+        budgetRange: '',
+        message: '',
+        newsletter: false,
+      });
     } catch {
       setStatus({ type: 'error', message: 'Unable to send message. Please try again.' });
     } finally {
@@ -61,24 +87,34 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid gap-6 md:grid-cols-2">
         <div className="space-y-2">
-          <label className="text-xs font-accent uppercase tracking-[0.15em] text-dusty">Full Name</label>
+          <label htmlFor="lead-name" className="text-xs font-accent uppercase tracking-[0.15em] text-dusty">
+            Full Name <span aria-hidden="true">*</span>
+          </label>
           <input
+            id="lead-name"
             type="text"
+            autoComplete="name"
             value={form.name}
             onChange={(event) => updateField('name', event.target.value)}
             required
+            maxLength={100}
             className="w-full rounded-xl border border-black/6 bg-black/3 px-4 py-3.5 text-ivory placeholder:text-dusty/50 outline-none transition-all duration-300 focus:border-amber/50 focus:bg-amber/5 focus:ring-1 focus:ring-amber/20"
             placeholder="John Doe"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-xs font-accent uppercase tracking-[0.15em] text-dusty">Email Address</label>
+          <label htmlFor="lead-email" className="text-xs font-accent uppercase tracking-[0.15em] text-dusty">
+            Email Address <span aria-hidden="true">*</span>
+          </label>
           <input
+            id="lead-email"
             type="email"
+            autoComplete="email"
             value={form.email}
             onChange={(event) => updateField('email', event.target.value)}
             required
+            maxLength={254}
             className="w-full rounded-xl border border-black/6 bg-black/3 px-4 py-3.5 text-ivory placeholder:text-dusty/50 outline-none transition-all duration-300 focus:border-amber/50 focus:bg-amber/5 focus:ring-1 focus:ring-amber/20"
             placeholder="john@example.com"
           />
@@ -87,19 +123,27 @@ export default function ContactForm() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <div className="space-y-2">
-          <label className="text-xs font-accent uppercase tracking-[0.15em] text-dusty">Phone Number</label>
+          <label htmlFor="lead-phone" className="text-xs font-accent uppercase tracking-[0.15em] text-dusty">
+            Phone Number <span className="normal-case tracking-normal">(optional)</span>
+          </label>
           <input
+            id="lead-phone"
             type="tel"
+            autoComplete="tel"
             value={form.phone}
             onChange={(event) => updateField('phone', event.target.value)}
+            maxLength={30}
             className="w-full rounded-xl border border-black/6 bg-black/3 px-4 py-3.5 text-ivory placeholder:text-dusty/50 outline-none transition-all duration-300 focus:border-amber/50 focus:bg-amber/5 focus:ring-1 focus:ring-amber/20"
             placeholder="+91 98765 43210"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-xs font-accent uppercase tracking-[0.15em] text-dusty">Occasion</label>
+          <label htmlFor="lead-occasion" className="text-xs font-accent uppercase tracking-[0.15em] text-dusty">
+            Occasion <span className="normal-case tracking-normal">(optional)</span>
+          </label>
           <select
+            id="lead-occasion"
             value={form.occasion}
             onChange={(event) => updateField('occasion', event.target.value)}
             className="w-full rounded-xl border border-black/6 bg-black/3 px-4 py-3.5 text-ivory outline-none transition-all duration-300 focus:border-amber/50 focus:bg-amber/5 focus:ring-1 focus:ring-amber/20 appearance-none cursor-pointer"
@@ -114,12 +158,35 @@ export default function ContactForm() {
       </div>
 
       <div className="space-y-2">
-        <label className="text-xs font-accent uppercase tracking-[0.15em] text-dusty">Your Message</label>
+        <label htmlFor="lead-budget" className="text-xs font-accent uppercase tracking-[0.15em] text-dusty">
+          Budget Range <span aria-hidden="true">*</span>
+        </label>
+        <select
+          id="lead-budget"
+          value={form.budgetRange}
+          onChange={(event) => updateField('budgetRange', event.target.value)}
+          required
+          className="w-full min-h-12 rounded-xl border border-black/6 bg-black/3 px-4 py-3.5 text-ivory outline-none transition-all duration-300 focus:border-amber/50 focus:bg-amber/5 focus:ring-1 focus:ring-amber/20 appearance-none cursor-pointer"
+        >
+          {budgetRanges.map((range) => (
+            <option key={range.value} value={range.value} className="bg-midnight">
+              {range.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="lead-message" className="text-xs font-accent uppercase tracking-[0.15em] text-dusty">
+          Your Message <span aria-hidden="true">*</span>
+        </label>
         <textarea
+          id="lead-message"
           rows={5}
           value={form.message}
           onChange={(event) => updateField('message', event.target.value)}
           required
+          maxLength={2000}
           className="w-full rounded-xl border border-black/6 bg-black/3 px-4 py-3.5 text-ivory placeholder:text-dusty/50 outline-none transition-all duration-300 focus:border-amber/50 focus:bg-amber/5 focus:ring-1 focus:ring-amber/20 resize-none"
           placeholder="Tell us about your dream celebration, guest count, preferred date, special requests, or questions."
         />
@@ -139,7 +206,7 @@ export default function ContactForm() {
       </div>
 
       {status && (
-        <div className={`flex items-center gap-2 rounded-xl border p-3 text-sm ${
+        <div role="status" aria-live="polite" className={`flex items-center gap-2 rounded-xl border p-3 text-sm ${
           status.type === 'success' ? 'border-sage/20 bg-sage/10 text-sage' : 'border-coral/20 bg-coral/10 text-coral'
         }`}>
           {status.type === 'success' ? <CheckCircle2 className="h-4 w-4" /> : <XCircle className="h-4 w-4" />}

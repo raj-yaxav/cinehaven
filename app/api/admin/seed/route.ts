@@ -4,12 +4,22 @@ import Admin from '../../../../models/Admin';
 
 export async function POST(request: Request) {
   try {
-    // Only allow in development or with secret key
     const { secretKey } = await request.json();
-    if (secretKey !== process.env.ADMIN_SEED_SECRET && process.env.NODE_ENV === 'production') {
+    const seedSecret = process.env.ADMIN_SEED_SECRET;
+    const adminEmail = process.env.ADMIN_EMAIL;
+    const adminPassword = process.env.ADMIN_PASSWORD;
+
+    if (!seedSecret || secretKey !== seedSecret) {
       return NextResponse.json(
         { status: 'error', message: 'Unauthorized' },
         { status: 403 }
+      );
+    }
+
+    if (!adminEmail || !adminPassword || adminPassword.length < 12) {
+      return NextResponse.json(
+        { status: 'error', message: 'Secure admin seed credentials are not configured' },
+        { status: 503 }
       );
     }
 
@@ -17,8 +27,8 @@ export async function POST(request: Request) {
 
     const adminData = {
       name: 'Super Admin',
-      email: 'admin@cinehaven.com',
-      password: '12345678',
+      email: adminEmail.toLowerCase(),
+      password: adminPassword,
       role: 'super_admin',
       isActive: true,
       loginAttempts: 0,
@@ -48,7 +58,6 @@ export async function POST(request: Request) {
       message,
       data: {
         email: admin.email,
-        password: '12345678', // Only shown once
       },
     });
   } catch (error) {

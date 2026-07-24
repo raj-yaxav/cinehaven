@@ -10,7 +10,7 @@ declare global {
   var mongoose: MongooseCache | undefined;
 }
 
-const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/cinehaven';
+const uri = process.env.MONGODB_URI;
 if (!uri) {
   throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
 }

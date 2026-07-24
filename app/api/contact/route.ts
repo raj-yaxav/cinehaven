@@ -7,24 +7,52 @@ import {
   sendContactAdminNotificationEmail,
 } from '../../../lib/email';
 
+const BUDGET_RANGES = ['under_10000', '10000_25000', '25000_50000', '50000_plus'] as const;
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, phone, occasion, message } = body;
+    const {
+      name: rawName,
+      email: rawEmail,
+      phone: rawPhone,
+      occasion: rawOccasion,
+      budgetRange,
+      message: rawMessage,
+    } = body;
+    const name = typeof rawName === 'string' ? rawName.trim() : '';
+    const email = typeof rawEmail === 'string' ? rawEmail.trim().toLowerCase() : '';
+    const phone = typeof rawPhone === 'string' ? rawPhone.trim() : '';
+    const occasion = typeof rawOccasion === 'string' ? rawOccasion.trim() : '';
+    const message = typeof rawMessage === 'string' ? rawMessage.trim() : '';
 
     // Validate required fields
-    if (!name || !email || !message) {
+    if (!name || !email || !budgetRange || !message) {
       return NextResponse.json(
-        { status: 'error', message: 'Name, email, and message are required' },
+        { status: 'error', message: 'Name, email, budget range, and message are required' },
+        { status: 400 }
+      );
+    }
+
+    if (name.length > 100 || message.length > 2000 || phone.length > 30) {
+      return NextResponse.json(
+        { status: 'error', message: 'One or more fields exceed the allowed length' },
         { status: 400 }
       );
     }
 
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(email) || email.length > 254) {
       return NextResponse.json(
         { status: 'error', message: 'Invalid email format' },
+        { status: 400 }
+      );
+    }
+
+    if (!BUDGET_RANGES.includes(budgetRange)) {
+      return NextResponse.json(
+        { status: 'error', message: 'Please select a valid budget range' },
         { status: 400 }
       );
     }
@@ -36,6 +64,7 @@ export async function POST(request: NextRequest) {
       email,
       phone,
       occasion,
+      budgetRange,
       specialRequests: message,
       notes: message,
       source: 'contact_page',

@@ -24,14 +24,26 @@ interface Lead {
   _id: string;
   name: string;
   email: string;
-  phone: string;
+  phone?: string;
+  budgetRange?: 'under_10000' | '10000_25000' | '25000_50000' | '50000_plus';
   occasion?: string;
   location?: string;
-  status: 'new' | 'contacted' | 'converted' | 'lost';
+  status: 'new' | 'contacted' | 'closed';
   source: string;
   createdAt: string;
   notes?: string;
   assignedTo?: string;
+}
+
+const budgetLabels: Record<NonNullable<Lead['budgetRange']>, string> = {
+  under_10000: 'Under ₹10,000',
+  '10000_25000': '₹10,000 – ₹25,000',
+  '25000_50000': '₹25,000 – ₹50,000',
+  '50000_plus': '₹50,000+',
+};
+
+function formatBudgetRange(value?: Lead['budgetRange']) {
+  return value ? budgetLabels[value] : 'Not specified';
 }
 
 export default function LeadsPage() {
@@ -57,7 +69,7 @@ export default function LeadsPage() {
         (lead) =>
           lead.name.toLowerCase().includes(query) ||
           lead.email.toLowerCase().includes(query) ||
-          lead.phone.includes(query)
+          lead.phone?.includes(query)
       );
     }
 
@@ -114,17 +126,16 @@ export default function LeadsPage() {
   const statusColors: Record<string, { bg: string; text: string; border: string }> = {
     new: { bg: 'bg-coral/10', text: 'text-coral', border: 'border-coral/20' },
     contacted: { bg: 'bg-amber/10', text: 'text-amber', border: 'border-amber/20' },
-    converted: { bg: 'bg-sage/10', text: 'text-sage', border: 'border-sage/20' },
-    lost: { bg: 'bg-white/5', text: 'text-dusty', border: 'border-white/10' },
+    closed: { bg: 'bg-sage/10', text: 'text-sage', border: 'border-sage/20' },
   };
 
   const exportToCSV = () => {
-    const headers = ['Name', 'Email', 'Phone', 'Occasion', 'Status', 'Source', 'Date'];
+    const headers = ['Name', 'Email', 'Phone', 'Budget', 'Status', 'Source', 'Date'];
     const rows = filteredLeads.map((lead) => [
       lead.name,
       lead.email,
-      lead.phone,
-      lead.occasion || '-',
+      lead.phone || '-',
+      formatBudgetRange(lead.budgetRange),
       lead.status,
       lead.source,
       new Date(lead.createdAt).toLocaleDateString('en-IN'),
@@ -176,7 +187,7 @@ export default function LeadsPage() {
           />
         </div>
         <div className="flex flex-wrap gap-2">
-          {['all', 'new', 'contacted', 'converted', 'lost'].map((status) => (
+          {['all', 'new', 'contacted', 'closed'].map((status) => (
             <button
               key={status}
               onClick={() => setStatusFilter(status)}
@@ -198,7 +209,7 @@ export default function LeadsPage() {
           { label: 'Total', value: leads.length, color: 'text-ivory' },
           { label: 'New', value: leads.filter((l) => l.status === 'new').length, color: 'text-coral' },
           { label: 'Contacted', value: leads.filter((l) => l.status === 'contacted').length, color: 'text-amber' },
-          { label: 'Converted', value: leads.filter((l) => l.status === 'converted').length, color: 'text-sage' },
+          { label: 'Closed', value: leads.filter((l) => l.status === 'closed').length, color: 'text-sage' },
         ].map((stat) => (
           <div key={stat.label} className="rounded-xl border border-white/10 bg-white/[0.03] p-4 text-center">
             <p className={`text-2xl font-bold ${stat.color}`}>{stat.value}</p>
@@ -215,7 +226,7 @@ export default function LeadsPage() {
               <tr className="border-b border-white/10">
                 <th className="text-left px-6 py-4 text-xs font-accent uppercase tracking-[0.2em] text-dusty">Lead</th>
                 <th className="text-left px-6 py-4 text-xs font-accent uppercase tracking-[0.2em] text-dusty">Contact</th>
-                <th className="text-left px-6 py-4 text-xs font-accent uppercase tracking-[0.2em] text-dusty">Occasion</th>
+                <th className="text-left px-6 py-4 text-xs font-accent uppercase tracking-[0.2em] text-dusty">Budget</th>
                 <th className="text-left px-6 py-4 text-xs font-accent uppercase tracking-[0.2em] text-dusty">Status</th>
                 <th className="text-left px-6 py-4 text-xs font-accent uppercase tracking-[0.2em] text-dusty">Source</th>
                 <th className="text-left px-6 py-4 text-xs font-accent uppercase tracking-[0.2em] text-dusty">Date</th>
@@ -262,12 +273,12 @@ export default function LeadsPage() {
                         </p>
                         <p className="text-sm text-mist flex items-center gap-2">
                           <Phone className="h-3 w-3 text-dusty" />
-                          {lead.phone}
+                          {lead.phone || 'Not provided'}
                         </p>
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <span className="text-sm text-mist capitalize">{lead.occasion || '-'}</span>
+                      <span className="text-sm text-mist">{formatBudgetRange(lead.budgetRange)}</span>
                     </td>
                     <td className="px-6 py-4">
                       <select
@@ -279,8 +290,7 @@ export default function LeadsPage() {
                       >
                         <option value="new">New</option>
                         <option value="contacted">Contacted</option>
-                        <option value="converted">Converted</option>
-                        <option value="lost">Lost</option>
+                        <option value="closed">Closed</option>
                       </select>
                     </td>
                     <td className="px-6 py-4">
@@ -383,15 +393,15 @@ export default function LeadsPage() {
                     <p className="text-xs text-dusty mb-1">Phone</p>
                     <p className="text-sm text-ivory flex items-center gap-2">
                       <Phone className="h-4 w-4 text-amber" />
-                      {selectedLead.phone}
+                      {selectedLead.phone || 'Not provided'}
                     </p>
                   </div>
                 </div>
 
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="p-4 rounded-xl bg-white/5">
-                    <p className="text-xs text-dusty mb-1">Occasion</p>
-                    <p className="text-sm text-ivory capitalize">{selectedLead.occasion || '-'}</p>
+                    <p className="text-xs text-dusty mb-1">Budget range</p>
+                    <p className="text-sm text-ivory">{formatBudgetRange(selectedLead.budgetRange)}</p>
                   </div>
                   <div className="p-4 rounded-xl bg-white/5">
                     <p className="text-xs text-dusty mb-1">Source</p>
@@ -423,13 +433,15 @@ export default function LeadsPage() {
                   <Mail className="h-4 w-4" />
                   Email
                 </a>
-                <a
-                  href={`tel:${selectedLead.phone}`}
-                  className="flex-1 btn-ghost justify-center text-sm"
-                >
-                  <Phone className="h-4 w-4" />
-                  Call
-                </a>
+                {selectedLead.phone && (
+                  <a
+                    href={`tel:${selectedLead.phone}`}
+                    className="flex-1 btn-ghost justify-center text-sm"
+                  >
+                    <Phone className="h-4 w-4" />
+                    Call
+                  </a>
+                )}
               </div>
             </motion.div>
           </motion.div>

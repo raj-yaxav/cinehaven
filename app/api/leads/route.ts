@@ -1,12 +1,21 @@
 import { NextResponse } from 'next/server';
 import { connectToDatabase } from '../../../lib/mongodb';
 import Lead from '../../../models/Lead';
+import { getAdminFromToken } from '../../../lib/auth';
 
 export async function GET() {
+  if (!getAdminFromToken()) {
+    return NextResponse.json({ status: 'error', message: 'Unauthorized' }, { status: 401 });
+  }
+
   try {
     await connectToDatabase();
     const leads = await Lead.find().sort({ createdAt: -1 }).lean();
-    return NextResponse.json({ status: 'success', data: leads });
+    const normalizedLeads = leads.map((lead) => ({
+      ...lead,
+      status: lead.status === 'converted' || lead.status === 'lost' ? 'closed' : lead.status,
+    }));
+    return NextResponse.json({ status: 'success', data: normalizedLeads });
   } catch (error) {
     return NextResponse.json(
       { status: 'error', message: 'Unable to fetch leads' },
@@ -16,22 +25,9 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  try {
-    await connectToDatabase();
-    const payload = await request.json();
-
-    const lead = await Lead.create({
-      ...payload,
-      status: 'new',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-
-    return NextResponse.json({ status: 'success', data: lead });
-  } catch (error) {
-    return NextResponse.json(
-      { status: 'error', message: 'Unable to create lead' },
-      { status: 500 }
-    );
-  }
+  void request;
+  return NextResponse.json(
+    { status: 'error', message: 'Submit new enquiries through /api/contact' },
+    { status: 405, headers: { Allow: 'GET' } }
+  );
 }

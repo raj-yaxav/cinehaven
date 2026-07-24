@@ -24,7 +24,7 @@ interface DashboardStats {
   pendingBookings: number;
   confirmedBookings: number;
   newLeads: number;
-  convertedLeads: number;
+  closedLeads: number;
   todayBookings: number;
   weeklyGrowth: number;
 }
@@ -37,7 +37,7 @@ export default function AdminDashboard() {
     pendingBookings: 0,
     confirmedBookings: 0,
     newLeads: 0,
-    convertedLeads: 0,
+    closedLeads: 0,
     todayBookings: 0,
     weeklyGrowth: 0,
   });
@@ -67,7 +67,7 @@ export default function AdminDashboard() {
       const pendingBookings = bookings.filter((b: any) => b.bookingStatus === 'pending_otp').length;
       const confirmedBookings = bookings.filter((b: any) => b.bookingStatus === 'confirmed').length;
       const newLeads = leads.filter((l: any) => l.status === 'new').length;
-      const convertedLeads = leads.filter((l: any) => l.status === 'converted').length;
+      const closedLeads = leads.filter((l: any) => l.status === 'closed').length;
 
       const today = new Date().toDateString();
       const todayBookings = bookings.filter((b: any) => 
@@ -81,7 +81,7 @@ export default function AdminDashboard() {
         pendingBookings,
         confirmedBookings,
         newLeads,
-        convertedLeads,
+        closedLeads,
         todayBookings,
         weeklyGrowth: 12.5, // Mock - calculate from real data
       });
@@ -227,12 +227,12 @@ export default function AdminDashboard() {
               <CheckCircle2 className="h-5 w-5 text-sage" />
             </div>
             <div>
-              <p className="text-sm text-mist">Converted Leads</p>
-              <p className="text-2xl font-bold text-ivory">{stats.convertedLeads}</p>
+              <p className="text-sm text-mist">Closed Leads</p>
+              <p className="text-2xl font-bold text-ivory">{stats.closedLeads}</p>
             </div>
           </div>
           <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-            <div className="h-full bg-sage rounded-full" style={{ width: `${Math.min(stats.convertedLeads * 10, 100)}%` }} />
+            <div className="h-full bg-sage rounded-full" style={{ width: `${Math.min(stats.closedLeads * 10, 100)}%` }} />
           </div>
         </div>
       </div>

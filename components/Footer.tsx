@@ -252,11 +252,21 @@ export function Footer() {
 
           {/* Bottom Bar */}
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-xs text-ink flex items-center gap-1">
-              &copy; {new Date().getFullYear()} CineHaven. Crafted with 
-              <Heart className="h-3 w-3 text-rosegold fill-rosegold inline mx-0.5" /> 
-              in Mumbai
-            </p>
+            <div className="text-center md:text-left">
+              <p className="text-xs text-ink flex items-center justify-center gap-1 md:justify-start">
+                &copy; {new Date().getFullYear()} CineHaven. Crafted with
+                <Heart className="h-3 w-3 text-rosegold fill-rosegold inline mx-0.5" />
+                in Mumbai
+              </p>
+              <a
+                href="https://digitalheroesco.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex min-h-11 items-center text-xs font-medium text-burgundy underline decoration-burgundy/40 underline-offset-4 transition-colors hover:text-burgundy-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy/40"
+              >
+                Built for Digital Heroes Training Task
+              </a>
+            </div>
             
             <div className="flex gap-6">
               <Link href="/privacy" className="text-xs text-ink transition hover:text-burgundy">

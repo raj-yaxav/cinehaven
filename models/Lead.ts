@@ -4,7 +4,11 @@ const LeadSchema = new Schema(
   {
     name: { type: String, required: true },
     email: { type: String, required: true },
-    phone: { type: String, required: true },
+    phone: { type: String },
+    budgetRange: {
+      type: String,
+      enum: ['under_10000', '10000_25000', '25000_50000', '50000_plus'],
+    },
     occasion: { type: String },
     location: { type: String },
     room: { type: String },
@@ -14,7 +18,7 @@ const LeadSchema = new Schema(
     specialRequests: { type: String },
     status: {
       type: String,
-      enum: ['new', 'contacted', 'converted', 'lost'],
+      enum: ['new', 'contacted', 'closed'],
       default: 'new',
     },
     source: {
