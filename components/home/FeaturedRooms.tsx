@@ -8,10 +8,10 @@ import { ArrowLeft, ArrowRight, Crown, Grid2X2, Heart, Sparkles, Users, Volume2,
 type Room = { id: string; name: string; image: string; price: string; guests: string; idealFor: string; tags: string[]; categories: string[] };
 
 const rooms: Room[] = [
-  { id: 'amor', name: 'Amor', image: '/images/hero-date.png', price: '₹1,749', guests: 'Up to 2 Guests', idealFor: 'Ideal for Couples', tags: ['Romantic', 'Cozy', 'Intimate'], categories: ['Romantic'] },
-  { id: 'meadow', name: 'Meadow', image: '/images/mood-family.png', price: '₹1,899', guests: 'Up to 6 Guests', idealFor: 'Ideal for Families', tags: ['Family', 'Celebration', 'Vibrant'], categories: ['Family Friendly', 'Large Group'] },
-  { id: 'luxe', name: 'Luxe', image: '/images/hero-anniversary.png', price: '₹2,499', guests: 'Up to 10 Guests', idealFor: 'Luxury Experience', tags: ['Luxury', 'Premium', 'Elegant'], categories: ['Premium', 'Large Group'] },
-  { id: 'eclipse', name: 'Eclipse', image: '/images/hero-friends.png', price: '₹2,999', guests: 'Up to 12 Guests', idealFor: 'Ideal for Groups', tags: ['Modern', 'Spacious', 'Premium'], categories: ['Premium', 'Large Group'] },
+  { id: 'amor', name: 'Amor', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976167/cinehaven/landing-assets/images/hero-date.png', price: '₹1,749', guests: 'Up to 2 Guests', idealFor: 'Ideal for Couples', tags: ['Romantic', 'Cozy', 'Intimate'], categories: ['Romantic'] },
+  { id: 'meadow', name: 'Meadow', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976179/cinehaven/landing-assets/images/mood-family.png', price: '₹1,899', guests: 'Up to 6 Guests', idealFor: 'Ideal for Families', tags: ['Family', 'Celebration', 'Vibrant'], categories: ['Family Friendly', 'Large Group'] },
+  { id: 'luxe', name: 'Luxe', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976168/cinehaven/landing-assets/images/hero-anniversary.png', price: '₹2,499', guests: 'Up to 10 Guests', idealFor: 'Luxury Experience', tags: ['Luxury', 'Premium', 'Elegant'], categories: ['Premium', 'Large Group'] },
+  { id: 'eclipse', name: 'Eclipse', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976173/cinehaven/landing-assets/images/hero-friends.png', price: '₹2,999', guests: 'Up to 12 Guests', idealFor: 'Ideal for Groups', tags: ['Modern', 'Spacious', 'Premium'], categories: ['Premium', 'Large Group'] },
 ];
 
 const filters = [{ label: 'All Theatres', icon: Grid2X2 }, { label: 'Romantic', icon: Heart }, { label: 'Family Friendly', icon: Users }, { label: 'Premium', icon: Crown }, { label: 'Large Group', icon: Users }];
@@ -25,7 +25,7 @@ export function FeaturedRooms() {
 
   return (
     <section className="relative isolate overflow-hidden px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-      <Image src="/landing-page/cards-section/backG.png" alt="" fill priority className="-z-20 object-cover object-center" sizes="100vw" />
+      <Image src="https://res.cloudinary.com/dq3typk9u/image/upload/v1786976154/cinehaven/landing-assets/landing-page/cards-section/backG.png" alt="" fill priority className="-z-20 object-cover object-center" sizes="100vw" />
       <div className="absolute inset-0 -z-10 bg-white/15" />
       <div className="mx-auto max-w-[1440px]">
         <header className="mx-auto max-w-3xl text-center">

@@ -5,12 +5,12 @@ import Link from 'next/link';
 import { ArrowRight, CalendarDays, CakeSlice, CreditCard, Headphones, MapPin, PartyPopper, ShieldCheck, SlidersHorizontal, Star, Store, Theater, Trophy, WandSparkles } from 'lucide-react';
 
 const steps = [
-  { number: '1', title: <>Choose Your<br /><em>Occasion</em></>, text: 'Tell us what you’re celebrating and pick your perfect vibe.', image: '/images/hero-birthday.png', icon: CakeSlice },
-  { number: '2', title: <>Select Your<br /><em>Location</em></>, text: 'Choose from our premium private theatres near you.', image: '/images/hero-home.png', icon: MapPin },
-  { number: '3', title: <>Pick Your<br /><em>Theatre</em></>, text: 'Explore themes, capacity, amenities and choose the perfect setting.', image: '/images/hero-proposal.png', icon: Theater },
-  { number: '4', title: <>Customize Your<br /><em>Experience</em></>, text: 'Add decor, food, cake, balloons, music & more to make it yours.', image: '/images/hero-birthday.png', icon: SlidersHorizontal },
-  { number: '5', title: <>Confirm &<br /><em>Pay Securely</em></>, text: 'Review your booking details and pay securely in just a few clicks.', image: '/images/my-booking.png', icon: CreditCard },
-  { number: '6', title: <>Show Up &<br /><em>Celebrate!</em></>, text: 'We’ll take care of the rest. You just show up and create unforgettable memories.', image: '/images/mood-party.png', icon: PartyPopper },
+  { number: '1', title: <>Choose Your<br /><em>Occasion</em></>, text: 'Tell us what you’re celebrating and pick your perfect vibe.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976164/cinehaven/landing-assets/images/hero-birthday.png', icon: CakeSlice },
+  { number: '2', title: <>Select Your<br /><em>Location</em></>, text: 'Choose from our premium private theatres near you.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976176/cinehaven/landing-assets/images/hero-home.png', icon: MapPin },
+  { number: '3', title: <>Pick Your<br /><em>Theatre</em></>, text: 'Explore themes, capacity, amenities and choose the perfect setting.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976171/cinehaven/landing-assets/images/hero-proposal.png', icon: Theater },
+  { number: '4', title: <>Customize Your<br /><em>Experience</em></>, text: 'Add decor, food, cake, balloons, music & more to make it yours.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976164/cinehaven/landing-assets/images/hero-birthday.png', icon: SlidersHorizontal },
+  { number: '5', title: <>Confirm &<br /><em>Pay Securely</em></>, text: 'Review your booking details and pay securely in just a few clicks.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976181/cinehaven/landing-assets/images/my-booking.png', icon: CreditCard },
+  { number: '6', title: <>Show Up &<br /><em>Celebrate!</em></>, text: 'We’ll take care of the rest. You just show up and create unforgettable memories.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976178/cinehaven/landing-assets/images/mood-party.png', icon: PartyPopper },
 ];
 
 const benefits = [

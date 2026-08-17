@@ -16,12 +16,12 @@ type Occasion = {
 };
 
 const occasions: Occasion[] = [
-  { id: 'birthday', number: '01', name: 'Birthday', description: 'Make birthdays unforgettable with magic and joy.', image: '/images/hero-birthday.png', detail: 'From surprise setups to themed decor, we make every birthday a blockbuster memory.' },
-  { id: 'date-night', number: '02', name: 'Date Night', description: 'Romantic settings for your perfect night together.', image: '/images/hero-date.png', detail: 'A private screen, warm ambience and thoughtful details made just for two.' },
-  { id: 'anniversary', number: '03', name: 'Anniversary', description: 'Celebrate your beautiful journey together.', image: '/images/hero-anniversary.png', detail: 'Relive your favourite memories with a cinematic anniversary experience.' },
-  { id: 'proposal', number: '04', name: 'Proposal', description: 'Create the perfect moment to pop the question.', image: '/images/hero-proposal.png', detail: 'A breathtaking private setup designed around the most important question.' },
-  { id: 'bride-to-be', number: '05', name: 'Bride to Be', description: 'Celebrate her special journey in style.', image: '/images/mood-party.png', detail: 'Bring the bride squad together for a stylish, joyful private celebration.' },
-  { id: 'family', number: '06', name: 'Family Celebration', description: 'Quality time with family in a private, joyful space.', image: '/images/mood-family.png', detail: 'A comfortable private theatre where every generation can celebrate together.' },
+  { id: 'birthday', number: '01', name: 'Birthday', description: 'Make birthdays unforgettable with magic and joy.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976164/cinehaven/landing-assets/images/hero-birthday.png', detail: 'From surprise setups to themed decor, we make every birthday a blockbuster memory.' },
+  { id: 'date-night', number: '02', name: 'Date Night', description: 'Romantic settings for your perfect night together.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976167/cinehaven/landing-assets/images/hero-date.png', detail: 'A private screen, warm ambience and thoughtful details made just for two.' },
+  { id: 'anniversary', number: '03', name: 'Anniversary', description: 'Celebrate your beautiful journey together.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976168/cinehaven/landing-assets/images/hero-anniversary.png', detail: 'Relive your favourite memories with a cinematic anniversary experience.' },
+  { id: 'proposal', number: '04', name: 'Proposal', description: 'Create the perfect moment to pop the question.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976171/cinehaven/landing-assets/images/hero-proposal.png', detail: 'A breathtaking private setup designed around the most important question.' },
+  { id: 'bride-to-be', number: '05', name: 'Bride to Be', description: 'Celebrate her special journey in style.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976178/cinehaven/landing-assets/images/mood-party.png', detail: 'Bring the bride squad together for a stylish, joyful private celebration.' },
+  { id: 'family', number: '06', name: 'Family Celebration', description: 'Quality time with family in a private, joyful space.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976179/cinehaven/landing-assets/images/mood-family.png', detail: 'A comfortable private theatre where every generation can celebrate together.' },
 ];
 
 const benefits = [

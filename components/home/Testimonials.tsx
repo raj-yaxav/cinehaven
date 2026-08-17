@@ -36,7 +36,7 @@ export function Testimonials() {
 
   return (
     <section className="relative isolate overflow-hidden px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-      <Image src="/landing-page/testimonials/celebration-couple-background-v2.png" alt="" fill priority className="-z-20 object-cover object-[68%_center]" sizes="100vw" />
+      <Image src="https://res.cloudinary.com/dq3typk9u/image/upload/v1786976163/cinehaven/landing-assets/landing-page/testimonials/celebration-couple-background-v2.png" alt="" fill priority className="-z-20 object-cover object-[68%_center]" sizes="100vw" />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(255,247,252,.96)_0%,rgba(255,247,252,.83)_47%,rgba(37,9,45,.10)_100%)]" />
       <div className="relative mx-auto max-w-[1440px]">
         <header className="max-w-2xl text-center lg:text-left">

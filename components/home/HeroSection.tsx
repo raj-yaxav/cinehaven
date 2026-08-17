@@ -21,12 +21,12 @@ const STATS = [
 export function HeroSection() {
   return (
     <section className="relative isolate min-h-[760px] overflow-hidden bg-[var(--celebration-theatre)] pt-[82px] sm:min-h-[100svh]">
-      <Image src="/landing-page/hero-section/hero-back2.png" alt="CelebrationFlix private theatre" fill priority sizes="100vw" className="-translate-y-2 object-cover object-center" />
+      <Image src="https://res.cloudinary.com/dq3typk9u/image/upload/v1786976159/cinehaven/landing-assets/landing-page/hero-section/hero-back2.png" alt="CelebrationFlix private theatre" fill priority sizes="100vw" className="-translate-y-2 object-cover object-center" />
 
-      <div className="hero-prop-clapper hero-float-a pointer-events-none absolute left-[5%] top-[16%] z-10 hidden w-[19vw] max-w-[300px] lg:block"><Image src="/landing-page/hero-section/action-clipboard.png" alt="" width={500} height={500} priority /></div>
-      <div className="hero-prop-popcorn hero-float-b pointer-events-none absolute bottom-[14%] left-[3%] z-10 hidden w-[20vw] max-w-[320px] lg:block"><Image src="/landing-page/hero-section/popcorn.png" alt="" width={500} height={500} priority /></div>
-      <div className="hero-prop-balloon hero-float-c pointer-events-none absolute right-[1%] top-[11%] z-10 hidden w-[24vw] max-w-[380px] lg:block"><Image src="/landing-page/hero-section/balloon.png" alt="" width={500} height={700} priority /></div>
-      <div className="hero-prop-ticket hero-float-d pointer-events-none absolute bottom-[13%] right-[-2%] z-10 hidden w-[24vw] max-w-[370px] lg:block"><Image src="/landing-page/hero-section/ticket.png" alt="" width={500} height={280} priority /></div>
+      <div className="hero-prop-clapper hero-float-a pointer-events-none absolute left-[5%] top-[16%] z-10 hidden w-[19vw] max-w-[300px] lg:block"><Image src="https://res.cloudinary.com/dq3typk9u/image/upload/v1786976157/cinehaven/landing-assets/landing-page/hero-section/action-clipboard.png" alt="" width={500} height={500} priority /></div>
+      <div className="hero-prop-popcorn hero-float-b pointer-events-none absolute bottom-[14%] left-[3%] z-10 hidden w-[20vw] max-w-[320px] lg:block"><Image src="https://res.cloudinary.com/dq3typk9u/image/upload/v1786976160/cinehaven/landing-assets/landing-page/hero-section/popcorn.png" alt="" width={500} height={500} priority /></div>
+      <div className="hero-prop-balloon hero-float-c pointer-events-none absolute right-[1%] top-[11%] z-10 hidden w-[24vw] max-w-[380px] lg:block"><Image src="https://res.cloudinary.com/dq3typk9u/image/upload/v1786976158/cinehaven/landing-assets/landing-page/hero-section/balloon.png" alt="" width={500} height={700} priority /></div>
+      <div className="hero-prop-ticket hero-float-d pointer-events-none absolute bottom-[13%] right-[-2%] z-10 hidden w-[24vw] max-w-[370px] lg:block"><Image src="https://res.cloudinary.com/dq3typk9u/image/upload/v1786976161/cinehaven/landing-assets/landing-page/hero-section/ticket.png" alt="" width={500} height={280} priority /></div>
 
       <div className="celebration-hero-content relative z-20 mx-auto flex max-w-[1909px] flex-col items-center px-4 pb-10 pt-40 sm:px-6 sm:pt-24 lg:px-16 lg:pt-12">
         <div className="celebration-hero-copy mt-2 w-full max-w-[1000px] px-5 pb-2 pt-8 text-center sm:px-12 sm:pb-2 sm:pt-10 lg:mt-4">

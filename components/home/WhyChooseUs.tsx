@@ -6,13 +6,13 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowRight, CakeSlice, Camera, Crown, Flower2, Heart, Music2, ShieldCheck, Smile, Sparkles, UtensilsCrossed, Users, WandSparkles } from 'lucide-react';
 
 const experiences = [
-  { title: 'Custom Décor', text: 'Themes that match your occasion & personality.', image: '/images/hero-birthday.png', icon: Sparkles },
-  { title: 'Cakes & Desserts', text: 'Delicious cakes made for your special moments.', image: '/images/hero-date.png', icon: CakeSlice },
-  { title: 'Flowers', text: 'Elegant floral arrangements to set the perfect vibe.', image: '/images/hero-anniversary.png', icon: Flower2 },
-  { title: 'Food & Beverages', text: 'Tasty bites & beverages served at your seat.', image: '/images/hero-proposal.png', icon: UtensilsCrossed, featured: true },
-  { title: 'Fog Entry', text: 'Grand entrances that create unforgettable first impressions.', image: '/images/mood-party.png', icon: WandSparkles },
-  { title: 'Photoshoot', text: 'Capture every emotion with our professional setup.', image: '/images/hero-corporate.png', icon: Camera },
-  { title: 'Karaoke & More', text: 'Sing, play & celebrate your way.', image: '/images/hero-friends.png', icon: Music2 },
+  { title: 'Custom Décor', text: 'Themes that match your occasion & personality.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976164/cinehaven/landing-assets/images/hero-birthday.png', icon: Sparkles },
+  { title: 'Cakes & Desserts', text: 'Delicious cakes made for your special moments.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976167/cinehaven/landing-assets/images/hero-date.png', icon: CakeSlice },
+  { title: 'Flowers', text: 'Elegant floral arrangements to set the perfect vibe.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976168/cinehaven/landing-assets/images/hero-anniversary.png', icon: Flower2 },
+  { title: 'Food & Beverages', text: 'Tasty bites & beverages served at your seat.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976171/cinehaven/landing-assets/images/hero-proposal.png', icon: UtensilsCrossed, featured: true },
+  { title: 'Fog Entry', text: 'Grand entrances that create unforgettable first impressions.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976178/cinehaven/landing-assets/images/mood-party.png', icon: WandSparkles },
+  { title: 'Photoshoot', text: 'Capture every emotion with our professional setup.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976175/cinehaven/landing-assets/images/hero-corporate.png', icon: Camera },
+  { title: 'Karaoke & More', text: 'Sing, play & celebrate your way.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976173/cinehaven/landing-assets/images/hero-friends.png', icon: Music2 },
 ];
 
 const stats = [
@@ -28,7 +28,7 @@ export function WhyChooseUs() {
 
   return (
     <section className="relative isolate overflow-hidden px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-      <Image src="/landing-page/celebrationExperience/experienceBG.png" alt="" fill priority className="-z-20 object-cover" sizes="100vw" />
+      <Image src="https://res.cloudinary.com/dq3typk9u/image/upload/v1786976155/cinehaven/landing-assets/landing-page/celebrationExperience/experienceBG.png" alt="" fill priority className="-z-20 object-cover" sizes="100vw" />
       <div className="absolute inset-0 -z-10 bg-white/10" />
       <div className="mx-auto max-w-[1440px]">
         <header className="relative mx-auto max-w-4xl text-center">

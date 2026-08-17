@@ -8,20 +8,20 @@ import { BriefcaseBusiness, CalendarDays, CakeSlice, CircleEllipsis, Gem, Gradua
 type Occasion = { id: string; label: string; icon: typeof CakeSlice; image: string; eyebrow: string };
 
 const occasions: Occasion[] = [
-  { id: 'birthday', label: 'Birthday', icon: CakeSlice, image: '/images/hero-birthday.png', eyebrow: 'Happy Birthday' },
-  { id: 'anniversary', label: 'Anniversary', icon: HeartHandshake, image: '/images/hero-anniversary.png', eyebrow: 'Celebrate Together' },
-  { id: 'proposal', label: 'Proposal', icon: Gem, image: '/images/hero-proposal.png', eyebrow: 'A Perfect Yes' },
-  { id: 'friends', label: 'Friends & Reunion', icon: Users, image: '/images/hero-friends.png', eyebrow: 'Make It Memorable' },
-  { id: 'graduation', label: 'Graduation', icon: GraduationCap, image: '/images/hero-corporate.png', eyebrow: 'Celebrate Success' },
-  { id: 'corporate', label: 'Corporate Events', icon: BriefcaseBusiness, image: '/images/hero-corporate.png', eyebrow: 'Celebrate Together' },
-  { id: 'more', label: 'And More', icon: CircleEllipsis, image: '/images/mood-party.png', eyebrow: 'Make It Yours' },
+  { id: 'birthday', label: 'Birthday', icon: CakeSlice, image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976164/cinehaven/landing-assets/images/hero-birthday.png', eyebrow: 'Happy Birthday' },
+  { id: 'anniversary', label: 'Anniversary', icon: HeartHandshake, image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976168/cinehaven/landing-assets/images/hero-anniversary.png', eyebrow: 'Celebrate Together' },
+  { id: 'proposal', label: 'Proposal', icon: Gem, image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976171/cinehaven/landing-assets/images/hero-proposal.png', eyebrow: 'A Perfect Yes' },
+  { id: 'friends', label: 'Friends & Reunion', icon: Users, image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976173/cinehaven/landing-assets/images/hero-friends.png', eyebrow: 'Make It Memorable' },
+  { id: 'graduation', label: 'Graduation', icon: GraduationCap, image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976175/cinehaven/landing-assets/images/hero-corporate.png', eyebrow: 'Celebrate Success' },
+  { id: 'corporate', label: 'Corporate Events', icon: BriefcaseBusiness, image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976175/cinehaven/landing-assets/images/hero-corporate.png', eyebrow: 'Celebrate Together' },
+  { id: 'more', label: 'And More', icon: CircleEllipsis, image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976178/cinehaven/landing-assets/images/mood-party.png', eyebrow: 'Make It Yours' },
 ];
 
 const baseDetailCards = [
-  { title: 'Custom Decor', description: 'Themes that match your vibe perfectly.', image: '/images/hero-proposal.png', icon: Sparkles },
-  { title: 'Delicious Food', description: 'Handpicked menus for every taste.', image: '/images/hero-date.png', icon: UtensilsCrossed },
-  { title: 'Premium Experience', description: 'Top-notch sound, screen & ultimate comfort.', image: '/images/hero-corporate.png', icon: Volume2 },
-  { title: 'Personal Touch', description: 'Add-ons that make it uniquely yours.', image: '/images/mood-party.png', icon: PlayCircle },
+  { title: 'Custom Decor', description: 'Themes that match your vibe perfectly.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976171/cinehaven/landing-assets/images/hero-proposal.png', icon: Sparkles },
+  { title: 'Delicious Food', description: 'Handpicked menus for every taste.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976167/cinehaven/landing-assets/images/hero-date.png', icon: UtensilsCrossed },
+  { title: 'Premium Experience', description: 'Top-notch sound, screen & ultimate comfort.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976175/cinehaven/landing-assets/images/hero-corporate.png', icon: Volume2 },
+  { title: 'Personal Touch', description: 'Add-ons that make it uniquely yours.', image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1786976178/cinehaven/landing-assets/images/mood-party.png', icon: PlayCircle },
 ];
 
 export function OccasionShowcase() {
