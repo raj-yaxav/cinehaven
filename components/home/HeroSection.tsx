@@ -1,262 +1,67 @@
-/**
- * HeroSection — Minimal Premium Layout
- * Clean typography-focused design with subtle glass accents
- */
-
 'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { 
-  ArrowRight, 
-  Sparkles, 
-  Play, 
-  Star, 
-  MapPin, 
-  Calendar,
-  Heart,
-  Users,
-  Gem
-} from 'lucide-react';
+import { ArrowRight, CalendarDays, MapPin, PlayCircle, ShieldCheck, Sparkles, Star, UsersRound, Volume2, WandSparkles, UtensilsCrossed } from 'lucide-react';
 
-const CATEGORIES = [
-  { name: 'Birthday', icon: '🎂', color: 'from-rose-500/20 to-orange-400/10', desc: '2,400+ hosted' },
-  { name: 'Proposal', icon: '💍', color: 'from-pink-500/20 to-rose-300/10', desc: '890+ moments' },
-  { name: 'Anniversary', icon: '🥂', color: 'from-amber-500/15 to-yellow-300/10', desc: '1,200+ stories' },
-  { name: 'Date Night', icon: '🌹', color: 'from-purple-500/15 to-pink-300/10', desc: '3,100+ evenings' },
-  { name: 'Friends', icon: '🎉', color: 'from-blue-500/15 to-cyan-300/10', desc: '4,500+ laughs' },
-  { name: 'Corporate', icon: '💼', color: 'from-slate-500/15 to-gray-300/10', desc: '670+ events' },
+const FEATURES = [
+  { icon: ShieldCheck, label: '100% Private' },
+  { icon: Volume2, label: 'Premium Sound' },
+  { icon: WandSparkles, label: 'Custom Decor' },
+  { icon: UtensilsCrossed, label: 'Delicious Food' },
 ];
 
-const HIGHLIGHTS = [
-  { icon: MapPin, label: '15 Premium Venues', sub: 'Across India' },
-  { icon: Star, label: '4.9/5 Rating', sub: '50,000+ Reviews' },
-  { icon: Users, label: '12,847+ Guests', sub: 'Celebrated With Us' },
-  { icon: Gem, label: '98% Satisfaction', sub: 'Happy Memories' },
+const STATS = [
+  { icon: UsersRound, value: '50K+', label: 'Happy Customers' },
+  { icon: PlayCircle, value: '1000+', label: 'Private Celebrations' },
+  { icon: MapPin, value: '25+', label: 'Locations' },
+  { icon: Star, value: '4.9/5', label: 'Customer Rating' },
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-  },
-};
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-transparent overflow-hidden">
+    <section className="relative isolate min-h-[760px] overflow-hidden bg-[var(--celebration-theatre)] pt-[82px] sm:min-h-[100svh]">
+      <Image src="/landing-page/hero-section/hero-back2.png" alt="CelebrationFlix private theatre" fill priority sizes="100vw" className="-translate-y-2 object-cover object-center" />
 
-      <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-16">
-        
-        {/* ========== TOP SECTION: Main Hero Content ========== */}
-        <div className="text-center max-w-4xl mx-auto">
-          
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="inline-flex mb-6"
-          >
-            <div className="inline-flex items-center gap-2 rounded-full border border-burgundy/15 bg-white/60 backdrop-blur-md px-5 py-2.5 shadow-sm">
-              <Sparkles className="h-4 w-4 text-burgundy" />
-              <span className="text-[11px] uppercase tracking-[0.2em] text-burgundy font-semibold">
-                India's Premier Private Theatre
-              </span>
-            </div>
-          </motion.div>
+      <div className="hero-prop-clapper hero-float-a pointer-events-none absolute left-[5%] top-[16%] z-10 hidden w-[19vw] max-w-[300px] lg:block"><Image src="/landing-page/hero-section/action-clipboard.png" alt="" width={500} height={500} priority /></div>
+      <div className="hero-prop-popcorn hero-float-b pointer-events-none absolute bottom-[14%] left-[3%] z-10 hidden w-[20vw] max-w-[320px] lg:block"><Image src="/landing-page/hero-section/popcorn.png" alt="" width={500} height={500} priority /></div>
+      <div className="hero-prop-balloon hero-float-c pointer-events-none absolute right-[1%] top-[11%] z-10 hidden w-[24vw] max-w-[380px] lg:block"><Image src="/landing-page/hero-section/balloon.png" alt="" width={500} height={700} priority /></div>
+      <div className="hero-prop-ticket hero-float-d pointer-events-none absolute bottom-[13%] right-[-2%] z-10 hidden w-[24vw] max-w-[370px] lg:block"><Image src="/landing-page/hero-section/ticket.png" alt="" width={500} height={280} priority /></div>
 
-          {/* Main Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.7 }}
-            className="font-display font-bold text-ink leading-[1.08] tracking-tight"
-            style={{ fontSize: 'clamp(2.8rem, 6vw, 5.5rem)' }}
-          >
-            Your Moment,
-            <br />
-            <span className="text-burgundy">The Big Screen</span>
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mt-6 text-ink-secondary text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto"
-          >
-            Private cinemas crafted for proposals, birthdays, anniversaries & celebrations 
-            that deserve to be remembered forever.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
-          >
-            <Link
-              href="/book"
-              className="group relative inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gradient-burgundy text-white font-bold text-sm uppercase tracking-wider overflow-hidden shadow-burgundy-glow hover:shadow-burgundy-glow-lg transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto justify-center"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-              <Sparkles className="h-4 w-4" />
-              Book Your Experience
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+      <div className="celebration-hero-content relative z-20 mx-auto flex max-w-[1909px] flex-col items-center px-4 pb-10 pt-40 sm:px-6 sm:pt-24 lg:px-16 lg:pt-12">
+        <div className="celebration-hero-copy mt-2 w-full max-w-[1000px] px-5 pb-2 pt-8 text-center sm:px-12 sm:pb-2 sm:pt-10 lg:mt-4">
+          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.06em] text-[var(--celebration-ink)] sm:text-sm">
+            <Sparkles className="h-4 w-4 text-[var(--celebration-violet)]" aria-hidden="true" />
+            India&apos;s most loved private theatre
+            <Sparkles className="h-4 w-4 text-[var(--celebration-violet)]" aria-hidden="true" />
+          </div>
+          <h1 className="celebration-hero-heading mx-auto mt-4 max-w-5xl text-[clamp(2.25rem,4.1vw,4.75rem)] font-extrabold leading-[1.05] tracking-[-0.055em] text-[var(--celebration-ink)]">
+            Your <span className="text-[var(--celebration-primary)]">Celebration.</span><br />
+            Your <span className="text-[var(--celebration-violet)]">Private Theatre.</span><br />
+            Your <span className="text-[var(--celebration-primary)]">Moment.</span>
+          </h1>
+          <p className="celebration-hero-tagline mt-3 font-display text-xl italic text-[var(--celebration-violet)] sm:text-[28px]">Memories that stay forever</p>
+          <p className="celebration-hero-description mx-auto mt-4 max-w-2xl text-base leading-7 text-[var(--celebration-ink)] sm:text-[22px] sm:leading-9">
+            Celebrate birthdays, anniversaries, date nights and life&apos;s special moments in your own private theatre with stunning setups, delicious food and unforgettable memories.
+          </p>
+          <div className="celebration-hero-actions mt-5 flex flex-col justify-center gap-4 sm:flex-row">
+            <Link href="/book" className="bg-celebration-gradient inline-flex min-h-[62px] items-center justify-center gap-2 rounded-xl px-7 py-3 text-base font-semibold text-white shadow-[0_12px_24px_var(--celebration-glow)] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--celebration-primary)] focus-visible:ring-offset-2">
+              <CalendarDays className="h-5 w-5" /> Book Your Celebration <ArrowRight className="h-5 w-5" />
             </Link>
-
-            <Link
-              href="/services"
-              className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full border border-ink/10 bg-white/50 backdrop-blur-md text-ink-secondary text-sm font-medium hover:border-burgundy/30 hover:bg-white/80 transition-all duration-300 w-full sm:w-auto"
-            >
-              <Play className="h-4 w-4 fill-ink-secondary" />
-              Watch Our Film
+            <Link href="/services" className="inline-flex min-h-[62px] items-center justify-center gap-2 rounded-xl border border-[var(--celebration-border)] bg-white px-7 py-3 text-base font-semibold text-[var(--celebration-ink)] transition-colors duration-200 hover:bg-[var(--celebration-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--celebration-primary)] focus-visible:ring-offset-2">
+              <PlayCircle className="h-6 w-6 text-[var(--celebration-ink)]" /> Explore Theatres
             </Link>
-          </motion.div>
-
+          </div>
         </div>
 
-        {/* ========== MIDDLE: Trust Highlights Bar ========== */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-          className="mt-12 sm:mt-16"
-        >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto">
-            {HIGHLIGHTS.map((item) => (
-              <div 
-                key={item.label}
-                className="group flex items-center gap-3 p-4 rounded-2xl bg-white/40 backdrop-blur-sm border border-white/50 hover:bg-white/70 hover:border-burgundy/20 transition-all duration-300"
-              >
-                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-burgundy/10 flex items-center justify-center group-hover:bg-burgundy/20 transition-colors">
-                  <item.icon className="h-5 w-5 text-burgundy" />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-sm font-semibold text-ink truncate">{item.label}</p>
-                  <p className="text-[10px] text-ink-secondary uppercase tracking-wider">{item.sub}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+        <div className="celebration-feature-bar mt-[22px] grid w-full max-w-[1025px] grid-cols-2 overflow-hidden rounded-2xl border border-white/15 bg-[var(--celebration-feature-surface)]/90 text-white shadow-[0_12px_28px_rgba(15,5,20,0.35)] backdrop-blur-md sm:grid-cols-4">
+          {FEATURES.map(({ icon: Icon, label }) => <div key={label} className="flex items-center justify-center gap-3 border-white/15 px-3 py-5 text-base font-semibold sm:border-r last:sm:border-r-0"><Icon className="h-6 w-6 text-fuchsia-400" />{label}</div>)}
+        </div>
 
-        {/* ========== BOTTOM: Occasion Cards ========== */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="mt-12 sm:mt-16"
-        >
-          <div className="text-center mb-6 sm:mb-8">
-            <p className="text-[11px] uppercase tracking-[0.25em] text-ink-secondary font-medium">
-              Perfect For Every Occasion
-            </p>
-          </div>
-
-          {/* Desktop: Grid Layout */}
-          <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4">
-            {CATEGORIES.map((cat) => (
-              <motion.div key={cat.name} variants={itemVariants}>
-                <Link href={`/book?occasion=${cat.name.toLowerCase().replace(' ', '-')}`}>
-                  <div className="group relative p-5 rounded-2xl bg-white/30 backdrop-blur-sm border border-white/40 hover:bg-white/60 hover:border-burgundy/20 hover:shadow-lg hover:shadow-burgundy/5 transition-all duration-300 cursor-pointer text-center">
-                    
-                    {/* Gradient Background Blob */}
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${cat.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                    
-                    <div className="relative z-10">
-                      <span className="text-3xl mb-3 block">{cat.icon}</span>
-                      <h3 className="text-sm font-bold text-ink group-hover:text-burgundy transition-colors">{cat.name}</h3>
-                      <p className="text-[10px] text-ink-secondary mt-1">{cat.desc}</p>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Mobile: Horizontal Scroll */}
-          <div className="sm:hidden flex gap-3 overflow-x-auto hide-scrollbar pb-2 snap-x snap-mandatory px-1">
-            {CATEGORIES.map((cat) => (
-              <motion.div
-                key={cat.name}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 }}
-                className="flex-shrink-0 w-32 snap-start"
-              >
-                <Link href={`/book?occasion=${cat.name.toLowerCase().replace(' ', '-')}`}>
-                  <div className="group relative p-4 rounded-2xl bg-white/30 backdrop-blur-sm border border-white/40 active:bg-white/60 transition-all text-center">
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${cat.color} opacity-50`} />
-                    <div className="relative z-10">
-                      <span className="text-2xl mb-2 block">{cat.icon}</span>
-                      <h3 className="text-xs font-bold text-ink">{cat.name}</h3>
-                      <p className="text-[9px] text-ink-muted mt-0.5">{cat.desc}</p>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* ========== BOTTOM: Single Hero Image (Optional, Subtle) ========== */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="mt-12 sm:mt-16 relative max-w-5xl mx-auto"
-        >
-          <div className="relative rounded-3xl overflow-hidden border border-white/30 bg-white/20 backdrop-blur-sm shadow-2xl shadow-black/5">
-            {/* Gradient overlay instead of heavy image */}
-            <div className="absolute inset-0 bg-gradient-to-br from-burgundy/10 via-rosegold/5 to-cream" />
-            
-            {/* Optional: Uncomment if you want ONE hero image */}
-            {/* <Image
-              src="https://res.cloudinary.com/dq3typk9u/image/upload/v1780913958/cinehaven/hero-home.png"
-              alt="Private Theatre Experience"
-              width={1200}
-              height={500}
-              className="w-full h-48 sm:h-72 md:h-80 object-cover opacity-40"
-              priority
-            /> */}
-            
-            {/* Content over the visual area */}
-            <div className="relative z-10 py-12 sm:py-16 px-6 text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-white/50 mb-4">
-                <Calendar className="h-4 w-4 text-burgundy" />
-                <span className="text-xs font-medium text-burgundy">Book 7 Days in Advance</span>
-              </div>
-              <h3 className="text-xl sm:text-2xl font-display font-bold text-ink mb-2">
-                Ready to Create Your Memory?
-              </h3>
-              <p className="text-sm text-ink-secondary max-w-md mx-auto mb-6">
-                From intimate proposals to grand celebrations — we handle every detail.
-              </p>
-              <div className="flex items-center justify-center gap-2 text-xs text-ink-muted">
-                <Heart className="h-3.5 w-3.5 text-burgundy fill-burgundy" />
-                <span>Trusted by 50,000+ guests across India</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
+        <div className="celebration-stats-bar mt-[70px] grid w-full max-w-[1338px] grid-cols-2 overflow-hidden rounded-2xl border border-white/70 bg-white/90 text-[var(--celebration-ink)] shadow-[0_16px_36px_rgba(31,12,37,0.25)] backdrop-blur-md sm:grid-cols-4">
+          {STATS.map(({ icon: Icon, value, label }) => <div key={label} className="flex items-center justify-center gap-4 border-[var(--celebration-border)] px-3 py-5 sm:border-r last:sm:border-r-0 sm:py-[22px]"><Icon className="h-10 w-10 shrink-0 text-[var(--celebration-primary)]" /><div><p className="text-3xl font-bold leading-none">{value}</p><p className="mt-2 text-sm font-medium text-[var(--celebration-muted)]">{label}</p></div></div>)}
+        </div>
       </div>
-
-      {/* Bottom Fade */}
     </section>
   );
 }

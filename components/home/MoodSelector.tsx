@@ -1,269 +1,109 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { Heart, PartyPopper, Flame, Users, Sparkles, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, CakeSlice, Camera, ConciergeBell, ShieldCheck, Sparkles, WandSparkles } from 'lucide-react';
 
-const moods = [
-  {
-    id: 'romantic',
-    name: 'Romantic',
-    description: 'Intimate settings for two',
-    icon: Heart,
-    gradient: 'from-burgundy/15 to-cream',
-    accent: 'text-burgundy',
-    borderAccent: 'border-burgundy/20',
-    bgAccent: 'bg-burgundy/8',
-    iconBg: 'bg-burgundy-bg',
-    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780899424/cinehaven/moods/mood-romantic.png',
-    tagline: 'Perfect for proposals & anniversaries',
-    glow: 'group-hover:shadow-burgundy-glow',
-  },
-  {
-    id: 'party',
-    name: 'Party Vibes',
-    description: 'High energy celebrations',
-    icon: PartyPopper,
-    gradient: 'from-crimson/15 to-cream',
-    accent: 'text-crimson',
-    borderAccent: 'border-crimson/20',
-    bgAccent: 'bg-crimson/8',
-    iconBg: 'bg-crimson-muted',
-    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780899426/cinehaven/moods/mood-party.png',
-    tagline: 'Birthdays & friends night out',
-    glow: 'group-hover:shadow-crimson-glow',
-  },
-  {
-    id: 'chill',
-    name: 'Chill & Cozy',
-    description: 'Relaxed intimate moments',
-    icon: Flame,
-    gradient: 'from-rosegold/15 to-cream',
-    accent: 'text-rosegold',
-    borderAccent: 'border-rosegold/20',
-    bgAccent: 'bg-rosegold/8',
-    iconBg: 'bg-rosegold-bg',
-    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780899427/cinehaven/moods/mood-chill.png',
-    tagline: 'Date nights & low-key hangs',
-    glow: 'group-hover:shadow-rosegold-glow',
-  },
-  {
-    id: 'family',
-    name: 'Family Fun',
-    description: 'All ages welcome',
-    icon: Users,
-    gradient: 'from-teal/15 to-cream',
-    accent: 'text-teal',
-    borderAccent: 'border-teal/20',
-    bgAccent: 'bg-teal/8',
-    iconBg: 'bg-teal-bg',
-    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780899430/cinehaven/moods/mood-family.png',
-    tagline: 'Memories for everyone',
-    glow: 'group-hover:shadow-teal-glow',
-  },
-  {
-    id: 'epic',
-    name: 'Epic Surprise',
-    description: 'Grand unforgettable moments',
-    icon: Sparkles,
-    gradient: 'from-burgundy/20 to-cream',
-    accent: 'text-burgundy',
-    borderAccent: 'border-burgundy/25',
-    bgAccent: 'bg-burgundy/10',
-    iconBg: 'bg-burgundy-bg',
-    image: 'https://res.cloudinary.com/dq3typk9u/image/upload/v1780899432/cinehaven/moods/mood-epic.png',
-    tagline: 'Proposals & milestone events',
-    glow: 'group-hover:shadow-burgundy-glow',
-  },
+type Occasion = {
+  id: string;
+  number: string;
+  name: string;
+  description: string;
+  image: string;
+  detail: string;
+};
+
+const occasions: Occasion[] = [
+  { id: 'birthday', number: '01', name: 'Birthday', description: 'Make birthdays unforgettable with magic and joy.', image: '/images/hero-birthday.png', detail: 'From surprise setups to themed decor, we make every birthday a blockbuster memory.' },
+  { id: 'date-night', number: '02', name: 'Date Night', description: 'Romantic settings for your perfect night together.', image: '/images/hero-date.png', detail: 'A private screen, warm ambience and thoughtful details made just for two.' },
+  { id: 'anniversary', number: '03', name: 'Anniversary', description: 'Celebrate your beautiful journey together.', image: '/images/hero-anniversary.png', detail: 'Relive your favourite memories with a cinematic anniversary experience.' },
+  { id: 'proposal', number: '04', name: 'Proposal', description: 'Create the perfect moment to pop the question.', image: '/images/hero-proposal.png', detail: 'A breathtaking private setup designed around the most important question.' },
+  { id: 'bride-to-be', number: '05', name: 'Bride to Be', description: 'Celebrate her special journey in style.', image: '/images/mood-party.png', detail: 'Bring the bride squad together for a stylish, joyful private celebration.' },
+  { id: 'family', number: '06', name: 'Family Celebration', description: 'Quality time with family in a private, joyful space.', image: '/images/mood-family.png', detail: 'A comfortable private theatre where every generation can celebrate together.' },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.2,
-    },
-  },
-};
+const benefits = [
+  { icon: ShieldCheck, title: '100% Private', text: 'Only you and your loved ones' },
+  { icon: WandSparkles, title: 'Customizable Decor', text: 'Set the vibe you imagine' },
+  { icon: ConciergeBell, title: 'Food & Beverages', text: 'Delicious food served at your seat' },
+  { icon: Camera, title: 'Memories Captured', text: 'Capture moments to cherish forever' },
+];
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
-
-const headerVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
+function OccasionCard({ occasion, selected, onSelect, imageRight = false }: { occasion: Occasion; selected: boolean; onSelect: () => void; imageRight?: boolean }) {
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      aria-pressed={selected}
+      className={`occasion-shine-card group grid min-h-[190px] w-full cursor-pointer grid-cols-[1fr_0.92fr] overflow-hidden rounded-[22px] border bg-white/90 p-3 text-left shadow-[0_12px_30px_rgba(74,28,78,0.10)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(220,38,38,0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 ${selected ? 'is-selected border-red-500 shadow-[0_16px_36px_rgba(220,38,38,0.20)]' : 'border-white'}`}
+    >
+      <div className={`relative min-h-[166px] overflow-hidden rounded-[17px] ${imageRight ? 'order-2' : ''}`}>
+        <Image src={occasion.image} alt={`${occasion.name} celebration`} fill unoptimized sizes="(max-width: 640px) 46vw, (max-width: 1024px) 42vw, 240px" className="object-cover" />
+      </div>
+      <div className={`flex flex-col justify-center px-5 py-3 ${imageRight ? 'order-1' : ''}`}>
+        <span className="text-sm font-bold text-[var(--celebration-primary)]">{occasion.number}</span>
+        <h3 className="mt-2 font-display text-[22px] font-bold leading-tight text-[var(--celebration-ink)]">{occasion.name}</h3>
+        <p className="mt-3 text-sm leading-6 text-[var(--celebration-muted)]">{occasion.description}</p>
+      </div>
+    </button>
+  );
+}
 
 export function MoodSelector() {
+  const [selectedId, setSelectedId] = useState('birthday');
+  const selected = occasions.find((occasion) => occasion.id === selectedId) ?? occasions[0];
+  const left = occasions.slice(0, 3);
+  const right = occasions.slice(3);
+
   return (
-    <section className="relative section-padding bg-transparent overflow-hidden">
-      {/* Background Decorations */}
-      <div className="absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-burgundy/4 blur-[150px]" />
-      <div className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full bg-rosegold/4 blur-[120px]" />
-      
-      {/* Subtle grid pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.015]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(107, 15, 42, 0.3) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(107, 15, 42, 0.3) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
-        }}
-      />
+    <section className="relative overflow-hidden bg-[#fffdfd] px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+      <div className="relative mx-auto max-w-[1440px]">
+        <header className="mx-auto mb-12 max-w-2xl text-center">
+          <div className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-[0.08em] text-[var(--celebration-primary)]">
+            <span className="h-px w-8 bg-gradient-to-r from-transparent to-[var(--celebration-primary)]" />
+            Choose your occasion
+            <span className="h-px w-8 bg-gradient-to-r from-[var(--celebration-primary)] to-transparent" />
+          </div>
+          <h2 className="mt-3 font-display text-5xl font-bold leading-[0.92] tracking-[-0.04em] text-[var(--celebration-ink)] sm:text-6xl lg:text-[72px]">
+            What are you<br /><span className="celebrating-shine">celebrating?</span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-7 text-[var(--celebration-muted)]">Every moment is special. Choose your occasion and we&apos;ll help you create memories that last forever.</p>
+        </header>
 
-      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8">
-        
-        {/* Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={containerVariants}
-          className="mb-16 text-center"
-        >
-          <motion.span
-            variants={headerVariants}
-            className="mb-4 inline-flex items-center gap-2 rounded-full border border-burgundy/15 bg-burgundy-bg px-5 py-2"
-          >
-            <Sparkles className="h-3.5 w-3.5 text-burgundy" />
-            <span className="font-accent text-[11px] uppercase tracking-[0.3em] text-burgundy font-medium">
-              Discover
-            </span>
-          </motion.span>
-          
-          <motion.h2
-            variants={headerVariants}
-            className="font-display text-4xl font-bold text-ink md:text-5xl lg:text-6xl text-balance leading-tight"
-          >
-            Find Your{' '}
-            <span className="text-burgundy">Vibe</span>
-          </motion.h2>
-          
-          <motion.p
-            variants={headerVariants}
-            className="mx-auto mt-5 max-w-lg text-ink-muted text-base md:text-lg leading-relaxed text-balance"
-          >
-            Every celebration has a mood. Pick yours and we'll craft the perfect experience.
-          </motion.p>
-        </motion.div>
+        <div className="relative grid items-center gap-8 lg:grid-cols-[1fr_1.55fr_1fr] lg:gap-14">
+          <div className="relative z-10 grid gap-5">
+            {left.map((occasion) => <OccasionCard key={occasion.id} occasion={occasion} selected={occasion.id === selectedId} onSelect={() => setSelectedId(occasion.id)} />)}
+          </div>
 
-        {/* Cards Grid */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={containerVariants}
-          className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5"
-        >
-          {moods.map((mood) => (
-            <motion.div key={mood.id} variants={itemVariants}>
-              <Link href={`/services?mood=${mood.id}`} className="block h-full">
-                <div className={`
-                  group relative h-[340px] overflow-hidden rounded-card border border-surface-border 
-                  bg-gradient-to-b ${mood.gradient} 
-                  transition-all duration-500 ease-velvet
-                  hover:scale-[1.03] hover:border-burgundy/20 ${mood.glow}
-                `}>
-                  
-                  {/* Background Image with Parallax */}
-                  <div className="absolute inset-0 overflow-hidden">
-                    <div 
-                      className="absolute inset-[-20%] bg-cover bg-center transition-all duration-700 ease-velvet group-hover:scale-110"
-                      style={{ backgroundImage: `url(${mood.image})` }}
-                    />
-                  </div>
-                  
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/30 to-transparent" />
-                  
-                  {/* Top Accent Line */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${mood.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                  
-                  {/* Content */}
-                  <div className="relative flex h-full flex-col justify-end p-6">
-                    
-                    {/* Icon */}
-                    <motion.div 
-                      className={`
-                        mb-4 flex h-14 w-14 items-center justify-center rounded-2xl 
-                        ${mood.iconBg} border ${mood.borderAccent}
-                        transition-all duration-500 group-hover:scale-110 group-hover:shadow-soft
-                      `}
-                      whileHover={{ rotate: [0, -10, 10, 0] }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <mood.icon className={`h-7 w-7 ${mood.accent} transition-transform duration-300 group-hover:scale-110`} />
-                    </motion.div>
-                    
-                    {/* Text */}
-                    <h3 className="font-display text-2xl font-bold text-ink group-hover:text-burgundy transition-colors duration-300">
-                      {mood.name}
-                    </h3>
-                    <p className="mt-1.5 text-sm text-ink/80 leading-relaxed">
-                      {mood.description}
-                    </p>
-                    
-                    {/* Tagline - appears on hover */}
-                    <div className="overflow-hidden">
-                      <p className={`mt-2 text-xs font-medium ${mood.accent} translate-y-4 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100`}>
-                        {mood.tagline}
-                      </p>
-                    </div>
-                    
-                    {/* CTA */}
-                    <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-ink/70 transition-all duration-300 group-hover:text-burgundy group-hover:gap-3">
-                      <span>Explore</span>
-                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </div>
-                  </div>
+          <motion.div key={selected.id} initial={false} animate={{ opacity: 1 }} className="relative z-10 overflow-hidden rounded-t-[220px] rounded-b-[28px] border border-fuchsia-200 bg-white shadow-[0_22px_55px_rgba(86,35,95,0.14)]">
+            <div className="relative h-[390px] sm:h-[450px]">
+              <Image src={selected.image} alt={`${selected.name} private theatre setup`} fill unoptimized priority sizes="(max-width: 640px) 100vw, (max-width: 1024px) 92vw, 720px" className="object-cover" />
+            </div>
+            <div className="relative px-7 pb-8 pt-11 text-center sm:px-10">
+              <span className="absolute left-1/2 top-0 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[7px] border-white bg-white text-[var(--celebration-primary)] shadow-[0_8px_24px_rgba(144,44,125,0.18)]"><CakeSlice className="h-9 w-9" /></span>
+              <h3 className="font-display text-3xl font-bold text-[var(--celebration-ink)]">{selected.name} Celebration</h3>
+              <p className="mx-auto mt-3 max-w-lg text-base leading-7 text-[var(--celebration-muted)]">{selected.detail}</p>
+              <Link href={`/book?occasion=${selected.id}`} className="bg-celebration-gradient mt-5 inline-flex min-h-12 items-center justify-center gap-3 rounded-xl px-8 py-3 font-semibold text-white shadow-[0_12px_25px_var(--celebration-glow)] transition-transform hover:-translate-y-0.5">Plan {selected.name} <ArrowRight className="h-5 w-5" /></Link>
+            </div>
+          </motion.div>
 
-                  {/* Corner Decoration */}
-                  <div className="absolute top-4 right-4 opacity-0 transition-all duration-500 group-hover:opacity-100">
-                    <div className={`h-8 w-8 rounded-full ${mood.bgAccent} flex items-center justify-center`}>
-                      <ArrowRight className={`h-4 w-4 ${mood.accent}`} />
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
+          <div className="relative z-10 grid gap-5">
+            {right.map((occasion) => <OccasionCard key={occasion.id} occasion={occasion} selected={occasion.id === selectedId} onSelect={() => setSelectedId(occasion.id)} imageRight />)}
+          </div>
+
+          <div className="pointer-events-none absolute left-[24%] right-[24%] top-1/2 hidden -translate-y-1/2 border-t border-dashed border-fuchsia-300/80 lg:block" />
+        </div>
+
+        <div className="mt-14 grid overflow-hidden rounded-[28px] border border-fuchsia-100 bg-white/85 shadow-[0_14px_34px_rgba(75,28,80,0.08)] sm:grid-cols-2 lg:grid-cols-4">
+          {benefits.map(({ icon: Icon, title, text }) => (
+            <div key={title} className="flex items-center gap-4 border-fuchsia-100 px-7 py-7 sm:border-r last:border-r-0">
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-fuchsia-50 text-fuchsia-500"><Icon className="h-7 w-7" /></span>
+              <div><h4 className="font-semibold text-[var(--celebration-ink)]">{title}</h4><p className="mt-1 text-sm leading-5 text-[var(--celebration-muted)]">{text}</p></div>
+            </div>
           ))}
-        </motion.div>
-        
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-16 text-center"
-        >
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 text-sm font-medium text-ink-muted hover:text-burgundy transition-colors duration-300"
-          >
-            View all experiences
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

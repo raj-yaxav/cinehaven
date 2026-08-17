@@ -3,13 +3,11 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 import AIPlanner from '../components/AIPlanner';
-import { HeroSection, LiveSocialProof } from '../components/home';
+import { HeroSection, LiveSocialProof, MoodSelector, OccasionShowcase, HowItWorks, Testimonials } from '../components/home';
 
-const MoodSelector = dynamic(() => import('../components/home').then((m) => ({ default: m.MoodSelector })), { ssr: false });
 const FeaturedRooms = dynamic(() => import('../components/home').then((m) => ({ default: m.FeaturedRooms })), { ssr: false });
 const WhyChooseUs = dynamic(() => import('../components/home').then((m) => ({ default: m.WhyChooseUs })), { ssr: false });
 const MemoryWall = dynamic(() => import('../components/home').then((m) => ({ default: m.MemoryWall })), { ssr: false });
-const Testimonials = dynamic(() => import('../components/home').then((m) => ({ default: m.Testimonials })), { ssr: false });
 const PressLogos = dynamic(() => import('../components/home').then((m) => ({ default: m.PressLogos })), { ssr: false });
 const CTASection = dynamic(() => import('../components/home').then((m) => ({ default: m.CTASection })), { ssr: false });
 
@@ -78,21 +76,28 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
       
-      <main className="min-h-screen text-ivory overflow-x-hidden relative">
-        {/* Full-page Background */}
-        <div className="fixed inset-0 pointer-events-none">
-          <div 
-            className="absolute inset-0 bg-cover bg-center opacity-45 sm:opacity-55"
-            style={{ backgroundImage: 'url(https://res.cloudinary.com/dq3typk9u/image/upload/v1780913958/cinehaven/hero-home.png)' }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-cream/40 via-midnight/60 to-midnight/95" />
-          <div className="absolute top-0 left-1/4 h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-coral/8 blur-[100px] sm:blur-[150px]" />
-          <div className="absolute bottom-0 right-1/4 h-[150px] w-[150px] sm:h-[300px] sm:w-[300px] rounded-full bg-amber/8 blur-[80px] sm:blur-[120px]" />
-        </div>
-
-        <div className="relative z-10">
+      <main className="min-h-screen overflow-x-hidden">
+        <div>
           {/* Hero Section */}
           <HeroSection />
+
+          {/* Occasion Selector */}
+          <MoodSelector />
+
+          {/* Featured Theatre Cards */}
+          <FeaturedRooms />
+
+          {/* Complete Celebration Experience */}
+          <WhyChooseUs />
+
+          {/* Tailored occasions showcase */}
+          <OccasionShowcase />
+
+          {/* Booking process */}
+          <HowItWorks />
+
+          {/* Customer stories */}
+          <Testimonials />
           
           {/* Live Social Proof Bar */}
           <LiveSocialProof />
@@ -119,20 +124,8 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* Mood Selector */}
-          <MoodSelector />
-
-          {/* Featured Rooms Carousel */}
-          <FeaturedRooms />
-
-          {/* Why Choose Us */}
-          <WhyChooseUs />
-
           {/* Memory Wall */}
           <MemoryWall />
-
-          {/* Testimonials */}
-          <Testimonials />
 
           {/* Press / As Seen In */}
           <PressLogos />

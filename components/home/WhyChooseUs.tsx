@@ -1,273 +1,60 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import {
-  Sparkles,
-  ShieldCheck,
-  HeadphonesIcon,
-  Wand2,
-  Star,
-  Clock,
-  Cake,
-  ArrowUpRight,
-  Heart,
-  Zap,
-  Gem,
-} from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowLeft, ArrowRight, CakeSlice, Camera, Crown, Flower2, Heart, Music2, ShieldCheck, Smile, Sparkles, UtensilsCrossed, Users, WandSparkles } from 'lucide-react';
 
-const reasons = [
-  {
-    icon: Wand2,
-    title: 'Curated Experiences',
-    desc: 'Every celebration is uniquely designed with custom decor, lighting, and ambiance tailored to your occasion. No two events are ever the same.',
-    stat: '500+',
-    statLabel: 'Custom setups',
-    color: 'from-burgundy to-burgundy-light',
-    bgColor: 'bg-burgundy/[0.06]',
-    borderColor: 'border-burgundy/15',
-    accentColor: 'text-burgundy',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Hassle-Free Booking',
-    desc: 'Book in under 2 minutes. Our team handles setup, catering, and clean-up so you can focus entirely on celebrating.',
-    stat: '2 min',
-    statLabel: 'Average booking',
-    color: 'from-sage to-sage-light',
-    bgColor: 'bg-sage/[0.06]',
-    borderColor: 'border-sage/15',
-    accentColor: 'text-sage-dark',
-  },
-  {
-    icon: HeadphonesIcon,
-    title: 'Premium AV Setup',
-    desc: 'Dolby Atmos sound, 4K projection, and professional-grade lighting for a true cinematic experience at home.',
-    stat: '4K',
-    statLabel: 'Ultra HD projection',
-    color: 'from-teal to-teal-light',
-    bgColor: 'bg-teal/[0.06]',
-    borderColor: 'border-teal/15',
-    accentColor: 'text-teal',
-  },
-  {
-    icon: Star,
-    title: '5-Star Service',
-    desc: 'Rated 4.9 by 12,000+ guests. Our dedicated hosts ensure every moment is flawless from start to finish.',
-    stat: '4.9',
-    statLabel: 'Average rating',
-    color: 'from-amber to-amber-light',
-    bgColor: 'bg-amber/[0.06]',
-    borderColor: 'border-amber/15',
-    accentColor: 'text-amber-dark',
-  },
-  {
-    icon: Clock,
-    title: 'Flexible Scheduling',
-    desc: 'Open daily 10AM–11PM. Early morning or late night slots available for your convenience, any day of the week.',
-    stat: '13 hrs',
-    statLabel: 'Daily availability',
-    color: 'from-rosegold to-rosegold-light',
-    bgColor: 'bg-rosegold/[0.06]',
-    borderColor: 'border-rosegold/15',
-    accentColor: 'text-rosegold',
-  },
-  {
-    icon: Cake,
-    title: 'All Occasions Welcome',
-    desc: 'Birthdays, proposals, anniversaries, corporate events — we bring equal passion and precision to every celebration.',
-    stat: '50+',
-    statLabel: 'Event types',
-    color: 'from-crimson to-crimson-light',
-    bgColor: 'bg-crimson/[0.06]',
-    borderColor: 'border-crimson/15',
-    accentColor: 'text-crimson',
-  },
+const experiences = [
+  { title: 'Custom Décor', text: 'Themes that match your occasion & personality.', image: '/images/hero-birthday.png', icon: Sparkles },
+  { title: 'Cakes & Desserts', text: 'Delicious cakes made for your special moments.', image: '/images/hero-date.png', icon: CakeSlice },
+  { title: 'Flowers', text: 'Elegant floral arrangements to set the perfect vibe.', image: '/images/hero-anniversary.png', icon: Flower2 },
+  { title: 'Food & Beverages', text: 'Tasty bites & beverages served at your seat.', image: '/images/hero-proposal.png', icon: UtensilsCrossed, featured: true },
+  { title: 'Fog Entry', text: 'Grand entrances that create unforgettable first impressions.', image: '/images/mood-party.png', icon: WandSparkles },
+  { title: 'Photoshoot', text: 'Capture every emotion with our professional setup.', image: '/images/hero-corporate.png', icon: Camera },
+  { title: 'Karaoke & More', text: 'Sing, play & celebrate your way.', image: '/images/hero-friends.png', icon: Music2 },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
-function FeatureCard({ item, index }: { item: typeof reasons[0]; index: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative"
-    >
-      <div className="relative h-full p-6 sm:p-7 lg:p-8 rounded-3xl bg-white/80 backdrop-blur-sm border border-white/60 hover:border-burgundy/10 transition-all duration-500 hover:shadow-[0_8px_40px_-12px_rgba(139,21,56,0.08)] overflow-hidden">
-        
-        {/* Background gradient blob on hover */}
-        <div className={`absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-[0.06] blur-2xl transition-opacity duration-700`} />
-        
-        {/* Top accent line */}
-        <div className={`absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-burgundy/20 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-
-        {/* Number badge */}
-        <div className="absolute top-5 right-5 sm:top-6 sm:right-6">
-          <span className="text-[10px] font-accent uppercase tracking-[0.2em] text-ink-light/30 font-semibold">
-            0{index + 1}
-          </span>
-        </div>
-
-        {/* Icon */}
-        <div className="relative mb-6">
-          <div className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${item.color} text-white shadow-lg shadow-burgundy/10 group-hover:scale-110 group-hover:shadow-xl transition-all duration-500`}>
-            <item.icon className="h-6 w-6" strokeWidth={1.5} />
-          </div>
-          {/* Glow effect behind icon */}
-          <div className={`absolute inset-0 h-14 w-14 rounded-2xl bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500`} />
-        </div>
-
-        {/* Content */}
-        <h3 className="text-lg sm:text-xl font-bold text-ink mb-3 group-hover:text-burgundy transition-colors duration-300">
-          {item.title}
-        </h3>
-        
-        <p className="text-sm sm:text-[15px] text-ink-secondary leading-[1.75] mb-6">
-          {item.desc}
-        </p>
-
-        {/* Stat + CTA row */}
-        <div className="flex items-center justify-between pt-5 border-t border-surface-border/30">
-          <div>
-            <p className={`text-xl sm:text-2xl font-bold ${item.accentColor}`}>{item.stat}</p>
-            <p className="text-[10px] sm:text-xs text-ink-light uppercase tracking-wider font-medium mt-0.5">{item.statLabel}</p>
-          </div>
-          
-          <motion.div
-            whileHover={{ scale: 1.05, x: 2 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-1 text-xs font-semibold text-ink-light/50 group-hover:text-burgundy transition-colors duration-300 cursor-pointer"
-          >
-            <span className="hidden sm:inline">Learn more</span>
-            <ArrowUpRight className="h-4 w-4" />
-          </motion.div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
+const stats = [
+  { icon: Users, value: '50,000+', label: 'Celebrations Hosted', sub: 'Across all locations' },
+  { icon: Smile, value: '100%', label: 'Happiness Guaranteed', sub: 'Memories that last forever' },
+  { icon: ShieldCheck, value: '100%', label: 'Private & Secure', sub: 'Your privacy is our priority' },
+  { icon: Crown, value: '4.9/5', label: 'Customer Rating', sub: '5000+ happy reviews' },
+];
 
 export function WhyChooseUs() {
-  const headerRef = useRef(null);
-  const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const scroll = (direction: 'left' | 'right') => scrollRef.current?.scrollBy({ left: direction === 'left' ? -320 : 320, behavior: 'smooth' });
 
   return (
-    <section className="relative overflow-hidden bg-transparent py-20 sm:py-28 lg:py-32">
-      {/* Background decorative elements */}
-      <div className="absolute top-0 right-[10%] w-[500px] h-[500px] rounded-full bg-burgundy/[0.02] blur-[150px]" />
-      <div className="absolute bottom-0 left-[5%] w-[400px] h-[400px] rounded-full bg-rosegold/[0.02] blur-[120px]" />
-      <div className="absolute top-1/3 left-[8%] w-2 h-2 rounded-full bg-burgundy/15" />
-      <div className="absolute bottom-1/3 right-[12%] w-1.5 h-1.5 rounded-full bg-rosegold/20" />
-      <div className="absolute top-1/4 right-[20%] w-1 h-1 rounded-full bg-amber/30" />
+    <section className="relative isolate overflow-hidden px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+      <Image src="/landing-page/celebrationExperience/experienceBG.png" alt="" fill priority className="-z-20 object-cover" sizes="100vw" />
+      <div className="absolute inset-0 -z-10 bg-white/10" />
+      <div className="mx-auto max-w-[1440px]">
+        <header className="relative mx-auto max-w-4xl text-center">
+          <div className="absolute left-0 top-20 hidden rounded-3xl border border-white/80 bg-white/70 px-6 py-4 text-left shadow-[0_12px_28px_rgba(173,58,139,.12)] lg:block"><div className="flex items-center gap-3"><span className="flex h-11 w-11 items-center justify-center rounded-full bg-fuchsia-50 text-fuchsia-500"><ShieldCheck className="h-6 w-6" /></span><div><strong className="block text-xl text-[var(--celebration-ink)]">100%</strong><span className="text-xs font-medium text-[var(--celebration-ink)]">Private & Secure</span></div></div><p className="mt-1 text-[10px] text-[var(--celebration-muted)]">Your space. Your moment.</p></div>
+          <div className="absolute right-0 top-20 hidden rounded-3xl border border-white/80 bg-white/70 px-6 py-4 text-left shadow-[0_12px_28px_rgba(173,58,139,.12)] lg:block"><div className="flex items-center gap-3"><span className="flex h-11 w-11 items-center justify-center rounded-full bg-violet-50 text-violet-500"><Crown className="h-6 w-6" /></span><div><strong className="block text-xl text-[var(--celebration-ink)]">4.9/5</strong><span className="text-xs font-medium text-[var(--celebration-ink)]">Loved by Customers</span></div></div><p className="mt-1 text-[10px] text-[var(--celebration-muted)]">5000+ reviews</p></div>
+          <p className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-[var(--celebration-primary)] before:h-px before:w-10 before:bg-current after:h-px after:w-10 after:bg-current">More than just a movie</p>
+          <h2 className="mt-4 font-display text-4xl font-bold leading-[0.9] tracking-[-0.045em] text-[var(--celebration-ink)] sm:text-5xl lg:text-6xl">A Complete Celebration<br /><span className="celebrating-shine">Experience</span></h2>
+          <p className="mx-auto mt-5 max-w-2xl text-base text-[var(--celebration-muted)] sm:text-lg">We take care of every little detail so you can focus on<br className="hidden sm:block" /> <span className="font-display text-2xl italic text-[var(--celebration-primary)]">making memories.</span></p>
+        </header>
 
-      <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          ref={headerRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={headerInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-14 sm:mb-18 lg:mb-20"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={headerInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-burgundy/[0.08] border border-burgundy/15 text-burgundy text-sm font-accent font-medium tracking-wide mb-6 sm:mb-8"
-          >
-            <Sparkles className="h-4 w-4" />
-            Why CineHaven
-          </motion.div>
-
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-6xl font-bold text-ink tracking-tight leading-[1.1]">
-            Designed to Make Your{' '}
-            <span className="relative inline-block">
-              <span className="text-burgundy">
-                Moments Unforgettable
-              </span>
-              <svg className="absolute -bottom-1 sm:-bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none">
-                <path d="M2 8C75 2 225 2 298 8" stroke="url(#grad2)" strokeWidth="3" strokeLinecap="round" />
-                <defs>
-                  <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#8B1538" stopOpacity="0.2" />
-                    <stop offset="100%" stopColor="#C75B7A" stopOpacity="0.2" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </span>
-          </h2>
-
-          <p className="mt-5 sm:mt-6 text-ink-secondary max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-            From the moment you walk in, every detail is crafted to deliver an experience you&apos;ll cherish forever. Here&apos;s what sets us apart.
-          </p>
-        </motion.div>
-
-        {/* Features Grid */}
-        <div className="grid gap-5 sm:gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {reasons.map((item, index) => (
-            <FeatureCard key={item.title} item={item} index={index} />
-          ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="mt-14 sm:mt-18 lg:mt-20 text-center"
-        >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 p-6 sm:p-8 rounded-3xl bg-white/60 backdrop-blur-sm border border-white/80 shadow-sm">
-            <div className="flex -space-x-3">
-              {['RS', 'SJ', 'AN', 'PM', 'VA'].map((initials, i) => (
-                <div
-                  key={initials}
-                  className={`flex h-10 w-10 items-center justify-center rounded-full border-2 border-white text-xs font-bold text-white shadow-sm ${
-                    i === 0 ? 'bg-burgundy' :
-                    i === 1 ? 'bg-teal' :
-                    i === 2 ? 'bg-rosegold' :
-                    i === 3 ? 'bg-amber' :
-                    'bg-sage'
-                  }`}
-                >
-                  {initials}
-                </div>
-              ))}
-            </div>
-            <div className="text-center sm:text-left">
-              <p className="text-sm font-semibold text-ink">Join 12,000+ happy guests</p>
-              <p className="text-xs text-ink-muted mt-0.5">Start planning your perfect celebration today</p>
-            </div>
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="px-6 py-3 rounded-xl bg-gradient-burgundy text-white text-sm font-semibold shadow-lg shadow-burgundy/20 hover:shadow-burgundy-glow transition-all whitespace-nowrap"
-            >
-              Book Now
-            </motion.button>
+        <div className="relative mt-12">
+          <button aria-label="Previous experiences" type="button" onClick={() => scroll('left')} className="absolute left-0 top-[35%] z-10 -translate-x-1/2 hidden h-11 w-11 items-center justify-center rounded-full bg-white text-[var(--celebration-primary)] shadow-lg transition hover:scale-105 lg:flex"><ArrowLeft className="h-5 w-5" /></button>
+          <div ref={scrollRef} className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-4 hide-scrollbar">
+            {experiences.map(({ title, text, image, icon: Icon, featured }) => <article key={title} className={`group w-[225px] shrink-0 snap-start overflow-hidden rounded-2xl border border-white/80 bg-white/90 p-2 shadow-[0_12px_28px_rgba(122,34,109,.13)] transition duration-300 hover:-translate-y-1 hover:border-violet-500 hover:ring-2 hover:ring-violet-400/70 hover:ring-offset-2 hover:ring-offset-white/50 hover:shadow-[0_18px_38px_rgba(124,58,237,.28)] sm:w-[250px] ${featured ? 'ring-2 ring-fuchsia-300 shadow-[0_16px_38px_rgba(219,46,161,.28)]' : ''}`}>
+              <div className="relative h-48 overflow-hidden rounded-xl sm:h-52"><Image src={image} alt={title} fill unoptimized className="object-cover transition duration-500 group-hover:scale-105" sizes="(max-width: 640px) 225px, 250px" />{featured && <span className="absolute left-1/2 top-3 -translate-x-1/2 rounded-full bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-[var(--celebration-primary)] shadow"><Heart className="mr-1 inline h-3 w-3 fill-current" />Most Loved</span>}</div>
+              <div className="relative px-3 pb-4 pt-8 text-center"><span className="absolute left-1/2 top-0 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-white bg-white text-fuchsia-500 shadow-[0_8px_20px_rgba(203,50,169,.22)]"><Icon className="h-6 w-6" /></span><h3 className="font-display text-xl font-bold text-[var(--celebration-ink)]">{title}</h3><p className="mt-2 min-h-[42px] text-xs leading-[1.4] text-[var(--celebration-muted)]">{text}</p><Link href="/add-ons" className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-[var(--celebration-primary)] transition hover:gap-2">Explore <ArrowRight className="h-3.5 w-3.5" /></Link></div>
+            </article>)}
           </div>
-        </motion.div>
+          <button aria-label="Next experiences" type="button" onClick={() => scroll('right')} className="absolute right-0 top-[35%] z-10 translate-x-1/2 hidden h-11 w-11 items-center justify-center rounded-full bg-white text-[var(--celebration-primary)] shadow-lg transition hover:scale-105 lg:flex"><ArrowRight className="h-5 w-5" /></button>
+        </div>
+        <div className="mt-7 flex justify-center gap-2" aria-hidden="true">{[0, 1, 2, 3, 4].map((dot) => <span key={dot} className={`h-2 w-2 rounded-full ${dot === 0 ? 'bg-[var(--celebration-primary)]' : 'bg-fuchsia-200'}`} />)}</div>
+        <div className="mt-8 grid overflow-hidden rounded-[28px] border border-white/90 bg-white/75 shadow-[0_14px_34px_rgba(113,39,104,.11)] sm:grid-cols-2 lg:grid-cols-[1.25fr_repeat(4,1fr)]">
+          <div className="border-b border-fuchsia-100 px-6 py-6 lg:border-b-0 lg:border-r"><div className="flex items-center gap-3"><span className="flex h-11 w-11 items-center justify-center rounded-xl bg-celebration-gradient text-white"><Sparkles className="h-5 w-5" /></span><div><strong className="font-display text-lg text-[var(--celebration-ink)]">CELEBRATION<span className="text-[var(--celebration-primary)]">FLIX</span></strong><p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[var(--celebration-muted)]">Private Theatres</p></div></div><p className="mt-3 font-display text-lg italic text-[var(--celebration-primary)]">You celebrate, we create the magic.</p></div>
+          {stats.map(({ icon: Icon, value, label, sub }) => <div key={label} className="flex gap-3 border-b border-fuchsia-100 px-6 py-6 last:border-b-0 sm:odd:border-l lg:border-b-0 lg:border-l"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-fuchsia-50 text-fuchsia-500"><Icon className="h-5 w-5" /></span><div><strong className="text-lg text-[var(--celebration-primary)]">{value}</strong><p className="text-xs font-bold text-[var(--celebration-ink)]">{label}</p><p className="mt-1 text-[10px] text-[var(--celebration-muted)]">{sub}</p></div></div>)}
+        </div>
+        <p className="mt-9 text-center text-[10px] font-bold uppercase tracking-[0.28em] text-[var(--celebration-primary)]">You celebrate, we create the magic</p>
       </div>
     </section>
   );
